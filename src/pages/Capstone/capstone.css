@@ -1,0 +1,34 @@
+/* capstone.css */
+
+/* Styles for .code__submission */
+.code__submission {
+    padding: 5px;
+    border: 1px solid #7e8e9f;
+    border-radius: 5px;
+    width: 100%;
+    outline: none;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+  
+  .code__submission:hover,
+  .code__submission:focus {
+    box-shadow: 0 0 3px var(--theme);
+  }
+  
+  /* Styles for .submit__capstone */
+  .submit__capstone {
+    padding: 5px 15px;
+    background-color: var(--theme);
+    border-radius: 5px;
+    color: white;
+    outline: none;
+    border: none;
+    transition: 0.3s;
+  }
+  
+  .submit__capstone:hover {
+    letter-spacing: 1px;
+    transform: scale(1.1); /* Fixed the typo 'scale' to 'transform' */
+  }
+  

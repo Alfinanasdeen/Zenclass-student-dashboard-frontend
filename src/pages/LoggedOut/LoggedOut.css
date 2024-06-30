@@ -1,0 +1,22 @@
+.loggedOut {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background-color: var(--background-color); /* Adjusted background color variable */
+}
+
+.body__container {
+    min-width: 400px;
+    background-color: var(--theme-color); /* Adjusted theme color variable */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.img__container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Add additional styling as needed */

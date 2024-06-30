@@ -1,0 +1,23 @@
+.mock__Data {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.mock__title {
+    width: 175px;
+    font-weight: bold;
+}
+
+.task__container {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: box-shadow 0.3s ease;
+}
+
+.task__container:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
