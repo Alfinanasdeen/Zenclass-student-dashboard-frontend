@@ -24,8 +24,8 @@ const Login = () => {
           <div className="row img__container">
             <img src={LOGO} alt="Logo" className="logo" />
           </div>
-          <div className="row d-flex justify-content-center align-items-center">
-            <div className="col-10 col-md-8 col-lg-6">
+          <div className="row  d-flex justify-content-center align-items-center">
+            <div className="col-10 col-md-8 col-lg-6 top-area">
               <Formik
                 initialValues={{ email: "", password: "" }}
                 validationSchema={validationSchema}
@@ -37,17 +37,17 @@ const Login = () => {
                       label="Email"
                       name="email"
                       type="email"
-                      placeholder="Enter Registered Email"
+                      placeholder="Example: johndoe@mail.com"
                     />
                     <TextField
                       label="Password"
                       name="password"
                       type="password"
-                      placeholder="Enter Password"
+                      placeholder="Your Password"
                     />
                     <button
                       type="submit"
-                      className="btn forgot btn-outline-danger mb-2"
+                      className="col-md-12 login__btn btn-lg btn-block login-btn mt-4 mb-4"
                     >
                       {isLoading ? (
                         <span className="spinner-border text-warning"></span>
@@ -58,14 +58,20 @@ const Login = () => {
                   </Form>
                 )}
               </Formik>
-              <Link to="/forgot" className="btn forgot btn-outline-danger mb-2">
+              <Link
+                to="/forgot"
+                className="col-md-12 btn custom-btn custom-btn-outline-danger"
+              >
                 Forgot Password?
               </Link>
-              <Link to="/signup" className="btn forgot btn-outline-success">
+              <Link
+                to="/signup"
+                className="col-md-12 btn custom-btn custom-btn-outline-success"
+              >
                 Not Registered? Sign up
               </Link>
               <button
-                className="btn forgot btn-outline-danger mb-2"
+                className="col-md-12 btn custom-btn custom-btn-outline-danger"
                 data-bs-toggle="modal"
                 data-bs-target="#demoModal"
               >
@@ -74,7 +80,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-4 text-right banner__right pr-0">
+        <div className="col-md-4 banner__right px-0">
           <img src={BANNER} className="banner" alt="Banner" />
         </div>
       </div>
