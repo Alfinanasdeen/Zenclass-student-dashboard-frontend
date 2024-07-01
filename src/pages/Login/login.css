@@ -25,25 +25,25 @@
   
   .loginPage .login__btn {
     background-color: var(--theme);
-    color: #fff;
+    color: #b31d1d;
     transition: 0.3s;
   }
   
   .loginPage .login__btn:hover {
     background-color: var(--theme);
-    color: #fff;
+    color: #d10707;
     letter-spacing: 2px;
   }
   
   .loginPage .instruction {
     background-color: var(--theme);
-    color: #fff;
+    color: #b40c0c;
     transition: 0.3s;
   }
   
   .loginPage .instruction:hover {
     background-color: var(--theme);
-    color: #fff;
+    color: #e61212;
     transform: scale(1.1);
   }
   

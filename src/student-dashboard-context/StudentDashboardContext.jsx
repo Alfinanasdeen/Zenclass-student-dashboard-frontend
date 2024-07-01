@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../api/api";
 import { toast } from "react-toastify";
 import useWindowSize from "../customHooks/useViewportSize";
-import { roadMapData } from "../data"; // Assuming roadMapData is provided
+import { roadMapData } from "../data"; 
 import axios from "axios";
 import PropTypes from "prop-types";
 
@@ -33,7 +33,7 @@ export const StudentDataProvider = ({ children }) => {
 
   // State variables for student progress and tasks
   const [currentDay, setCurrentDay] = useState(0);
-  const [roadMap, setRoadMap] = useState(roadMapData[0]); // Assuming roadMapData is provided
+  const [roadMap, setRoadMap] = useState(roadMapData[0]);
   const [flagState, setFlagState] = useState(true);
   const [frontEndCode, setFrontEndCode] = useState("");
   const [frontEndURL, setFrontEndURL] = useState("");

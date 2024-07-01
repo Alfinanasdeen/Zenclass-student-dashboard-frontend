@@ -47,7 +47,7 @@ const Login = () => {
                     />
                     <button
                       type="submit"
-                      className="col-12 btn btn-lg btn-block login__btn mt-4 mb-4 d-flex justify-content-center"
+                      className="btn forgot btn-outline-danger mb-2"
                     >
                       {isLoading ? (
                         <span className="spinner-border text-warning"></span>
@@ -65,7 +65,7 @@ const Login = () => {
                 Not Registered? Sign up
               </Link>
               <button
-                className="btn mt-2 instruction forgot"
+                className="btn forgot btn-outline-danger mb-2"
                 data-bs-toggle="modal"
                 data-bs-target="#demoModal"
               >
