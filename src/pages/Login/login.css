@@ -6,12 +6,19 @@
   background-color: #f0f2f5;
   margin-right: 0;
 }
+
 .TextField {
   height: 5px;
 }
-.top-area {
-  margin-top: 50px; /* Adjust the top margin as needed */
+
+.loginPage .row.d-flex.justify-content-center.align-items-center {
+  padding-top: 30px;
 }
+
+.top-area {
+  padding-top: 30px;
+}
+
 .loginPage .logo {
   width: 120px;
   padding: 0;
@@ -33,7 +40,7 @@
   background-color: #007bff;
   border: 1px solid #ced4da;
   padding: 0.5rem 1rem;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .email__btn {
   border: 1px solid #ced4da;
@@ -56,20 +63,6 @@
   border: none;
 }
 
-@media (max-width: 768px) {
-  .banner__right {
-    display: none;
-  }
-  .loginPage .img__container {
-    display: grid;
-    place-items: center;
-    margin-bottom: 25px;
-  }
-  .loginPage .logo {
-    width: 100px;
-  }
-}
-/* Custom styles for buttons */
 .btn.custom-btn {
   display: block;
   width: 100%;
@@ -113,4 +106,18 @@
 .btn.custom-btn-outline-success:hover {
   background-color: #28a745;
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  .banner__right {
+    display: none;
+  }
+  .loginPage .img__container {
+    display: grid;
+    place-items: center;
+    margin-bottom: 25px;
+  }
+  .loginPage .logo {
+    width: 100px;
+  }
 }

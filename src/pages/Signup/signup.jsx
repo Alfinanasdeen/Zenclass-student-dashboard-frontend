@@ -131,7 +131,7 @@ const Signup = () => {
                     />
                     <button
                       type="submit"
-                      className="col-12 btn btn-lg btn-block signup__btn mt-4 mb-4 d-flex justify-content-center"
+                      className="col-md-12 Register__btn btn-lg btn-block mt-4 mb-4"
                     >
                       {isLoading ? (
                         <span className="spinner-border text-warning"></span>
@@ -143,7 +143,7 @@ const Signup = () => {
                 )}
               </Formik>
             </div>
-            <Link to="/" className="btn forgot btn-outline-success">
+            <Link to="/" className="col-md-6 btn btn-outline-success login-btn">
               Go to Login
             </Link>
           </div>

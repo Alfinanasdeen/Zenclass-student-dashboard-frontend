@@ -12,7 +12,7 @@ import TextField from "../../components/formFields/Textarea";
 import "./forget.css";
 
 const Forgot = () => {
-  const { handleForgot, isLoading } = useContext(DataContext);
+  const { handleForgotPassword, isLoading } = useContext(DataContext);
 
   const validationSchema = Yup.object({
     email: Yup.string().email("Email is invalid").required("Required"),
@@ -26,12 +26,12 @@ const Forgot = () => {
             <img src={LOGO} alt="Logo" className="logo" />
           </div>
           <div className="row d-flex justify-content-center align-items-center">
-            <div className="col-10 col-md-8 col-lg-6">
+            <div className="col-10 col-md-8 col-lg-6 top-area">
               <Formik
                 initialValues={{ email: "" }}
                 validationSchema={validationSchema}
                 onSubmit={(values, { resetForm }) => {
-                  handleForgot(values);
+                  handleForgotPassword(values);
                   resetForm();
                 }}
               >
@@ -45,19 +45,19 @@ const Forgot = () => {
                     />
                     <button
                       type="submit"
-                      className="col-12 btn btn-lg btn-block forgot__btn mt-4 mb-4 d-flex justify-content-center"
+                      className="col-md-12 Reset__btn btn-lg btn-block mt-4 mb-4"
                     >
                       {isLoading ? (
                         <span className="spinner-border text-warning"></span>
                       ) : (
-                        "Send Reset Link"
+                        "Request Reset Link"
                       )}
                     </button>
                   </Form>
                 )}
               </Formik>
             </div>
-            <Link to="/" className="btn forgot btn-outline-success">
+            <Link to="/" className="col-md-6 btn btn-outline-success login-btn">
               Go to Login
             </Link>
           </div>
