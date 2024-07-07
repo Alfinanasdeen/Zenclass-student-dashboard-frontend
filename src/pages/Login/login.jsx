@@ -47,7 +47,7 @@ const Login = () => {
                     />
                     <button
                       type="submit"
-                      className="col-md-12 login__btn btn-lg btn-block login-btn mt-4 mb-4"
+                      className="col-md-12 btn login__btn mt-4 mb-4"
                     >
                       {isLoading ? (
                         <span className="spinner-border text-warning"></span>
@@ -71,7 +71,7 @@ const Login = () => {
                 Not Registered? Sign up
               </Link>
               <button
-                className="col-md-12 btn custom-btn custom-btn-outline-danger"
+                className="col-md-12 btn custom-btn custom-btn-outline-success"
                 data-bs-toggle="modal"
                 data-bs-target="#demoModal"
               >

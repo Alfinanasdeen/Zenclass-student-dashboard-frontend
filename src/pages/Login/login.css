@@ -26,31 +26,43 @@
   transition: 0.3s;
 }
 
-.loginPage .banner {
-  width: 90%;
-  height: 100vh;
+.banner__right {
+  position: relative;
+  float: right;
+  height: 100%;
+  width: 100%;
 }
 
-.loginPage label {
-  color: var(--secondary);
+.banner {
+  width: 100%;
+  height: 100%;
+  max-width: 100%; /* Ensures the banner doesn't exceed its container's width */
+  object-fit: cover;
+}
+
+.banner__right .banner {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
 }
 
 .loginPage .login__btn {
   color: #fff !important;
   background-color: #007bff;
-  border: 1px solid #ced4da;
-  padding: 0.5rem 1rem;
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
   font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s;
+  margin-top: 1rem;
 }
 .email__btn {
   border: 1px solid #ced4da;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-}
-.loginPage .instruction {
-  background-color: var(--theme);
-  color: #b40c0c;
-  transition: 0.3s;
 }
 
 .modal .modal-content {
@@ -108,16 +120,24 @@
   color: #fff;
 }
 
+/* CSS adjustments */
 @media (max-width: 768px) {
-  .banner__right {
-    display: none;
+  .banner {
+    position: relative;
+    margin-top: 20px; /* Adjust as needed */
+    height: auto;
   }
   .loginPage .img__container {
-    display: grid;
-    place-items: center;
+    text-align: center;
     margin-bottom: 25px;
   }
   .loginPage .logo {
-    width: 100px;
+    width: 80px; /* Adjusted size for smaller screens */
+  }
+  .top-area {
+    padding-top: 15px; /* Reduced padding for smaller screens */
+  }
+  .loginPage .login__btn {
+    font-size: 0.9rem; /* Smaller font size for buttons */
   }
 }

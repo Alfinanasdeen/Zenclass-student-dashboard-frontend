@@ -45,7 +45,7 @@ const Forgot = () => {
                     />
                     <button
                       type="submit"
-                      className="col-md-12 Reset__btn btn-lg btn-block mt-4 mb-4"
+                      className="col-md-12 Reset__btn mt-4 mb-4"
                     >
                       {isLoading ? (
                         <span className="spinner-border text-warning"></span>
@@ -57,7 +57,10 @@ const Forgot = () => {
                 )}
               </Formik>
             </div>
-            <Link to="/" className="col-md-6 btn btn-outline-success login-btn">
+            <Link
+              to="/"
+              className="col-md-4 col-sm-6 col-6 btn login-btn btn-outline-success"
+            >
               Go to Login
             </Link>
           </div>
