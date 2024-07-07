@@ -12,7 +12,7 @@
 }
 
 .loginPage .row.d-flex.justify-content-center.align-items-center {
-  padding-top: 30px;
+  padding-top: 140px;
 }
 
 .top-area {
@@ -124,7 +124,7 @@
 @media (max-width: 768px) {
   .banner {
     position: relative;
-    margin-top: 20px; /* Adjust as needed */
+    margin-top: 0; /* Adjust as needed */
     height: auto;
   }
   .loginPage .img__container {
@@ -132,12 +132,15 @@
     margin-bottom: 25px;
   }
   .loginPage .logo {
-    width: 80px; /* Adjusted size for smaller screens */
+    width: 100px; /* Adjusted size for smaller screens */
   }
   .top-area {
-    padding-top: 15px; /* Reduced padding for smaller screens */
+    padding-top: 500px; /* Reduced padding for smaller screens */
   }
   .loginPage .login__btn {
     font-size: 0.9rem; /* Smaller font size for buttons */
+  }
+  .loginPage .row.d-flex.justify-content-center.align-items-center {
+    padding-top: 140px;
   }
 }

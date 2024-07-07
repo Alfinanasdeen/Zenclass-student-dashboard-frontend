@@ -10,9 +10,10 @@
   padding-top: 100px;
 }
 
-.top-area {
-  padding-top: 150px;
+.forgotPage .top-area {
+  padding-top: 160px;
 }
+
 .forgotPage .d-flex {
   display: flex;
   justify-content: center;

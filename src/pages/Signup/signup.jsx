@@ -28,10 +28,10 @@ const Signup = () => {
       .max(15, "Must be less than 15 Characters")
       .min(10, "Must be at least 10 Characters")
       .required("Required"),
-    experience: Yup.string()
-      .max(10, "Must be less than 10 Characters")
-      .min(1, "Must be at least 1 Characters")
-      .required("Required"),
+    // experience: Yup.string()
+    //   .max(10, "Must be less than 10 Characters")
+    //   .min(1, "Must be at least 1 Characters")
+    //   .required("Required"),
     qualification: Yup.string()
       .max(35, "Must be less than 35 Characters")
       .min(2, "Must be at least 2 Characters")
@@ -60,7 +60,7 @@ const Signup = () => {
                   name: "",
                   lName: "",
                   contactNo: "",
-                  experience: "",
+                  //experience: "",
                   qualification: "",
                   password: "",
                   cPassword: "",
@@ -101,13 +101,13 @@ const Signup = () => {
                       type="text"
                       placeholder="Enter Your Contact"
                     />
-                    <TextField
+                    {/* <TextField
                       label="Experience"
                       name="experience"
                       id="experience"
                       type="text"
                       placeholder="Enter Your Experience in Years"
-                    />
+                    /> */}
                     <TextField
                       label="Qualification"
                       name="qualification"
@@ -131,7 +131,7 @@ const Signup = () => {
                     />
                     <button
                       type="submit"
-                      className="col-md-12 col-sm-4 col-4 Register__btn btn-lg btn-block mt-4 mb-4"
+                      className="col-md-12 col-sm-4 col-4 Register__btn btn-lg btn-block mt-2 mb-2"
                     >
                       {isLoading ? (
                         <span className="spinner-border text-warning"></span>
