@@ -22,6 +22,7 @@ import Leave from "./pages/LeaveApplication/Leave";
 import Mock from "./pages/MockInterview/mock";
 import Certificate from "./pages/Certificate/Certificate";
 import Leaderboard from "./pages/Leaderboard/Leaderboard";
+import Syllabus from "./pages/Syllabus/Syllabus";
 import LoggedOut from "./pages/LoggedOut/LoggedOut";
 
 function App() {
@@ -66,7 +67,8 @@ function App() {
             <Route path="/leave" element={<Leave />} />
             <Route path="/mock" element={<Mock />} />
             <Route path="/certificate" element={<Certificate />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/learderboard" element={<Leaderboard />} />
+            <Route path="/syllabus" element={<Syllabus />} />
           </>
         )}
       </Routes>

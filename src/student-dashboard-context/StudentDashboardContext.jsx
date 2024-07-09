@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../api/api";
 import { toast } from "react-toastify";
 import useWindowSize from "../customHooks/useViewportSize";
-import { roadMapData } from "../data"; 
+import { roadMapData } from "../data";
 import axios from "axios";
 import PropTypes from "prop-types";
 
@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 const StudentDataContext = createContext({});
 
 const getTokenFromLocalStorage = () => {
-  const data = localStorage.getItem("loggedInStudentData");
+  const data = localStorage.getItem("userData");
   if (data) {
     const { token } = JSON.parse(data);
     return token;
@@ -29,7 +29,11 @@ export const StudentDataProvider = ({ children }) => {
   const [resetToken, setResetToken] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const [apiConfig, setApiConfig] = useState({}); // Initialize empty initially
+  const [apiConfig, setApiConfig] = useState({
+    headers: {
+      Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+    },
+  }); // Initialize empty initially
 
   // State variables for student progress and tasks
   const [currentDay, setCurrentDay] = useState(0);
@@ -44,7 +48,7 @@ export const StudentDataProvider = ({ children }) => {
   const [webCodeData, setWebCodeData] = useState(null);
   const [capstoneProject, setCapstoneProject] = useState(null);
   const [queries, setQueries] = useState([]);
-  const [portfolioData, setPortfolioData] = useState(null);
+  const [portfolio, setPortfolio] = useState(null);
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [mockData, setMockData] = useState([]);
 
@@ -56,9 +60,10 @@ export const StudentDataProvider = ({ children }) => {
       setuser(userData.student);
       setAuthToken(userData.token);
 
+      const token = userData.token; // Ensure token is correctly retrieved
       setApiConfig({
         headers: {
-          authorization: `bearer ${userData.token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
     }
@@ -507,21 +512,16 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
-  // Function to handle portfolio submission
-  const handlePortfolioSubmission = async (formData) => {
+  // handling portfolio submission
+  const handlePortfolio = async (data) => {
     setIsLoading(true);
 
     try {
-      const response = await api.post(
-        "/student/portfolio",
-        formData,
-        apiConfig
-      );
+      const response = await api.post("student/portfolio", data, apiConfig);
       toast.success(response.data.message);
+      setDataUpdateTrigger((prev) => prev + 1);
       setIsLoading(false);
-      setDataUpdateTrigger((prev) => prev + 1); // Increment to update portfolio section
     } catch (error) {
-      // Handle errors during portfolio submission
       if (error.response.data.message) {
         toast.error(error.response.data.message);
       } else {
@@ -531,18 +531,15 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
-  // Function to fetch portfolio data
-  const fetchPortfolioData = async () => {
-    setIsLoading(true);
-
+  // fetching portfolio data
+  const fetchPortfolio = async () => {
     try {
-      const response = await api.get("/student/portfolio", apiConfig);
-      setPortfolioData(response.data[0]);
-      setIsLoading(false);
+      const fetchedPortfolio = await api.get("student/portfolio", apiConfig);
+      if (fetchedPortfolio) {
+        setPortfolio(fetchedPortfolio.data[0]);
+      }
     } catch (error) {
-      // Handle errors during fetching portfolio data
       console.log(error);
-      setIsLoading(false);
     }
   };
 
@@ -628,7 +625,8 @@ export const StudentDataProvider = ({ children }) => {
     <StudentDataContext.Provider
       value={{
         pageTitle,
-        setPageTitle: handlePageTitleChange,
+        setPageTitle,
+        handlePageTitleChange,
         user,
         setuser,
         authToken,
@@ -678,9 +676,9 @@ export const StudentDataProvider = ({ children }) => {
         fetchQueries,
         handleQuerySubmission,
         handleCancelQuery,
-        portfolioData,
-        fetchPortfolioData,
-        handlePortfolioSubmission,
+        portfolio,
+        fetchPortfolio,
+        handlePortfolio,
         leaveRequests,
         fetchLeaveRequests,
         handleLeaveRequestSubmission,

@@ -47,7 +47,7 @@ const Login = () => {
                     />
                     <button
                       type="submit"
-                      className="col-md-12 btn login__btn mt-4 mb-4"
+                      className="col-md-12 login__btn mt-4 mb-4"
                     >
                       {isLoading ? (
                         <span className="spinner-border text-warning"></span>

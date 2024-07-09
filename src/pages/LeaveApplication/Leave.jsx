@@ -9,18 +9,18 @@ import * as Yup from "yup";
 
 const Leave = () => {
   const {
-    leave,
+    leave = [], // Add a default value of an empty array
     trigger,
     setTrigger,
-    fetchLeave,
+    fetchLeaveRequests,
     handleAddLeave,
     handleLeaveCancel,
     isLoading,
   } = useContext(DataContext);
 
   useEffect(() => {
-    fetchLeave();
-  }, [trigger, setTrigger, fetchLeave]);
+    fetchLeaveRequests();
+  }, [trigger, setTrigger, fetchLeaveRequests]);
 
   const validationSchema = Yup.object({
     reason: Yup.string()
@@ -42,7 +42,7 @@ const Leave = () => {
         </button>
       </div>
       <br />
-      {leave &&
+      {leave.length > 0 ? ( // Check if leave array has any elements
         leave.map((data) => (
           <div
             className="task__container"
@@ -69,7 +69,10 @@ const Leave = () => {
               </div>
             </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <h3 className="text-center mt-3">No Leave Request raised</h3>
+      )}
       <div className="modal" id="myModal">
         <div className="modal-dialog">
           <div className="modal-content">
@@ -127,7 +130,7 @@ const Leave = () => {
           </div>
         </div>
       </div>
-      {leave &&
+      {leave.length > 0 && // Add the same check here
         leave.map((data) => (
           <div className="modal" id={`leaveModal${data._id}`} key={data._id}>
             <div className="modal-dialog">
@@ -161,9 +164,6 @@ const Leave = () => {
             </div>
           </div>
         ))}
-      {!leave.length && (
-        <h3 className="text-center mt-3">No Leave Request raised</h3>
-      )}
       <ToastContainer
         position="top-right"
         autoClose={1000}

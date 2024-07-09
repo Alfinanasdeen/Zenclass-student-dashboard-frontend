@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
 import "./portfolio.css";
 import DataContext from "../../context/DataContext";
 import RequestField from "../../components/textField/RequestField";
@@ -10,16 +10,16 @@ import { ToastContainer, Zoom } from "react-toastify";
 const Portfolio = () => {
   const {
     portfolio,
-    fetchPortfolioData,
-    handlePortfolioSubmission,
+    fetchPortfolio,
+    handlePortfolio,
     isLoading,
     trigger,
     setTrigger,
   } = useContext(DataContext);
 
   useEffect(() => {
-    fetchPortfolioData();
-  }, [fetchPortfolioData, trigger, setTrigger]);
+    fetchPortfolio();
+  }, [fetchPortfolio, trigger, setTrigger]);
 
   const validationSchema = Yup.object({
     portfolioURL: Yup.string().url().required("Required"),
@@ -28,7 +28,7 @@ const Portfolio = () => {
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    handlePortfolioSubmission(values);
+    handlePortfolio(values);
     resetForm({ values: "" });
   };
 
@@ -47,7 +47,7 @@ const Portfolio = () => {
           >
             {/* Remove unused 'formik' variable */}
             <Form>
-              <div className="widthfit mx-3 px-2">
+              <div className="widthfit mx-6 px-4">
                 <RequestField
                   label="Github URL"
                   name="githubURL"

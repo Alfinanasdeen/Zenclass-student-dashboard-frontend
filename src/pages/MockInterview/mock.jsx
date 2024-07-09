@@ -4,15 +4,15 @@ import DataContext from "../../student-dashboard-context/StudentDashboardContext
 import "./mock.css"; // Import CSS for styling
 
 const Mock = () => {
-  const { mock, loggedUser, fetchMock } = useContext(DataContext);
+  const { mock = [], loggedUser, fetchMockData } = useContext(DataContext); // Default mock to an empty array
 
   useEffect(() => {
-    fetchMock();
-  }, [fetchMock]); // Include fetchMock in the dependency array
+    fetchMockData();
+  }, [fetchMockData]); // Include fetchMockData in the dependency array
 
   return (
     <section className="mock mt-5">
-      {mock.length ? (
+      {mock.length ? ( // Check if mock array has any elements
         mock.map((data) => (
           <div
             className="task__container"
