@@ -1,3 +1,4 @@
+// StudentDashboardContext.jsx
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/api";
@@ -10,10 +11,11 @@ import PropTypes from "prop-types";
 // Create a context for data management
 const StudentDataContext = createContext({});
 
+// Function to retrieve token from localStorage
 const getTokenFromLocalStorage = () => {
-  const data = localStorage.getItem("userData");
-  if (data) {
-    const { token } = JSON.parse(data);
+  const userData = localStorage.getItem("userData");
+  if (userData) {
+    const { token } = JSON.parse(userData);
     return token;
   }
   return null;
@@ -25,15 +27,10 @@ export const StudentDataProvider = ({ children }) => {
   const { width } = useWindowSize();
   const [pageTitle, setPageTitle] = useState("");
   const [user, setuser] = useState(null); // Initialize with null
-  const [authToken, setAuthToken] = useState(""); // Initialize with empty string
+  const [authToken, setAuthToken] = useState(getTokenFromLocalStorage()); // Initialize with stored token
   const [resetToken, setResetToken] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const [apiConfig, setApiConfig] = useState({
-    headers: {
-      Authorization: `Bearer ${getTokenFromLocalStorage()}`,
-    },
-  }); // Initialize empty initially
 
   // State variables for student progress and tasks
   const [currentDay, setCurrentDay] = useState(0);
@@ -52,79 +49,61 @@ export const StudentDataProvider = ({ children }) => {
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [mockData, setMockData] = useState([]);
 
-  // Effect hook to initialize data on component mount
-  useEffect(() => {
-    const storedUser = localStorage.getItem("userData");
-    if (storedUser) {
-      const userData = JSON.parse(storedUser);
-      setuser(userData.student);
-      setAuthToken(userData.token);
+  // API configuration with Authorization header
+  const [apiConfig, setApiConfig] = useState({
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  });
 
-      const token = userData.token; // Ensure token is correctly retrieved
+  useEffect(() => {
+    const token = getTokenFromLocalStorage();
+    if (token) {
       setApiConfig({
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
     }
-    // Example API call on component mount
-    api
-      .get("/")
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  }, [authToken]);
 
-  // handle signin
+  // Function to handle sign-in
   const handleSignIn = async (formData) => {
-    console.log("Logging in with formData:", formData); // Add this line to check formData
     setIsLoading(true);
     try {
       const response = await api.post("/student/login", formData);
       const userData = response.data;
-      // Account verified, proceed with login
-      localStorage.setItem("userData", JSON.stringify(userData));
+      localStorage.setItem("userData", JSON.stringify(userData)); // Store user data including token
+      setAuthToken(userData.token); // Update state with new token
       setuser(userData.student);
-      setAuthToken(userData.token);
-      setApiConfig({
-        headers: {
-          Authorization: `Bearer ${userData.token}`,
-        },
-      });
-
       setIsLoading(false);
-
-      // Always redirect to /class after successful login
       navigate("/class");
     } catch (error) {
-      // Handle other errors during sign-in
       if (error.response && error.response.status === 401) {
-        toast.error("Invalid username or password."); // Handle 401 Unauthorized error
+        toast.error("Invalid username or password.");
       } else if (
         error.response &&
         error.response.data &&
         error.response.data.message
       ) {
-        toast.error(error.response.data.message); // Handle other server errors
+        toast.error(error.response.data.message);
       } else {
-        console.log("Error during sign-in:", error); // Log any unexpected errors
+        console.log("Error during sign-in:", error);
       }
       setIsLoading(false);
     }
   };
 
-  // Function to handle student logout
+  // Function to handle logout
   const handleLogout = () => {
-    setAuthToken(""); // Clear token on logout
+    localStorage.removeItem("userData");
     setuser(null);
+    setAuthToken(null);
     setPageTitle("Class");
     navigate("/");
-    localStorage.clear();
   };
-  // Example function to handle login and store token
+
+  // Function to handle login and store token (if needed separately)
   const handleLogin = async (credentials) => {
     try {
       const response = await api.post("/login", credentials);
@@ -144,7 +123,6 @@ export const StudentDataProvider = ({ children }) => {
   // Frontend handleSignUp function example
   const handleSignUp = async (formData) => {
     setIsLoading(true);
-
     try {
       const response = await api.post("/student/signup", formData);
       toast.success(response.data.message);
@@ -267,7 +245,6 @@ export const StudentDataProvider = ({ children }) => {
   // Function to handle task submission
   const handleTaskSubmission = async (formData) => {
     setIsLoading(true);
-
     const taskCheck = user.email ? user.email : user.student.email;
     const newTask = {
       day: currentDay,
