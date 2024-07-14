@@ -21,20 +21,33 @@ const getTokenFromLocalStorage = () => {
   return null;
 };
 
+// Function to retrieve user from localStorage
+const getUserFromLocalStorage = () => {
+  const userData = localStorage.getItem("userData");
+  if (userData) {
+    const { student } = JSON.parse(userData);
+    return student;
+  }
+  return null;
+};
+
 // Data provider component
 export const StudentDataProvider = ({ children }) => {
   // State variables and hooks
   const { width } = useWindowSize();
   const [pageTitle, setPageTitle] = useState("");
-  const [user, setuser] = useState(null); // Initialize with null
+  const [user, setuser] = useState(getUserFromLocalStorage()); // Initialize with null
   const [authToken, setAuthToken] = useState(getTokenFromLocalStorage()); // Initialize with stored token
   const [resetToken, setResetToken] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingData, setLoadingData] = useState(true);
   const navigate = useNavigate();
 
   // State variables for student progress and tasks
   const [currentDay, setCurrentDay] = useState(0);
+  console.log("Current day value:", currentDay);
   const [roadMap, setRoadMap] = useState(roadMapData[0]);
+  const [roadMapRes, setRoadMapRes] = useState(null);
   const [flagState, setFlagState] = useState(true);
   const [frontEndCode, setFrontEndCode] = useState("");
   const [frontEndURL, setFrontEndURL] = useState("");
@@ -55,17 +68,21 @@ export const StudentDataProvider = ({ children }) => {
       Authorization: `Bearer ${authToken}`,
     },
   });
-
   useEffect(() => {
     const token = getTokenFromLocalStorage();
+    const storedUser = getUserFromLocalStorage();
+    console.log('Component rendered with data:',children);
+    setLoadingData(false); 
     if (token) {
+      setAuthToken(token);
+      setuser(storedUser);
       setApiConfig({
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
     }
-  }, [authToken]);
+  }, [authToken, children]);
 
   // Function to handle sign-in
   const handleSignIn = async (formData) => {
@@ -277,6 +294,9 @@ export const StudentDataProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
+  if (loadingData) {
+    return <p>Loading...</p>;
+  }
 
   // Example usage in fetchTask function
   const fetchTask = async () => {
@@ -604,6 +624,8 @@ export const StudentDataProvider = ({ children }) => {
         pageTitle,
         setPageTitle,
         handlePageTitleChange,
+        roadMapRes,
+        setRoadMapRes,
         user,
         setuser,
         authToken,

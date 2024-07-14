@@ -17,11 +17,7 @@ const LoggedOut = () => {
           User has been logged out. Please go to the Login page.
         </h3>
         <div className="text-center">
-          <Link
-            to="/dashboard"
-            onClick={handleLogout}
-            className="btn btn-success"
-          >
+          <Link to="/" onClick={handleLogout} className="btn btn-success">
             Go To Login
           </Link>
         </div>
