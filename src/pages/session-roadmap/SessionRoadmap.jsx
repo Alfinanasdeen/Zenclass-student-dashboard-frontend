@@ -137,174 +137,167 @@ const SessionRoadmap = () => {
                       {selectedSession.preread}
                     </span>
                   </div>
-                  {selectedSession.activity && (
-                    <>
-                      <div className="activity ml-1 mt-3 mb-2">Activities</div>
-                      <div className="session__container">
-                        <div className="session__area">
-                          <div className="accordion">
-                            <div className="d-flex justify-content-between align-items-center">
-                              <div className="task__link">
-                                {selectedSession.activity}
-                              </div>
-                              <span
-                                className={`task__toggle text-white ${
-                                  flag ? "rotate-down" : ""
-                                }`}
-                                onClick={() => setFlag(!flag)}
-                              >
-                                {flag ? <FaAngleDown /> : <FaAngleUp />}
-                              </span>
-                            </div>
-                            <div className="collapse" id="demo">
-                              <div className="card-body">
-                                <div className="tagsList">
-                                  <div className="tagTitle">Tags:</div>
-                                  {selectedSession.tags &&
-                                    selectedSession.tags.map((tag, index) => (
-                                      <div key={index} className="tagItem">
-                                        {tag}
-                                      </div>
-                                    ))}
-                                </div>
-                                <div className="p-0">
-                                  <form onSubmit={handleTaskSubmission}>
-                                    {(selectedSession.task === "fs" ||
-                                      selectedSession.task === "fe" ||
-                                      selectedSession.task === "fb") && (
-                                      <>
-                                        <label
-                                          htmlFor="FrontEndSourceCode"
-                                          className="label__style mb-0"
-                                        >
-                                          Front-end Source code
-                                        </label>
-                                        <div>
-                                          <input
-                                            className="formInputs"
-                                            id="FrontEndSourceCode"
-                                            name="FrontEndSourceCode"
-                                            placeholder="Enter Front-end Source code link"
-                                            type="url"
-                                            required
-                                            value={
-                                              selectedSession.frontEndCode || ""
-                                            }
-                                            onChange={(e) =>
-                                              setFrontEndCode(e.target.value)
-                                            }
-                                            autoComplete="off"
-                                          />
-                                        </div>
-                                      </>
-                                    )}
-                                    {(selectedSession.task === "fe" ||
-                                      selectedSession.task === "fb") && (
-                                      <>
-                                        <label
-                                          htmlFor="FrontEndDeployedURL"
-                                          className="label__style mb-0"
-                                        >
-                                          Front-end Deployed URL
-                                        </label>
-                                        <div>
-                                          <input
-                                            className="formInputs"
-                                            name="FrontEndDeployedURL"
-                                            id="FrontEndDeployedURL"
-                                            placeholder="Enter Front-end Deployed URL"
-                                            required
-                                            value={
-                                              selectedSession.frontEndURL || ""
-                                            }
-                                            onChange={(e) =>
-                                              setFrontEndURL(e.target.value)
-                                            }
-                                            type="url"
-                                            autoComplete="off"
-                                          />
-                                        </div>
-                                      </>
-                                    )}
-                                    {(selectedSession.task === "bs" ||
-                                      selectedSession.task === "be" ||
-                                      selectedSession.task === "fb") && (
-                                      <>
-                                        <label
-                                          htmlFor="BackEndSourceCode"
-                                          className="label__style mb-0"
-                                        >
-                                          Back-end Source code
-                                        </label>
-                                        <div>
-                                          <input
-                                            className="formInputs"
-                                            id="BackEndSourceCode"
-                                            name="BackEndSourceCode"
-                                            placeholder="Enter Back-end Source code"
-                                            required
-                                            value={
-                                              selectedSession.backEndCode || ""
-                                            }
-                                            onChange={(e) =>
-                                              setBackEndCode(e.target.value)
-                                            }
-                                            type="url"
-                                            autoComplete="off"
-                                          />
-                                        </div>
-                                      </>
-                                    )}
-                                    {(selectedSession.task === "be" ||
-                                      selectedSession.task === "fb") && (
-                                      <>
-                                        <label
-                                          htmlFor="BackEndDeployedURL"
-                                          className="label__style mb-0"
-                                        >
-                                          Back-end Deployed URL
-                                        </label>
-                                        <div>
-                                          <input
-                                            className="formInputs"
-                                            name="BackEndDeployedURL"
-                                            id="BackEndDeployedURL"
-                                            placeholder="Enter Back-end Deployed URL"
-                                            required
-                                            value={
-                                              selectedSession.backEndURL || ""
-                                            }
-                                            onChange={(e) =>
-                                              setBackEndURL(e.target.value)
-                                            }
-                                            type="url"
-                                            autoComplete="off"
-                                          />
-                                        </div>
-                                      </>
-                                    )}
-                                    <div className=" task__submitBtn">
-                                      <button className="btn">
-                                        {isLoading ? (
-                                          <span className="spinner-border"></span>
-                                        ) : (
-                                          "Submit"
-                                        )}
-                                      </button>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  )}
                 </>
               )}
             </div>
           </div>
+          {selectedSession && selectedSession.activity && (
+            <>
+              <div className="activity ml-1 mt-3 mb-2">Activities</div>
+              <div className="session__container">
+                <div className="session__area">
+                  <div className="accordion">
+                    <div className="d-flex justify-content-between align-items-center">
+                      <div className="task__link">
+                        {selectedSession.activity}
+                      </div>
+                      <span
+                        className={`task__toggle text-white ${
+                          flag ? "rotate-down" : ""
+                        }`}
+                        onClick={() => setFlag(!flag)}
+                      >
+                        {flag ? <FaAngleDown /> : <FaAngleUp />}
+                      </span>
+                    </div>
+
+                    <div className="collapse" id="demo">
+                      <div className="card-body">
+                        <div className="tagsList">
+                          <div className="tagTitle">Tags:</div>
+                          {selectedSession.tags &&
+                            selectedSession.tags.map((tag, index) => (
+                              <div key={index} className="tagItem">
+                                {tag}
+                              </div>
+                            ))}
+                        </div>
+                        <div className="p-0">
+                          <form onSubmit={handleTaskSubmission}>
+                            {(selectedSession.task === "fs" ||
+                              selectedSession.task === "fe" ||
+                              selectedSession.task === "fb") && (
+                              <>
+                                <label
+                                  htmlFor="FrontEndSourceCode"
+                                  className="label__style mb-0"
+                                >
+                                  Front-end Source code
+                                </label>
+                                <div>
+                                  <input
+                                    className="formInputs"
+                                    id="FrontEndSourceCode"
+                                    name="FrontEndSourceCode"
+                                    placeholder="Enter Front-end Source code link"
+                                    type="url"
+                                    required
+                                    value={selectedSession.frontEndCode || ""}
+                                    onChange={(e) =>
+                                      setFrontEndCode(e.target.value)
+                                    }
+                                    autoComplete="off"
+                                  />
+                                </div>
+                              </>
+                            )}
+                            {(selectedSession.task === "fe" ||
+                              selectedSession.task === "fb") && (
+                              <>
+                                <label
+                                  htmlFor="FrontEndDeployedURL"
+                                  className="label__style mb-0"
+                                >
+                                  Front-end Deployed URL
+                                </label>
+                                <div>
+                                  <input
+                                    className="formInputs"
+                                    name="FrontEndDeployedURL"
+                                    id="FrontEndDeployedURL"
+                                    placeholder="Enter Front-end Deployed URL"
+                                    required
+                                    value={selectedSession.frontEndURL || ""}
+                                    onChange={(e) =>
+                                      setFrontEndURL(e.target.value)
+                                    }
+                                    type="url"
+                                    autoComplete="off"
+                                  />
+                                </div>
+                              </>
+                            )}
+                            {(selectedSession.task === "bs" ||
+                              selectedSession.task === "be" ||
+                              selectedSession.task === "fb") && (
+                              <>
+                                <label
+                                  htmlFor="BackEndSourceCode"
+                                  className="label__style mb-0"
+                                >
+                                  Back-end Source code
+                                </label>
+                                <div>
+                                  <input
+                                    className="formInputs"
+                                    id="BackEndSourceCode"
+                                    name="BackEndSourceCode"
+                                    placeholder="Enter Back-end Source code"
+                                    required
+                                    value={selectedSession.backEndCode || ""}
+                                    onChange={(e) =>
+                                      setBackEndCode(e.target.value)
+                                    }
+                                    type="url"
+                                    autoComplete="off"
+                                  />
+                                </div>
+                              </>
+                            )}
+                            {(selectedSession.task === "be" ||
+                              selectedSession.task === "fb") && (
+                              <>
+                                <label
+                                  htmlFor="BackEndDeployedURL"
+                                  className="label__style mb-0"
+                                >
+                                  Back-end Deployed URL
+                                </label>
+                                <div>
+                                  <input
+                                    className="formInputs"
+                                    name="BackEndDeployedURL"
+                                    id="BackEndDeployedURL"
+                                    placeholder="Enter Back-end Deployed URL"
+                                    required
+                                    value={selectedSession.backEndURL || ""}
+                                    onChange={(e) =>
+                                      setBackEndURL(e.target.value)
+                                    }
+                                    type="url"
+                                    autoComplete="off"
+                                  />
+                                </div>
+                              </>
+                            )}
+                            <div className=" task__submitBtn">
+                              <button className="btn">
+                                {isLoading ? (
+                                  <span className="spinner-border"></span>
+                                ) : (
+                                  "Submit"
+                                )}
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
         <div className="right">
           <div className="roadmap__container justify-self-center">

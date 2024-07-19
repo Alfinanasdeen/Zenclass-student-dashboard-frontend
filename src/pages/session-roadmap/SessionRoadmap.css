@@ -16,7 +16,7 @@
 }
 .class__head {
   background: #4b0dba;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, .1);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   height: 80px;
   display: flex;
@@ -38,13 +38,14 @@
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.6);
   transition: 0.3s;
 }
-.class__head.d-flex.px-3.justify-content-between.align-items-center h3.classhead {
+.class__head.d-flex.px-3.justify-content-between.align-items-center
+  h3.classhead {
   background-color: var(--theme);
   color: #fff;
   font-size: 1.4375rem !important;
   border-radius: 8px;
   height: 80px;
-  padding: 25px 20px;
+  padding: 25px 8px;
 }
 .play__btn:hover {
   transform: scale(1.1);
@@ -196,9 +197,10 @@ h6 {
 }
 
 .activity {
+  color: #4b0dba;
   font-weight: 500;
   font-size: 24px;
-  color: var(--theme);
+  padding-left: 10px;
 }
 
 .task__link {
@@ -218,6 +220,7 @@ h6 {
   height: 25px;
   text-align: center;
   border-radius: 50%;
+  
 }
 .task__toggle svg {
   vertical-align: middle;
