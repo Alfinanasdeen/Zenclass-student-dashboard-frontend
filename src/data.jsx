@@ -252,14 +252,6 @@ export const roadMap = [
     dir: "step__bottom",
   },
   {
-    no: 40,
-    dir: "step__bottom",
-  },
-  {
-    no: 39,
-    dir: "step__left",
-  },
-  {
     no: 38,
     dir: "step__left",
   },
@@ -270,22 +262,6 @@ export const roadMap = [
   {
     no: 36,
     dir: "step__left",
-  },
-  {
-    no: 41,
-    dir: "step__right",
-  },
-  {
-    no: 42,
-    dir: "step__right",
-  },
-  {
-    no: 43,
-    dir: "step__right",
-  },
-  {
-    no: 44,
-    dir: "",
   },
 ];
 export const roadMapRes = [
@@ -441,43 +417,19 @@ export const roadMapRes = [
     no: 38,
     dir: "step__left",
   },
-  {
-    no: 39,
-    dir: "step__left",
-  },
-  {
-    no: 40,
-    dir: "step__left",
-  },
-  {
-    no: 41,
-    dir: "step__right",
-  },
-  {
-    no: 42,
-    dir: "step__right",
-  },
-  {
-    no: 43,
-    dir: "step__right",
-  },
-  {
-    no: 44,
-    dir: "",
-  },
 ];
 export const roadMapData = [
-  {
-    day: 0,
-    title: "No session title available",
-    time: "Class schedule is not updated",
-    content: "No content available",
-    preread: "No preread available",
-    activity: "",
-    tags: "",
-    task: "",
-    link: "",
-  },
+  // {
+  //   day: 0,
+  //   title: "No session title available",
+  //   time: "Class schedule is not updated",
+  //   content: "No content available",
+  //   preread: "No preread available",
+  //   activity: "",
+  //   tags: "",
+  //   task: "",
+  //   link: "",
+  // },
   {
     day: 1,
     title: "Javascript - Day -1 : Introduction to Browser & web",
@@ -962,83 +914,6 @@ export const roadMapData = [
       "https://github.com/rvsp/database/blob/master/mongodb/day/database-design-zen-class.txt",
     tags: ["mongodb", "database"],
     task: "bs",
-    link: "https://meet.google.com/cvn-fzsd-toe",
-  },
-  {
-    day: 39,
-    title: "Nodejs- Day -1 : Nodejs",
-    time: "10/07/2023 - Monday - 6:30 PM : 9:30 PM",
-    content:
-      "What is nodejs?, Npm packages, - In build, - Third party, - Custom",
-    preread: "https://nodejs.org/",
-    activity:
-      "Nodejs file system Task https://docs.google.com/document/d/1c_u6aHv7AQHse45GGcrCRe78liwv90S5aHwBR7tBP0/edit",
-    tags: ["nodejs", "backend"],
-    task: "bs",
-    link: "https://meet.google.com/cvn-fzsd-toe",
-  },
-  {
-    day: 40,
-    title: "Nodejs- Day -2 : Nodejs & Expressjs",
-    time: "11/07/2023 - Tuesday - 6:30 PM : 9:30 PM",
-    content:
-      "What is express, API methods - GET, POST, PUT, DELETE, Request & response objects, Url  &  Query parameters",
-    preread: "https://expressjs.com/",
-    activity:
-      "Nodejs hall booking api task https://docs.google.com/documnt/d/1rPQ2LbHtMZajA_GIZfR-Ko2MFueoT82AmfHTK9V-hM/edit",
-    tags: ["nodejs", "backend"],
-    task: "be",
-    link: "https://meet.google.com/cvn-fzsd-toe",
-  },
-  {
-    day: 41,
-    title: "Nodejs- Day -3 : Node & mongo DB connectivity",
-    time: "12/07/2023 - Wednesday - 6:30 PM : 9:30 PM",
-    content:
-      "Connection to MongoDB(local & atlas), simultenously frontend + backend connectivity",
-    preread: "No preread available",
-    activity:
-      "https://docs.google.com/document/d/1sxHk2QDyK_vjlbwWPklyTXDHHOENKqj-IHS2yNSaHQ/edit?authuser=1",
-    tags: ["nodejs", "backend"],
-    task: "be",
-    link: "https://meet.google.com/cvn-fzsd-toe",
-  },
-  {
-    day: 42,
-    title: "Nodejs- Day -4 : Nodejs deployment",
-    time: "13/07/2023 - Thursday - 6:30 PM : 9:30 PM",
-    content:
-      "dotenv, Deployment, simultenously frontend + backend connectivity",
-    preread: "https://www.npmjs.com/package/dotenv",
-    activity: "Task - Deployment practice",
-    tags: ["nodejs", "backend"],
-    task: "fb",
-    link: "https://meet.google.com/cvn-fzsd-toe",
-  },
-  {
-    day: 43,
-    title: "Nodejs- Day -5 : Authentication",
-    time: "17/07/2023 - Monday - 6:30 PM : 9:30 PM",
-    content:
-      "Authentication, bcrypt, simultaneously frontend + backend connectivity",
-    preread: "https://www.npmjs.com/package/bcrypt",
-    activity:
-      "Task - https://docs.google.com/document/d/1I7zwdM77E3JwSXtgp2pVKgcAqPBHOwczishsKak-Qk/edit",
-    tags: ["nodejs", "backend"],
-    task: "fb",
-    link: "https://meet.google.com/cvn-fzsd-toe",
-  },
-  {
-    day: 44,
-    title: "Nodejs- Day -6 : JWT",
-    time: "18/07/2023 - Tuesday - 6:30 PM : 9:30 PM",
-    content:
-      "JWT, custom middleware, authorization, simultaneously frontend + backend connectivity",
-    preread: "https://www.npmjs.com/package/jsonwebtoken",
-    activity:
-      "https://docs.google.com/document/d/1nD7fzgzw5UmFSpnHK2FVadnp4y7EaND26_AqkZzSTw/edit?authuser=1",
-    tags: ["nodejs", "backend"],
-    task: "fb",
     link: "https://meet.google.com/cvn-fzsd-toe",
   },
 ];

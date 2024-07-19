@@ -1,15 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp, FaGooglePlay } from "react-icons/fa";
 import "./SessionRoadmap.css";
-import { roadMapData, roadMap, roadMapRes } from "../../data"; // Assuming roadMapData contains all session data
-
+import { roadMapData, roadMap, roadMapRes } from "../../data";
 import DataContext from "../../student-dashboard-context/StudentDashboardContext";
 
 const SessionRoadmap = () => {
   const {
     isLoading,
     head,
-    width,
     setCurrentDay,
     setRoadMap,
     setRoadMapRes,
@@ -24,10 +22,9 @@ const SessionRoadmap = () => {
   const [selectedSession, setSelectedSession] = useState(null);
   const [flag, setFlag] = useState(false);
 
-  // Assuming roadMapData[head] represents the current day's roadmap
   useEffect(() => {
     setRoadMap(roadMap[head]);
-    setRoadMapRes(roadMapRes[head]); // Setting roadMapRes based on the current day
+    setRoadMapRes(roadMapRes[head]);
     setFrontEndCode("");
     setFrontEndURL("");
     setBackEndCode("");
@@ -50,6 +47,51 @@ const SessionRoadmap = () => {
     setSelectedSession(session);
     setCurrentDay(session.day);
   };
+
+  const renderDirection = (day) => {
+    // For days 10, 20, 30: both step__bottom and step__right lines
+    if ([10, 20, 30].includes(day)) {
+      return (
+        <>
+          <div className="step__bottom"></div>
+          <div className="step__right"></div>
+        </>
+      );
+    }
+    // For days 5, 15, 25, 35: only step__bottom line
+    else if ([5, 15, 25, 35].includes(day)) {
+      return <div className="step__bottom"></div>;
+    }
+    // For days 1-4, 7-9, 11-14, 17-19, 21-24, 27-29, 31-34, 36-38: step__left line
+    else if (
+      [
+        1, 2, 3, 4, 7, 8, 9, 11, 12, 13, 14, 17, 18, 19, 21, 22, 23, 24, 27, 28,
+        29, 31, 32, 33, 34, 37,
+      ].includes(day)
+    ) {
+      return <div className="step__left"></div>;
+    }
+  };
+
+  const getOrderedDays = () => {
+    const pattern = [
+      [1, 2, 3, 4, 5],
+      [10, 9, 8, 7, 6],
+      [11, 12, 13, 14, 15],
+      [20, 19, 18, 17, 16],
+      [21, 22, 23, 24, 25],
+      [30, 29, 28, 27, 26],
+      [31, 32, 33, 34, 35],
+    ];
+
+    // Append days 38, 37, 36 to the end of the pattern
+    pattern.push([38, 37, 36]);
+
+    // Flatten the pattern array
+    return pattern.flat();
+  };
+
+  const orderedDays = getOrderedDays();
 
   return (
     <section className="roadmap">
@@ -238,7 +280,7 @@ const SessionRoadmap = () => {
                                     <div className=" task__submitBtn">
                                       <button className="btn">
                                         {isLoading ? (
-                                          <span className="spinner-border spinner-border-sm text-warning"></span>
+                                          <span className="spinner-border"></span>
                                         ) : (
                                           "Submit"
                                         )}
@@ -262,41 +304,49 @@ const SessionRoadmap = () => {
           <div className="roadmap__container justify-self-center">
             <div className="roadmap__area">
               <div className="progress__head">Sessions Roadmap</div>
-              {/* Integrate the updated sessionsContainer here */}
               <div className="sessionsContainer">
-                {width >= 992
-                  ? roadMapData.map((item) => (
-                      <div
-                        key={item.day}
-                        className={`roadmap_icon_container ${
-                          item.completed ? "completed" : ""
-                        }`}
-                        onClick={() => handleSessionClick(item)}
-                      >
-                        <h6>{item.day}</h6>
-                        <div className={item.dir}>
-                          <div className="step__left"></div>
-                          <div className="step__right"></div>
-                          <div className="step__bottom"></div>
-                        </div>
+                {orderedDays.slice(0, 35).map((day) => (
+                  <div
+                    key={day}
+                    className={`roadmap_icon_container ${
+                      roadMapData.find((item) => item.day === day)?.completed
+                        ? "completed"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      handleSessionClick(
+                        roadMapData.find((item) => item.day === day)
+                      )
+                    }
+                  >
+                    <h6 className="text-end">{day}</h6>
+                    <div className="direction">{renderDirection(day)}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="last-line-container">
+                {orderedDays.slice(35).map((day, index) => (
+                  <div
+                    key={day}
+                    className={`roadmap_icon_container ${
+                      roadMapData.find((item) => item.day === day)?.completed
+                        ? "completed"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      handleSessionClick(
+                        roadMapData.find((item) => item.day === day)
+                      )
+                    }
+                  >
+                    <h6 className="text-end">{day}</h6>
+                    {index < orderedDays.slice(35).length - 1 && (
+                      <div className="direction">
+                        <div className="step__left"></div>
                       </div>
-                    ))
-                  : roadMapData.map((item) => (
-                      <div
-                        key={item.day}
-                        className={`roadmap_icon_container ${
-                          item.completed ? "completed" : ""
-                        }`}
-                        onClick={() => handleSessionClick(item)}
-                      >
-                        <h6>{item.day}</h6>
-                        <div className={item.dir}>
-                          <div className="step__left"></div>
-                          <div className="step__right"></div>
-                          <div className="step__bottom"></div>
-                        </div>
-                      </div>
-                    ))}
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -314,16 +364,7 @@ const SessionRoadmap = () => {
               ></button>
             </div>
             <div className="modal-body">
-              {selectedSession && (
-                <a
-                  className="recording__link text-dark"
-                  href={selectedSession.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {selectedSession.link}
-                </a>
-              )}
+              <p>Modal body..</p>
             </div>
             <div className="modal-footer">
               <button
