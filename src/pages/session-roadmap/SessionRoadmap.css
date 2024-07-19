@@ -2,22 +2,21 @@
   min-height: calc(100vh - 120px);
   transition: 0.3s;
 }
-
 .roadmap .left {
   padding: 5px;
   flex: 1;
   transition: 0.3s;
 }
 .main__container {
-  margin-left: 70px; 
+  margin-left: 70px;
   display: flex;
   justify-content: space-between;
-  gap: 3rem; 
+  gap: 3rem;
   padding: 2rem;
 }
 .class__head {
-  background: var(--theme);
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  background: #4b0dba;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, .1);
   border-radius: 8px;
   height: 80px;
   display: flex;
@@ -25,7 +24,6 @@
   align-items: center;
   padding: 0 20px;
 }
-
 .play__btn {
   height: 48px;
   padding: 12px 24px;
@@ -40,7 +38,14 @@
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.6);
   transition: 0.3s;
 }
-
+.class__head.d-flex.px-3.justify-content-between.align-items-center h3.classhead {
+  background-color: var(--theme);
+  color: #fff;
+  font-size: 1.4375rem !important;
+  border-radius: 8px;
+  height: 80px;
+  padding: 25px 20px;
+}
 .play__btn:hover {
   transform: scale(1.1);
 }
@@ -122,7 +127,7 @@
 .roadmap_icon_container {
   border: 2px solid #4b0dba;
   border-radius: 50%;
-  position: relative; 
+  position: relative;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -141,8 +146,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 50%; 
-  transform: translateY(-50%); 
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .roadmap_icon_container:hover {
@@ -163,28 +168,28 @@ h6 {
 .step__right,
 .step__bottom {
   position: absolute;
-  background-color: #93a4b7; 
+  background-color: #93a4b7;
 }
 
 .step__left {
-  left: 35px; 
+  left: 35px;
   top: 50%;
   height: 2px;
-  width: 32px; 
+  width: 32px;
 }
 
 .step__right {
-  left: 35px; 
-  top: 50%; 
-  height: 2px; 
-  width: 32px; 
+  left: 35px;
+  top: 50%;
+  height: 2px;
+  width: 32px;
 }
 
 .step__bottom {
   left: 50%;
   bottom: -20px;
-  width: 2px; 
-  height: 20px; 
+  width: 2px;
+  height: 20px;
 }
 .roadmap_icon_container:hover .step__right {
   width: 24px;
@@ -291,23 +296,23 @@ h6 {
   color: white;
 }
 .special-day {
-  color: red; 
+  color: red;
   font-weight: bold;
-  margin-left: 270px; 
-  display: inline-block; 
+  margin-left: 270px;
+  display: inline-block;
 }
 .text-end {
-  text-align: right; 
+  text-align: right;
 }
 .direction.right-shift {
   margin-left: 270px;
 }
 .special {
-  margin-left: 270px; 
+  margin-left: 270px;
 }
 
 .special .icon-wrapper {
-  margin-left: 0; 
+  margin-left: 0;
 }
 .last-line-container {
   display: flex;
@@ -321,7 +326,7 @@ h6 {
 }
 
 .last-line-container .roadmap_icon_container .direction .step__left {
-  left: 35px; 
+  left: 35px;
   top: 50%;
   height: 2px;
   width: 32px;

@@ -98,7 +98,12 @@ const SessionRoadmap = () => {
       <div className="main__container p-2 d-flex justify-content-between gap-3">
         <div className="left">
           <div className="class__head d-flex px-3 justify-content-between align-items-center">
-            <h3 className="classhead m-0 text-white">Join the Class</h3>
+            <h3
+              className="classhead m-0"
+              style={{ color: "#fff !important", margin: "0" }}
+            >
+              Join the Class
+            </h3>
             <button
               className="play__btn"
               data-bs-toggle="modal"
@@ -107,6 +112,7 @@ const SessionRoadmap = () => {
               <FaGooglePlay />
             </button>
           </div>
+
           <div className="session__container">
             <div className="session__area">
               {selectedSession && (
