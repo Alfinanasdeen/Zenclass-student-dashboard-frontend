@@ -65,7 +65,7 @@
 
 .session__container {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 20px;
   background: #fff;
   border: 1px solid #dedede;
   border-radius: 8px;
@@ -220,14 +220,19 @@ h6 {
   height: 25px;
   text-align: center;
   border-radius: 50%;
-  
+  color: white; /* Ensure the color is explicitly set */
 }
+
 .task__toggle svg {
   vertical-align: middle;
   transition: transform 0.3s ease;
 }
+
 .task__toggle.rotate-down svg {
   transform: rotate(180deg);
+}
+.task__toggle.text-white {
+  --bs-text-opacity: none !important; /* Use !important if necessary */
 }
 .tagsList {
   display: flex;
@@ -239,23 +244,26 @@ h6 {
 .tagTitle {
   font-weight: 400;
 }
-
 .tagItem {
   border: 2px solid #231f20;
   padding: 0 12px;
   border-radius: 80px;
-  color: #fff;
-  background-color: var(--theme);
+  background-color: #68baae;
   font-size: 14px;
+  color: #fff;
 }
-
-.task__area {
+.card-body {
+  padding: 20px 20px;
+}
+.task-container {
   margin-top: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border: 1px solid #ffd3a2;
   border-radius: 8px;
 }
-
+.form-container {
+  padding: 24px 48px;
+}
 .submission {
   display: flex;
   flex-direction: column;
@@ -270,10 +278,10 @@ h6 {
 }
 
 .formInputs {
+  border: 1px solid #7e8e9f;
   height: 3.4rem;
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid var(--secondary);
   border-radius: 8px;
   margin-bottom: 1rem;
   outline: none;
@@ -286,18 +294,23 @@ h6 {
 }
 
 .task__submitBtn {
-  text-align: center;
+  margin-top: 20px;
 }
 
 .task__submitBtn button {
-  border: 1px solid var(--theme);
+  border: 1px solid #7e8e9f;
   cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: white;
 }
 
-.task__submitBtn button:hover {
-  background-color: var(--theme);
-  color: white;
+.task__submitBtn button:focus {
+  outline: none; 
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1); 
 }
+
 .special-day {
   color: red;
   font-weight: bold;

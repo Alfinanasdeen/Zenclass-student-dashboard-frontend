@@ -157,11 +157,10 @@ const SessionRoadmap = () => {
                         }`}
                         onClick={() => setFlag(!flag)}
                       >
-                        {flag ? <FaAngleDown /> : <FaAngleUp />}
+                        {flag ? <FaAngleUp /> : <FaAngleDown />}
                       </span>
                     </div>
-
-                    <div className="collapse" id="demo">
+                    <div className={`collapse ${flag ? "show" : ""}`} id="demo">
                       <div className="card-body">
                         <div className="tagsList">
                           <div className="tagTitle">Tags:</div>
@@ -172,8 +171,11 @@ const SessionRoadmap = () => {
                               </div>
                             ))}
                         </div>
-                        <div className="p-0">
-                          <form onSubmit={handleTaskSubmission}>
+                        <div className="task-container p-0">
+                          <form
+                            className="form-container"
+                            onSubmit={handleTaskSubmission}
+                          >
                             {(selectedSession.task === "fs" ||
                               selectedSession.task === "fe" ||
                               selectedSession.task === "fb") && (
@@ -192,7 +194,7 @@ const SessionRoadmap = () => {
                                     placeholder="Enter Front-end Source code link"
                                     type="url"
                                     required
-                                    value={selectedSession.frontEndCode || ""}
+                                    value={selectedSession.frontEndCode}
                                     onChange={(e) =>
                                       setFrontEndCode(e.target.value)
                                     }
@@ -217,7 +219,7 @@ const SessionRoadmap = () => {
                                     id="FrontEndDeployedURL"
                                     placeholder="Enter Front-end Deployed URL"
                                     required
-                                    value={selectedSession.frontEndURL || ""}
+                                    value={selectedSession.frontEndURL}
                                     onChange={(e) =>
                                       setFrontEndURL(e.target.value)
                                     }
@@ -244,7 +246,7 @@ const SessionRoadmap = () => {
                                     name="BackEndSourceCode"
                                     placeholder="Enter Back-end Source code"
                                     required
-                                    value={selectedSession.backEndCode || ""}
+                                    value={selectedSession.backEndCode}
                                     onChange={(e) =>
                                       setBackEndCode(e.target.value)
                                     }
@@ -270,7 +272,7 @@ const SessionRoadmap = () => {
                                     id="BackEndDeployedURL"
                                     placeholder="Enter Back-end Deployed URL"
                                     required
-                                    value={selectedSession.backEndURL || ""}
+                                    value={selectedSession.backEndURL}
                                     onChange={(e) =>
                                       setBackEndURL(e.target.value)
                                     }
@@ -280,7 +282,7 @@ const SessionRoadmap = () => {
                                 </div>
                               </>
                             )}
-                            <div className=" task__submitBtn">
+                            <div className="task__submitBtn">
                               <button className="btn">
                                 {isLoading ? (
                                   <span className="spinner-border"></span>
