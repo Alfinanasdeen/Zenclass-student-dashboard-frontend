@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import "./leave.css";
+import api from "../../api/api";
 import { BiPlus } from "react-icons/bi";
 import DataContext from "../../student-dashboard-context/StudentDashboardContext";
 import { ToastContainer, Zoom } from "react-toastify";
@@ -9,18 +10,39 @@ import * as Yup from "yup";
 
 const Leave = () => {
   const {
-    leave = [], // Add a default value of an empty array
-    trigger,
-    setTrigger,
-    fetchLeaveRequests,
-    handleAddLeave,
-    handleLeaveCancel,
+    leaveRequests = [], 
+    //trigger,
+    //setTrigger,
+    //fetchLeaveRequests,
+    handleLeaveRequestSubmission,
+    handleCancelLeaveRequest,
+    setLeaveRequests,
     isLoading,
+    authToken,
   } = useContext(DataContext);
 
+  // useEffect(() => {
+  //   fetchLeaveRequests();
+  // }, [trigger, setTrigger, fetchLeaveRequests]);
+
   useEffect(() => {
+    const fetchLeaveRequests = async () => {
+      try {
+        if (!authToken) return;
+        const response = await api.get("/student/leave", {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+        setLeaveRequests(response.data);
+        console.log("Fetched fetchLeaveRequests:", response.data); // Log fetched data
+      } catch (error) {
+        console.error("Error fetching fetchLeaveRequests:", error);
+      }
+    };
+
     fetchLeaveRequests();
-  }, [trigger, setTrigger, fetchLeaveRequests]);
+  }, [authToken, setLeaveRequests]);
 
   const validationSchema = Yup.object({
     reason: Yup.string()
@@ -42,8 +64,9 @@ const Leave = () => {
         </button>
       </div>
       <br />
-      {leave.length > 0 ? ( // Check if leave array has any elements
-        leave.map((data) => (
+      {leaveRequests.length > 0 ? ( 
+        leaveRequests.map((data) => (
+          
           <div
             className="task__container"
             key={data._id}
@@ -89,7 +112,7 @@ const Leave = () => {
                 initialValues={{ reason: "", appliedOn: "" }}
                 validationSchema={validationSchema}
                 onSubmit={(values, { resetForm }) => {
-                  handleAddLeave(values);
+                  handleLeaveRequestSubmission(values);
                   resetForm({ values: "" });
                 }}
               >
@@ -130,8 +153,8 @@ const Leave = () => {
           </div>
         </div>
       </div>
-      {leave.length > 0 && // Add the same check here
-        leave.map((data) => (
+      {leaveRequests.length > 0 && // Add the same check here
+        leaveRequests.map((data) => (
           <div className="modal" id={`leaveModal${data._id}`} key={data._id}>
             <div className="modal-dialog">
               <div className="modal-content">
@@ -148,7 +171,7 @@ const Leave = () => {
                     type="reset"
                     className="btn submit__btn"
                     data-bs-dismiss="modal"
-                    onClick={() => handleLeaveCancel(data._id)}
+                    onClick={() => handleCancelLeaveRequest(data._id)}
                   >
                     Confirm
                   </button>

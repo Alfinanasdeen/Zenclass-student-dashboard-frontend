@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { FaExternalLinkAlt } from 'react-icons/fa';
-import "./taskSubmission.css"; // Assuming you will create a CSS file for this component
+import "./taskSubmission.css"; // Ensure you have a CSS file with this name
 
-const TaskEvaluationUrl = ({ item }) => {
-    const { frontEndCode, frontEndURL, backEndCode, backEndURL } = item;
+const taskSubmission = ({ item }) => {
+    const { frontEndCode, frontEndURL, backEndCode, backEndURL, score } = item;
 
     const renderUrlLink = (url, label) => (
         <h6 key={url}>
@@ -18,7 +18,12 @@ const TaskEvaluationUrl = ({ item }) => {
             {frontEndCode && renderUrlLink(frontEndCode, "Front End Code")}
             {frontEndURL && renderUrlLink(frontEndURL, "Front End Deployed URL")}
             {backEndCode && renderUrlLink(backEndCode, "Back End Code")}
-            {backEndURL && renderUrlLink(backEndURL, "Back End Deployed Code")}
+            {backEndURL && renderUrlLink(backEndURL, "Back End Deployed URL")}
+            {score !== undefined && (
+                <div className='task-score'>
+                    Task Score: {score}
+                </div>
+            )}
         </div>
     );
 };
@@ -28,10 +33,11 @@ const itemPropTypes = PropTypes.shape({
     frontEndURL: PropTypes.string,
     backEndCode: PropTypes.string,
     backEndURL: PropTypes.string,
+    score: PropTypes.number,
 }).isRequired;
 
-TaskEvaluationUrl.propTypes = {
+taskSubmission.propTypes = {
     item: itemPropTypes,
 };
 
-export default TaskEvaluationUrl;
+export default taskSubmission;

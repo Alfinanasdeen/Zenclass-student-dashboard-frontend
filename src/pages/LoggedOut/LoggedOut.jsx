@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import DataContext from "../../student-dashboard-context/StudentDashboardContext";
 import LOGO from "../../assets/ZenLogo.png";
-import "./LoggedOut.css"; // Updated CSS import with proper case
+import "./LoggedOut.css";
 
 const LoggedOut = () => {
   const { handleLogout } = useContext(DataContext);

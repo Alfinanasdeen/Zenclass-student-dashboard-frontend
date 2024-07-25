@@ -1,4 +1,3 @@
-// capstone.jsx
 import { useEffect, useContext } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { ToastContainer, Zoom } from "react-toastify";
@@ -14,8 +13,8 @@ const Capstone = () => {
     user,
     trigger,
     setTrigger,
-    capStone,
-    handleCapStone,
+    capstoneProject,
+    handleCapstoneSubmission,
     fetchCapstoneProject,
     isLoading,
   } = useContext(StudentDashboardContext);
@@ -35,8 +34,8 @@ const Capstone = () => {
     beUrl: Yup.string().url("Enter Valid URL").required("Required"),
   });
 
-  const renderCapstoneDetails = (capStone) =>
-    capStone && (
+  const renderCapstoneDetails = (capstoneProject) =>
+    capstoneProject && (
       <table className="table">
         <thead>
           <tr>
@@ -49,11 +48,11 @@ const Capstone = () => {
             <td className="codeName">Front-end Source code</td>
             <td>
               <a
-                href={capStone.feCode}
+                href={capstoneProject.feCode}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {capStone.feCode} <FaExternalLinkAlt />
+                {capstoneProject.feCode} <FaExternalLinkAlt />
               </a>
             </td>
           </tr>
@@ -61,11 +60,11 @@ const Capstone = () => {
             <td className="codeName">Front-end Deployed URL</td>
             <td>
               <a
-                href={capStone.feUrl}
+                href={capstoneProject.feUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {capStone.feUrl} <FaExternalLinkAlt />
+                {capstoneProject.feUrl} <FaExternalLinkAlt />
               </a>
             </td>
           </tr>
@@ -73,11 +72,11 @@ const Capstone = () => {
             <td className="codeName">Back-end Source code</td>
             <td>
               <a
-                href={capStone.beCode}
+                href={capstoneProject.beCode}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {capStone.beCode} <FaExternalLinkAlt />
+                {capstoneProject.beCode} <FaExternalLinkAlt />
               </a>
             </td>
           </tr>
@@ -85,11 +84,11 @@ const Capstone = () => {
             <td className="codeName">Back-end Deployed URL</td>
             <td>
               <a
-                href={capStone.beUrl}
+                href={capstoneProject.beUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {capStone.beUrl} <FaExternalLinkAlt />
+                {capstoneProject.beUrl} <FaExternalLinkAlt />
               </a>
             </td>
           </tr>
@@ -102,7 +101,7 @@ const Capstone = () => {
       initialValues={{ feCode: "", feUrl: "", beCode: "", beUrl: "" }}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        handleCapStone(values);
+        handleCapstoneSubmission(values);
         resetForm({ values: "" });
       }}
     >
@@ -180,12 +179,10 @@ const Capstone = () => {
       >
         <div className="d-flex justify-content-between flexCont">
           <UserInfo
-            name={`${user.name || user.student.name} ${
-              user.lName || user.student.lName
-            }`}
+            name={`${user.name || user.student.name} `}
             batch={user.batch || user.student.batch}
           />
-          <CapstoneInfo capStone={capStone} />
+          <CapstoneInfo capStone={capstoneProject} />
         </div>
       </div>
       <div className="modal" id="myModal">
@@ -204,9 +201,7 @@ const Capstone = () => {
             <div className="modal-body mt-2">
               <div className="px-4 d-flex flex-column gap-1">
                 <UserInfo
-                  name={`${user.name || user.student.name} ${
-                    user.lName || user.student.lName
-                  }`}
+                  name={`${user.name || user.student.name} `}
                   batch={`${user.batch || user.student.batch} - First Capstone`}
                 />
                 <div className="secondaryGreyTextColor">
@@ -214,12 +209,18 @@ const Capstone = () => {
                 </div>
                 <div className="d-flex align-items-center justify-content-between">
                   <div className="marktag tasktag rounded">
-                    {capStone ? `score : - ${capStone.score}` : "Pending"}
+                    {capstoneProject
+                      ? `score : - ${capstoneProject.score}`
+                      : "Pending"}
                   </div>
                 </div>
                 <div className="secondaryGreyTextColor">
-                  {capStone
-                    ? `submitted on ${capStone.submittedOn.slice(0, 10)}`
+                  {capstoneProject
+                    ? `submitted on ${
+                        capstoneProject.submittedOn
+                          ? capstoneProject.submittedOn.slice(0, 10)
+                          : "Date not available"
+                      }`
                     : "Not Submitted"}
                 </div>
               </div>
@@ -273,8 +274,8 @@ const Capstone = () => {
                   </div>
                 </div>
               </div>
-              {renderCapstoneDetails(capStone)}
-              {!capStone && renderForm()}
+              {renderCapstoneDetails(capstoneProject)}
+              {!capstoneProject && renderForm()}
               <div className="col-12 marksContainer">
                 <div className="row d-flex align-itmes-center justify-content-between mx-1">
                   <div className="d-flex">
@@ -282,7 +283,9 @@ const Capstone = () => {
                       <strong>Frontend Score :</strong>
                     </div>
                     <div className="ml-3 mt-1">
-                      {capStone ? capStone.frontendScore : "Pending"}
+                      {capstoneProject
+                        ? capstoneProject.frontendScore
+                        : "Pending"}
                     </div>
                   </div>
                   <div className="d-flex">
@@ -290,7 +293,9 @@ const Capstone = () => {
                       <strong>Backend Score :</strong>
                     </div>
                     <div className="ml-3 mt-1">
-                      {capStone ? capStone.backendScore : "Pending"}
+                      {capstoneProject
+                        ? capstoneProject.backendScore
+                        : "Pending"}
                     </div>
                   </div>
                 </div>
@@ -320,16 +325,18 @@ const UserInfo = ({ name, batch }) => (
   </div>
 );
 
-const CapstoneInfo = ({ capStone }) => (
+const CapstoneInfo = ({ capstoneProject }) => (
   <div>
     <div className="mx-1 secondaryGreyTextColor text-center pb-2">
-      {capStone
-        ? `submitted on ${capStone.submittedOn.slice(0, 10)}`
+      {capstoneProject
+        ? `submitted on ${capstoneProject.submittedOn.slice(0, 10)}`
         : "Not Submitted"}
     </div>
     <div className="ml-3 mr-1">
       <div className="marktag tasktag mx-1 px-3 rounded">
-        {capStone ? `Capstone score : - ${capStone.score}` : "Pending"}
+        {capstoneProject
+          ? `Capstone score : - ${capstoneProject.score}`
+          : "Pending"}
       </div>
     </div>
   </div>

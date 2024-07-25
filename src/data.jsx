@@ -110,326 +110,315 @@ export const navBarLink = [
     link: "/syllabus",
   },
 ];
-export const roadMap = [
-  {
-    no: 1,
-    dir: "step__right",
-  },
-  {
-    no: 2,
-    dir: "step__right",
-  },
-  {
-    no: 3,
-    dir: "step__right",
-  },
-  {
-    no: 4,
-    dir: "step__right",
-  },
-  {
-    no: 5,
-    dir: "step__bottom",
-  },
-  {
-    no: 10,
-    dir: "step__bottom",
-  },
-  {
-    no: 9,
-    dir: "step__left",
-  },
-  {
-    no: 8,
-    dir: "step__left",
-  },
-  {
-    no: 7,
-    dir: "step__left",
-  },
-  {
-    no: 6,
-    dir: "step__left",
-  },
-  {
-    no: 11,
-    dir: "step__right",
-  },
-  {
-    no: 12,
-    dir: "step__right",
-  },
-  {
-    no: 13,
-    dir: "step__right",
-  },
-  {
-    no: 14,
-    dir: "step__right",
-  },
-  {
-    no: 15,
-    dir: "step__bottom",
-  },
-  {
-    no: 20,
-    dir: "step__bottom",
-  },
-  {
-    no: 19,
-    dir: "step__left",
-  },
-  {
-    no: 18,
-    dir: "step__left",
-  },
-  {
-    no: 17,
-    dir: "step__left",
-  },
-  {
-    no: 16,
-    dir: "step__left",
-  },
-  {
-    no: 21,
-    dir: "step__right",
-  },
-  {
-    no: 22,
-    dir: "step__right",
-  },
-  {
-    no: 23,
-    dir: "step__right",
-  },
-  {
-    no: 24,
-    dir: "step__right",
-  },
-  {
-    no: 25,
-    dir: "step__bottom",
-  },
-  {
-    no: 30,
-    dir: "step__bottom",
-  },
-  {
-    no: 29,
-    dir: "step__left",
-  },
-  {
-    no: 28,
-    dir: "step__left",
-  },
-  {
-    no: 27,
-    dir: "step__left",
-  },
-  {
-    no: 26,
-    dir: "step__left",
-  },
-  {
-    no: 31,
-    dir: "step__right",
-  },
-  {
-    no: 32,
-    dir: "step__right",
-  },
-  {
-    no: 33,
-    dir: "step__right",
-  },
-  {
-    no: 34,
-    dir: "step__right",
-  },
-  {
-    no: 35,
-    dir: "step__bottom",
-  },
-  {
-    no: 38,
-    dir: "step__left",
-  },
-  {
-    no: 37,
-    dir: "step__left",
-  },
-  {
-    no: 36,
-    dir: "step__left",
-  },
-];
-export const roadMapRes = [
-  {
-    no: 1,
-    dir: "step__right",
-  },
-  {
-    no: 2,
-    dir: "step__right",
-  },
-  {
-    no: 3,
-    dir: "step__right",
-  },
-  {
-    no: 4,
-    dir: "step__right",
-  },
-  {
-    no: 5,
-    dir: "step__bottom",
-  },
-  {
-    no: 6,
-    dir: "step__bottom",
-  },
-  {
-    no: 7,
-    dir: "step__left",
-  },
-  {
-    no: 8,
-    dir: "step__left",
-  },
-  {
-    no: 9,
-    dir: "step__left",
-  },
-  {
-    no: 10,
-    dir: "step__left",
-  },
-  {
-    no: 11,
-    dir: "step__right",
-  },
-  {
-    no: 12,
-    dir: "step__right",
-  },
-  {
-    no: 13,
-    dir: "step__right",
-  },
-  {
-    no: 14,
-    dir: "step__right",
-  },
-  {
-    no: 15,
-    dir: "step__bottom",
-  },
-  {
-    no: 16,
-    dir: "step__bottom",
-  },
-  {
-    no: 17,
-    dir: "step__left",
-  },
-  {
-    no: 18,
-    dir: "step__left",
-  },
-  {
-    no: 19,
-    dir: "step__left",
-  },
-  {
-    no: 20,
-    dir: "step__left",
-  },
-  {
-    no: 21,
-    dir: "step__right",
-  },
-  {
-    no: 22,
-    dir: "step__right",
-  },
-  {
-    no: 23,
-    dir: "step__right",
-  },
-  {
-    no: 24,
-    dir: "step__right",
-  },
-  {
-    no: 25,
-    dir: "step__bottom",
-  },
-  {
-    no: 26,
-    dir: "step__bottom",
-  },
-  {
-    no: 27,
-    dir: "step__left",
-  },
-  {
-    no: 28,
-    dir: "step__left",
-  },
-  {
-    no: 29,
-    dir: "step__left",
-  },
-  {
-    no: 30,
-    dir: "step__left",
-  },
-  {
-    no: 31,
-    dir: "step__right",
-  },
-  {
-    no: 32,
-    dir: "step__right",
-  },
-  {
-    no: 33,
-    dir: "step__right",
-  },
-  {
-    no: 34,
-    dir: "step__right",
-  },
-  {
-    no: 35,
-    dir: "step__bottom",
-  },
-  {
-    no: 36,
-    dir: "step__bottom",
-  },
-  {
-    no: 37,
-    dir: "step__left",
-  },
-  {
-    no: 38,
-    dir: "step__left",
-  },
-];
+// export const roadMap = [
+//   {
+//     no: 1,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 2,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 3,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 4,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 5,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 10,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 9,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 8,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 7,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 6,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 11,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 12,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 13,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 14,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 15,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 20,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 19,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 18,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 17,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 16,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 21,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 22,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 23,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 24,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 25,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 30,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 29,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 28,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 27,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 26,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 31,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 32,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 33,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 34,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 35,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 38,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 37,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 36,
+//     dir: "step__left",
+//   },
+// ];
+// export const roadMapRes = [
+//   {
+//     no: 1,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 2,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 3,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 4,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 5,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 6,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 7,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 8,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 9,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 10,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 11,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 12,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 13,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 14,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 15,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 16,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 17,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 18,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 19,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 20,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 21,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 22,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 23,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 24,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 25,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 26,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 27,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 28,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 29,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 30,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 31,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 32,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 33,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 34,
+//     dir: "step__right",
+//   },
+//   {
+//     no: 35,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 36,
+//     dir: "step__bottom",
+//   },
+//   {
+//     no: 37,
+//     dir: "step__left",
+//   },
+//   {
+//     no: 38,
+//     dir: "step__left",
+//   },
+// ];
 export const roadMapData = [
-  // {
-  //   day: 0,
-  //   title: "No session title available",
-  //   time: "Class schedule is not updated",
-  //   content: "No content available",
-  //   preread: "No preread available",
-  //   activity: "",
-  //   tags: "",
-  //   task: "",
-  //   link: "",
-  // },
   {
     day: 1,
     title: "Javascript - Day -1 : Introduction to Browser & web",

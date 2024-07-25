@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp, FaGooglePlay } from "react-icons/fa";
 import "./SessionRoadmap.css";
-import { roadMapData, roadMap, roadMapRes } from "../../data";
+import { roadMapData} from "../../data";
 import DataContext from "../../student-dashboard-context/StudentDashboardContext";
 
 const SessionRoadmap = () => {
@@ -23,8 +23,8 @@ const SessionRoadmap = () => {
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
-    setRoadMap(roadMap[head]);
-    setRoadMapRes(roadMapRes[head]);
+    //setRoadMap(roadMap[head]);
+    //setRoadMapRes(roadMapRes[head]);
     setFrontEndCode("");
     setFrontEndURL("");
     setBackEndCode("");

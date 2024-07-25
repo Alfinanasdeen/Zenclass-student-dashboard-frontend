@@ -220,7 +220,7 @@ h6 {
   height: 25px;
   text-align: center;
   border-radius: 50%;
-  color: white; /* Ensure the color is explicitly set */
+  color: white; 
 }
 
 .task__toggle svg {

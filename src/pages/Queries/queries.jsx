@@ -4,24 +4,43 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
 import "./queries.css";
+import api from "../../api/api";
 import DataContext from "../../student-dashboard-context/StudentDashboardContext";
 import RequestField from "../../components/formFields/TextInput";
 import { ToastContainer, Zoom } from "react-toastify";
 
 const Queries = () => {
   const {
-    query,
-    trigger,
-    setTrigger,
-    fetchQueries,
-    handleAddQuery,
-    handleQueryCancel,
+    queries,
+    setQueries,
+    handleQuerySubmission,
+    handleCancelQuery,
     isLoading,
+    authToken,
   } = useContext(DataContext);
 
   useEffect(() => {
+    const fetchQueries = async () => {
+      try {
+        if (!authToken) return;
+        const response = await api.get("/student/query", {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+        setQueries(response.data);
+        console.log("Fetched queries:", response.data);
+      } catch (error) {
+        console.error("Error fetching queries:", error);
+      }
+    };
+
     fetchQueries();
-  }, [fetchQueries, trigger, setTrigger]);
+  }, [authToken, setQueries]);
+
+  useEffect(() => {
+    console.log("Current queries:", queries);
+  }, [queries]);
 
   const validationSchema = Yup.object({
     queryTitle: Yup.string()
@@ -33,9 +52,16 @@ const Queries = () => {
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    handleAddQuery(values);
-    resetForm({ values: "" });
+    handleQuerySubmission(values);
+    resetForm();
   };
+
+  console.log("Rendering queries component"); // Log to check rendering
+  console.log("queries state:", queries); // Log queries state before rendering
+  console.log(
+    "queries length:",
+    queries ? queries.length : "queries is undefined or null"
+  ); // Check length
 
   return (
     <section className="leave">
@@ -47,12 +73,12 @@ const Queries = () => {
           data-bs-target="#myModal"
         >
           <BiPlus />
-          Add Query
+          Add queries
         </button>
       </div>
       <br />
-      {query && query.length > 0 ? (
-        query.map((data) => (
+      {queries && queries.length > 0 ? (
+        queries.map((data) => (
           <div
             className="task__container"
             key={data._id}
@@ -60,8 +86,11 @@ const Queries = () => {
             data-bs-target={`#${data._id}`}
           >
             <div className="d-flex flex-column gap-2 align-items-center">
-              <QueryDetail label="Query Title" value={data.queryTitle} />
-              <QueryDetail label="Query Description" value={data.queryDesc} />
+              <QueriesDetail label="queries Title" value={data.queryTitle} />
+              <QueriesDetail
+                label="queries Description"
+                value={data.queryDesc}
+              />
               <div className="d-flex flex-column align-items-center">
                 <div className="secondaryGreyTextColor">
                   Applied on {data.appliedOn.slice(0, 10)}
@@ -82,7 +111,7 @@ const Queries = () => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h4 className="modal-title">Add Query</h4>
+              <h4 className="modal-title">Add queries</h4>
               <button
                 type="button"
                 className="btn-close"
@@ -95,24 +124,23 @@ const Queries = () => {
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
               >
-                {/* Remove unused 'formik' variable */}
                 <Form className="d-flex justify-content-center w-75 flex-column mt-2">
                   <RequestField
-                    label="Query Title"
+                    label="queries Title"
                     placeholder="Enter Title/Topic"
-                    name="queryTitle"
-                    id="queryTitle"
+                    name="queriesTitle"
+                    id="queriesTitle"
                     type="text"
                   />
                   <RequestField
-                    label="Query Description"
+                    label="queries Description"
                     placeholder="Enter Description"
-                    name="queryDesc"
-                    id="queryDesc"
+                    name="queriesDesc"
+                    id="queriesDesc"
                     type="textarea"
                   />
                   <div className="modal-footer text-center">
-                    <button type="submit" className="btn submit__btn w-100">
+                    <button type="submit" className="btn btn-danger w-25">
                       {isLoading ? (
                         <span className="spinner-border spinner-border-sm text-warning"></span>
                       ) : (
@@ -129,15 +157,15 @@ const Queries = () => {
           </div>
         </div>
       </div>
-      {query &&
-        query.length > 0 &&
-        query.map((data) => (
+      {queries &&
+        queries.length > 0 &&
+        queries.map((data) => (
           <div className="modal" key={data._id} id={data._id}>
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
                   <h4 className="modal-title">
-                    Delete Query - {data.queryTitle}
+                    Delete queries - {data.queryTitle}
                   </h4>
                   <button
                     type="button"
@@ -145,16 +173,25 @@ const Queries = () => {
                     data-bs-dismiss="modal"
                   ></button>
                 </div>
+                <div className="text-center">
+                  <div className="title weight-500">Reason</div>
+                  <div className="row d-flex align-items-center justify-content-evenly secondaryGreyTextColor">
+                    <div className="mx-1">{data.reason}</div>
+                  </div>
+                </div>
                 <div className="modal-body d-flex flex-column gap-1">
                   <div className="d-flex gap-3">
                     <button
-                      className="btn btn-danger"
-                      onClick={() => handleQueryCancel(data._id)}
+                      className="btn btn-danger w-25"
+                      onClick={() => handleCancelQuery(data._id)}
                       data-bs-dismiss="modal"
                     >
                       Confirm Delete
                     </button>
-                    <button className="btn btn-info" data-bs-dismiss="modal">
+                    <button
+                      className="btn btn-danger w-25"
+                      data-bs-dismiss="modal"
+                    >
                       Cancel
                     </button>
                   </div>
@@ -180,16 +217,16 @@ const Queries = () => {
   );
 };
 
-const QueryDetail = ({ label, value }) => (
+const QueriesDetail = ({ label, value }) => (
   <div>
-    <div className="query__group">
+    <div className="queries__group">
       <div className="title weight-500">{label}:</div>
       <div className="secondaryGreyTextColor">{value}</div>
     </div>
   </div>
 );
 
-QueryDetail.propTypes = {
+QueriesDetail.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
 };

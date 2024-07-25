@@ -5,7 +5,7 @@ import api from "../api/api";
 import { toast } from "react-toastify";
 import useWindowSize from "../customHooks/useViewportSize";
 import { roadMapData } from "../data";
-import axios from "axios";
+//import axios from "axios";
 import PropTypes from "prop-types";
 
 // Create a context for data management
@@ -45,8 +45,23 @@ export const StudentDataProvider = ({ children }) => {
 
   // State variables for student progress and tasks
   const [currentDay, setCurrentDay] = useState(0);
-  console.log("Current day value:", currentDay);
-  const [roadMap, setRoadMap] = useState(roadMapData[0]);
+  const [roadMap, setRoadMap] = useState({}); // Initialize with an empty object
+
+  useEffect(() => {
+    console.log("roadMapData before set:", roadMapData);
+    if (roadMapData && Array.isArray(roadMapData) && roadMapData.length > 0) {
+      console.log("Setting roadMap with:", roadMapData[0]);
+      setRoadMap(roadMapData[0]);
+    } else {
+      console.error("Invalid roadMapData:", roadMapData);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log("RoadMap updated:", roadMap);
+    console.log("Checking task property:", roadMap?.task);
+  }, [roadMap]);
+
   const [roadMapRes, setRoadMapRes] = useState(null);
   const [flagState, setFlagState] = useState(true);
   const [frontEndCode, setFrontEndCode] = useState("");
@@ -62,27 +77,34 @@ export const StudentDataProvider = ({ children }) => {
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [mockData, setMockData] = useState([]);
 
-  // API configuration with Authorization header
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("userData");
+    if (token) {
+      setAuthToken(token);
+    }
+    if (storedUser) {
+      setuser(JSON.parse(storedUser));
+    }
+    setLoadingData(false);
+  }, []);
+
+  // Update API config when token changes
   const [apiConfig, setApiConfig] = useState({
     headers: {
       Authorization: `Bearer ${authToken}`,
     },
   });
+
   useEffect(() => {
-    const token = getTokenFromLocalStorage();
-    const storedUser = getUserFromLocalStorage();
-    console.log('Component rendered with data:',children);
-    setLoadingData(false); 
-    if (token) {
-      setAuthToken(token);
-      setuser(storedUser);
+    if (authToken) {
       setApiConfig({
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${authToken}`,
         },
       });
     }
-  }, [authToken, children]);
+  }, [authToken]);
 
   // Function to handle sign-in
   const handleSignIn = async (formData) => {
@@ -90,36 +112,31 @@ export const StudentDataProvider = ({ children }) => {
     try {
       const response = await api.post("/student/login", formData);
       const userData = response.data;
-      localStorage.setItem("userData", JSON.stringify(userData)); // Store user data including token
-      setAuthToken(userData.token); // Update state with new token
-      setuser(userData.student);
-      setIsLoading(false);
-      navigate("/class");
-    } catch (error) {
-      if (error.response && error.response.status === 401) {
-        toast.error("Invalid username or password.");
-      } else if (
-        error.response &&
-        error.response.data &&
-        error.response.data.message
-      ) {
-        toast.error(error.response.data.message);
+      if (userData.token) {
+        localStorage.setItem("token", userData.token);
+        localStorage.setItem("userData", JSON.stringify(userData.student));
+
+        setAuthToken(userData.token);
+        setuser(userData.student);
+        setIsLoading(false);
+        navigate("/class");
       } else {
-        console.log("Error during sign-in:", error);
+        throw new Error("Token not received in the response.");
       }
+    } catch (error) {
       setIsLoading(false);
+      toast.error("An error occurred during sign-in.");
     }
   };
 
   // Function to handle logout
   const handleLogout = () => {
+    localStorage.removeItem("token");
     localStorage.removeItem("userData");
     setuser(null);
     setAuthToken(null);
-    setPageTitle("Class");
     navigate("/");
   };
-
   // Function to handle login and store token (if needed separately)
   const handleLogin = async (credentials) => {
     try {
@@ -213,6 +230,7 @@ export const StudentDataProvider = ({ children }) => {
 
   // Function to handle forgot password
   const handleForgotPassword = async (formData) => {
+    console.log("Form Data:", formData);
     setIsLoading(true);
 
     try {
@@ -260,20 +278,106 @@ export const StudentDataProvider = ({ children }) => {
   };
 
   // Function to handle task submission
-  const handleTaskSubmission = async (formData) => {
+  // const handleTaskSubmission = async (formData) => {
+  //   setIsLoading(true);
+  //   console.log("RoadMap Data:", roadMap);
+
+  //   const taskCheck = user.email ? user.email : user.student.email;
+  //   const newTask = {
+  //     day: currentDay,
+  //     frontEndCode,
+  //     frontEndURL,
+  //     backEndCode,
+  //     backEndURL,
+  //     task: roadMap.task,
+
+  //     title: roadMap.title,
+  //     check: taskCheck + currentDay,
+  //     ...formData,
+  //   };
+
+  //   try {
+  //     const response = await api.post("/student/task", newTask, apiConfig);
+  //     toast.success(response.data.message);
+  //     setBackEndCode("");
+  //     setBackEndURL("");
+  //     setFrontEndCode("");
+  //     setFrontEndURL("");
+  //     setIsLoading(false);
+  //     setDataUpdateTrigger((prev) => prev + 1); // Increment to update task list
+  //   } catch (error) {
+  //     // Handle errors during task submission
+  //     if (error.response.data.message) {
+  //       toast.error(error.response.data.message);
+  //     } else {
+  //       console.log(error);
+  //     }
+  //     setIsLoading(false);
+  //   }
+  // };
+  //   console.log("roadMapData:", roadMapData);
+  //console.log("roadMapData:", roadMap.task);
+
+  //   useEffect(() => {
+  //     console.log("Initial RoadMap Data:", roadMap);
+  //   }, []);
+
+  // useEffect(() => {
+  //   console.log("RoadMap updated:", roadMap);
+  // }, [roadMap]);
+
+  const handleTaskSubmission = async (e) => {
+    e.preventDefault();
+
+    console.log("Handling task submission with roadMap:", roadMap.task);
+
+    // Ensure roadMap and roadMap.task are defined
+    if (!roadMap || !roadMap.task) {
+      console.error("RoadMap is undefined or does not have a task property.");
+      toast.error("RoadMap data is missing.");
+      return;
+    }
+
     setIsLoading(true);
-    const taskCheck = user.email ? user.email : user.student.email;
+    const token = localStorage.getItem("token");
+    console.log("Retrieved token from local storage:", token); // Debugging line
+
+    if (!token) {
+      console.error("Token is missing from local storage.");
+      toast.error("Session expired, please log in again.");
+      setIsLoading(false);
+      return;
+    }
+
+    const apiConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    // Ensure user data is available
+    let check = user?.email ? user.email : user?.student?.email;
+    if (!check) {
+      console.error("User email is missing.");
+      toast.error("User data is missing.");
+      setIsLoading(false);
+      return;
+    }
+
+    check = check + currentDay;
+
     const newTask = {
-      day: currentDay,
+      currentDay,
       frontEndCode,
       frontEndURL,
       backEndCode,
       backEndURL,
       task: roadMap.task,
       title: roadMap.title,
-      check: taskCheck + currentDay,
-      ...formData,
+      check,
     };
+
+    console.log("New Task Data:", newTask);
 
     try {
       const response = await api.post("/student/task", newTask, apiConfig);
@@ -282,18 +386,21 @@ export const StudentDataProvider = ({ children }) => {
       setBackEndURL("");
       setFrontEndCode("");
       setFrontEndURL("");
-      setIsLoading(false);
-      setDataUpdateTrigger((prev) => prev + 1); // Increment to update task list
+
+      // Fetch tasks again after submission
+      fetchTask();
     } catch (error) {
-      // Handle errors during task submission
-      if (error.response.data.message) {
+      console.error("Submission Error:", error);
+      if (error.response && error.response.data.message) {
         toast.error(error.response.data.message);
       } else {
-        console.log(error);
+        toast.error("An error occurred while submitting the task.");
       }
+    } finally {
       setIsLoading(false);
     }
   };
+
   if (loadingData) {
     return <p>Loading...</p>;
   }
@@ -301,18 +408,17 @@ export const StudentDataProvider = ({ children }) => {
   // Example usage in fetchTask function
   const fetchTask = async () => {
     try {
-      const token = getTokenFromLocalStorage();
+      const token = localStorage.getItem("token");
 
       if (!token) {
         throw new Error("No token found");
       }
 
-      const response = await axios.get("/student/task", {
+      const response = await api.get("/student/task", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
       setDbTasks(response.data);
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -328,7 +434,7 @@ export const StudentDataProvider = ({ children }) => {
   // Function to fetch all tasks (optional)
   const fetchAllTasks = async () => {
     try {
-      const token = getTokenFromLocalStorage();
+      const token = localStorage.getItem("token");
       if (!token) {
         throw new Error("No token found");
       }
@@ -350,7 +456,7 @@ export const StudentDataProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const token = getTokenFromLocalStorage();
+      const token = localStorage.getItem("token");
       if (!token) {
         throw new Error("No token found");
       }
@@ -379,12 +485,12 @@ export const StudentDataProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const token = getTokenFromLocalStorage(); // Assuming this function gets the token from local storage
+      const token = localStorage.getItem("token");
       if (!token) {
         throw new Error("No token found");
       }
 
-      const response = await axios.get("/student/webcode", {
+      const response = await api.get("/student/webcode", {
         ...apiConfig,
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -429,12 +535,12 @@ export const StudentDataProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const token = getTokenFromLocalStorage(); // Assuming this function gets the token from local storage
+      const token = localStorage.getItem("token"); // Assuming this function gets the token from local storage
       if (!token) {
         throw new Error("No token found");
       }
 
-      const response = await axios.get("/student/capstone", {
+      const response = await api.get("/student/capstone", {
         ...apiConfig,
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -454,57 +560,61 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
-  // Function to handle query submission
   const handleQuerySubmission = async (formData) => {
     setIsLoading(true);
 
     try {
       const response = await api.post("/student/query", formData, apiConfig);
       toast.success(response.data.message);
-      setIsLoading(false);
-      setDataUpdateTrigger((prev) => prev + 1); // Increment to update queries section
+      setDataUpdateTrigger((prev) => prev + 1);
     } catch (error) {
-      // Handle errors during query submission
-      if (error.response.data.message) {
-        toast.error(error.response.data.message);
-      } else {
-        console.log(error);
-      }
+      console.error("Error submitting query:", error.response || error.message);
+      toast.error(
+        error.response?.data?.message || "Network error or request failed."
+      );
+    } finally {
       setIsLoading(false);
     }
   };
 
-  // Function to cancel query
   const handleCancelQuery = async (queryId) => {
     setIsLoading(true);
 
     try {
       const response = await api.delete(`/student/query/${queryId}`, apiConfig);
       toast.success(response.data.message);
-      setIsLoading(false);
-      setDataUpdateTrigger((prev) => prev + 1); // Increment to update queries section
+      setDataUpdateTrigger((prev) => prev + 1);
     } catch (error) {
-      // Handle errors during cancelling query
-      if (error.response.data.message) {
-        toast.error(error.response.data.message);
-      } else {
-        console.log(error);
-      }
+      console.error("Error cancelling query:", error.response || error.message);
+      toast.error(
+        error.response?.data?.message || "Network error or request failed."
+      );
+    } finally {
       setIsLoading(false);
     }
   };
 
-  // Function to fetch queries
   const fetchQueries = async () => {
     setIsLoading(true);
 
     try {
-      const response = await api.get("/student/query", apiConfig);
-      setQueries(response.data);
-      setIsLoading(false);
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found");
+      }
+      const response = await api.get("/student/query", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (response.status === 200) {
+        setQueries(response.data);
+      } else {
+        throw new Error(`Failed to fetch queries: ${response.statusText}`);
+      }
     } catch (error) {
-      // Handle errors during fetching queries
-      console.log(error);
+      console.error("Error fetching queries:", error.response || error.message);
+      toast.error(error.message || "Error fetching queries");
+    } finally {
       setIsLoading(false);
     }
   };
@@ -548,9 +658,9 @@ export const StudentDataProvider = ({ children }) => {
       const response = await api.post("/student/leave", formData, apiConfig);
       toast.success(response.data.message);
       setIsLoading(false);
+      //setLeaveRequests((prevRequests) => [...prevRequests, response.data.leaveRequest]); 
       setDataUpdateTrigger((prev) => prev + 1); // Increment to update leave requests section
     } catch (error) {
-      // Handle errors during leave request submission
       if (error.response.data.message) {
         toast.error(error.response.data.message);
       } else {
@@ -568,9 +678,11 @@ export const StudentDataProvider = ({ children }) => {
       const response = await api.delete(`/student/leave/${leaveId}`, apiConfig);
       toast.success(response.data.message);
       setIsLoading(false);
+      // setLeaveRequests((prevRequests) =>
+      //   prevRequests.filter((request) => request._id !== leaveId)
+      // );
       setDataUpdateTrigger((prev) => prev + 1); // Increment to update leave requests section
     } catch (error) {
-      // Handle errors during cancelling leave request
       if (error.response.data.message) {
         toast.error(error.response.data.message);
       } else {
@@ -629,7 +741,9 @@ export const StudentDataProvider = ({ children }) => {
         user,
         setuser,
         authToken,
+        setQueries,
         setAuthToken,
+        setLeaveRequests,
         handleLogin,
         resetToken,
         setResetToken,
@@ -671,6 +785,8 @@ export const StudentDataProvider = ({ children }) => {
         capstoneProject,
         handleCapstoneSubmission,
         fetchCapstoneProject,
+        setWebCodeData,
+        setCapstoneProject,
         queries,
         fetchQueries,
         handleQuerySubmission,

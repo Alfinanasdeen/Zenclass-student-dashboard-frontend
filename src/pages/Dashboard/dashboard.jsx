@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import "./dashboard.css";
+import api from "../../api/api";
 import BarChart from "../../components/chart/BarChart";
 import { Link } from "react-router-dom";
 import DataContext from "../../student-dashboard-context/StudentDashboardContext";
@@ -7,13 +8,13 @@ import DataContext from "../../student-dashboard-context/StudentDashboardContext
 const Dashboard = () => {
   const {
     user,
-    fetchTask,
+    authToken,
     dbTasks,
     setDbTasks,
     webCodeData,
-    fetchWebCode,
+    setWebCodeData,
     capstoneProject,
-    fetchCapstoneProject,
+    setCapstoneProject,
   } = useContext(DataContext);
 
   const [chartData, setChartData] = useState({
@@ -29,10 +30,52 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    fetchTask();
+    const fetchTasks = async () => {
+      try {
+        if (!authToken) return;
+        const response = await api.get("/student/task", {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+        setDbTasks(response.data);
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+      }
+    };
+
+    const fetchWebCode = async () => {
+      try {
+        if (!authToken) return;
+        const response = await api.get("/student/webcode", {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+        setWebCodeData(response.data);
+      } catch (error) {
+        console.error("Error fetching webcode:", error);
+      }
+    };
+
+    const fetchCapstoneProject = async () => {
+      try {
+        if (!authToken) return;
+        const response = await api.get("/student/capstone", {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+        setCapstoneProject(response.data);
+      } catch (error) {
+        console.error("Error fetching capstone project:", error);
+      }
+    };
+
+    fetchTasks();
     fetchWebCode();
     fetchCapstoneProject();
-  }, [fetchTask, fetchWebCode, fetchCapstoneProject]);
+  }, [authToken, setDbTasks, setWebCodeData, setCapstoneProject]);
 
   useEffect(() => {
     if (dbTasks && Array.isArray(dbTasks)) {
@@ -48,7 +91,7 @@ const Dashboard = () => {
         ],
       });
     }
-  }, [dbTasks, setDbTasks]);
+  }, [dbTasks]);
 
   return (
     <section className="dashboard">
