@@ -87,12 +87,13 @@
 }
 
 .session__content {
+  font-size: 16px;
   font-weight: 500;
+  color: #262631;
 }
 
 .session__content__details {
-  font-size: 14px;
-  padding-left: 20px;
+  font-size: 16px;
 }
 
 .roadmap__container {
@@ -220,7 +221,7 @@ h6 {
   height: 25px;
   text-align: center;
   border-radius: 50%;
-  color: white; 
+  color: white;
 }
 
 .task__toggle svg {
@@ -307,8 +308,8 @@ h6 {
 }
 
 .task__submitBtn button:focus {
-  outline: none; 
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1); 
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
 .special-day {

@@ -23,8 +23,6 @@ const SessionRoadmap = () => {
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
-    //setRoadMap(roadMap[head]);
-    //setRoadMapRes(roadMapRes[head]);
     setFrontEndCode("");
     setFrontEndURL("");
     setBackEndCode("");
