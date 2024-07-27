@@ -16,6 +16,7 @@ import Capstone from "./pages/Capstone/capstone";
 import Queries from "./pages/Queries/queries";
 import Requirements from "./pages/Requirements/Requirements";
 import Portfolio from "./pages/Portfolio/Portfolio";
+import Profile from "./pages/Profile/Profile";
 import Application from "./pages/Application/Application";
 import Interview from "./pages/Interview/Interview";
 import Leave from "./pages/LeaveApplication/Leave";
@@ -62,6 +63,7 @@ function App() {
             <Route path="/queries" element={<Queries />} />
             <Route path="/requirements" element={<Requirements />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/application" element={<Application />} />
             <Route path="/interviewtasks" element={<Interview />} />
             <Route path="/leave" element={<Leave />} />
