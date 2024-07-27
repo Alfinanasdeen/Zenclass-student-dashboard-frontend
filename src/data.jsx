@@ -529,7 +529,9 @@ export const roadMapData = [
       <span
         style={{ whiteSpace: "pre-line", color: "#7a7a7a", textIndent: "20px" }}
       >
-        {"Components - In depth\nComponent life cycle\nStateful and stateless components\nReusable components\nPassing dynamic data to component\nIntroduction to Hook"}
+        {
+          "Components - In depth\nComponent life cycle\nStateful and stateless components\nReusable components\nPassing dynamic data to component\nIntroduction to Hook"
+        }
       </span>
     ),
     preread: "https://www.npmjs.com/package/react-router-dom",
@@ -547,7 +549,9 @@ export const roadMapData = [
       <span
         style={{ whiteSpace: "pre-line", color: "#7a7a7a", textIndent: "20px" }}
       >
-        {"What is hook?\nLifecycle of Hook\nuseState\nuseEffect\nProps drilling\nPassing data from child to parent component"}
+        {
+          "What is hook?\nLifecycle of Hook\nuseState\nuseEffect\nProps drilling\nPassing data from child to parent component"
+        }
       </span>
     ),
     preread: "https://www.npmjs.com/package/react-router-dom",
@@ -583,7 +587,9 @@ export const roadMapData = [
       <span
         style={{ whiteSpace: "pre-line", color: "#7a7a7a", textIndent: "20px" }}
       >
-        {"Context-API\nWhat is context\nprovide\ncreateContext\nAvoid props drilling\nSession task – profile name changes"}
+        {
+          "Context-API\nWhat is context\nprovide\ncreateContext\nAvoid props drilling\nSession task – profile name changes"
+        }
       </span>
     ),
     preread:
@@ -602,7 +608,9 @@ export const roadMapData = [
       <span
         style={{ whiteSpace: "pre-line", color: "#7a7a7a", textIndent: "20px" }}
       >
-        {"useRef\nuseReducer\nFront end game demonstration - hangman / tictactoe / tile match"}
+        {
+          "useRef\nuseReducer\nFront end game demonstration - hangman / tictactoe / tile match"
+        }
       </span>
     ),
     preread: "https://www.npmjs.com/package/axios",
@@ -636,7 +644,9 @@ export const roadMapData = [
       <span
         style={{ whiteSpace: "pre-line", color: "#7a7a7a", textIndent: "20px" }}
       >
-        {"Intro to Redux - to understand the state management with react application"}
+        {
+          "Intro to Redux - to understand the state management with react application"
+        }
       </span>
     ),
     preread: "No preread available",
@@ -653,11 +663,14 @@ export const roadMapData = [
       <span
         style={{ whiteSpace: "pre-line", color: "#7a7a7a", textIndent: "20px" }}
       >
-        {"Introduction to database\nwhat is MySQL?\nintro to MySQL engines\nbasic queries - create db, table, insert, update, alter, select - where clause, distinct, group by, order by, offset, limit"}
+        {
+          "Introduction to database\nwhat is MySQL?\nintro to MySQL engines\nbasic queries - create db, table, insert, update, alter, select - where clause, distinct, group by, order by, offset, limit"
+        }
       </span>
     ),
     preread: "https://dev.mysql.com/doc/",
-    activity: "IMDB Design a DB for IMDB 1. Movie should have multiple media(Video or Image) 2. Movie can belongs to multiple Genre 3. Movie can have multiple reviews and Review can belongs to a user 4. Artist can have multiple skills 5. Artist can perform multiple role in a single film",
+    activity:
+      "IMDB Design a DB for IMDB 1. Movie should have multiple media(Video or Image) 2. Movie can belongs to multiple Genre 3. Movie can have multiple reviews and Review can belongs to a user 4. Artist can have multiple skills 5. Artist can perform multiple role in a single film",
     tags: ["MySQL", "database"],
     task: "bs",
     link: "https://meet.google.com/cvn-fzsd-toe",
@@ -670,7 +683,9 @@ export const roadMapData = [
       <span
         style={{ whiteSpace: "pre-line", color: "#7a7a7a", textIndent: "20px" }}
       >
-        {"normalization\nselect queries\njoins\nDB model design\nIntro to Mongodb & installation of mongodb"}
+        {
+          "normalization\nselect queries\njoins\nDB model design\nIntro to Mongodb & installation of mongodb"
+        }
       </span>
     ),
     preread: "https://dev.mysql.com/doc/",
@@ -687,7 +702,9 @@ export const roadMapData = [
       <span
         style={{ whiteSpace: "pre-line", color: "#7a7a7a", textIndent: "20px" }}
       >
-        {"intro to mongodb\nwhy mongodb?\nwhat is document?\nwhat is collection?\nMongodb vs MySQL\ninstallation of mongodb\ncreation of database\ncollections\ndocuments\nfind - query & projection"}
+        {
+          "intro to mongodb\nwhy mongodb?\nwhat is document?\nwhat is collection?\nMongodb vs MySQL\ninstallation of mongodb\ncreation of database\ncollections\ndocuments\nfind - query & projection"
+        }
       </span>
     ),
     preread: "https://docs.mongodb.com/manual/",
@@ -704,11 +721,14 @@ export const roadMapData = [
       <span
         style={{ whiteSpace: "pre-line", color: "#7a7a7a", textIndent: "20px" }}
       >
-        {"use of operators in find()\nbasic cursor methods - map, toArray, pretty, forEach, limit, count, sort\nAggregation"}
+        {
+          "use of operators in find()\nbasic cursor methods - map, toArray, pretty, forEach, limit, count, sort\nAggregation"
+        }
       </span>
     ),
     preread: "https://docs.mongodb.com/manual/",
-    activity: "https://github.com/rvsp/database/blob/master/mongodb/day/database-design-zen-class.txt",
+    activity:
+      "https://github.com/rvsp/database/blob/master/mongodb/day/database-design-zen-class.txt",
     tags: ["mongodb", "database"],
     task: "bs",
     link: "https://meet.google.com/cvn-fzsd-toe",
@@ -725,7 +745,8 @@ export const roadMapData = [
       </span>
     ),
     preread: "https://nodejs.org/",
-    activity: "Nodejs file system Task https://docs.google.com/document/d/1c_u6aHv7AQHse45GGcrCRe78liwv90S5aHwBR7tBP0/edit",
+    activity:
+      "Nodejs file system Task https://docs.google.com/document/d/1c_u6aHv7AQHse45GGcrCRe78liwv90S5aHwBR7tBP0/edit",
     tags: ["nodejs", "backend"],
     task: "bs",
     link: "https://meet.google.com/cvn-fzsd-toe",
@@ -738,11 +759,14 @@ export const roadMapData = [
       <span
         style={{ whiteSpace: "pre-line", color: "#7a7a7a", textIndent: "20px" }}
       >
-        {"What is express\nAPI methods - GET, POST, PUT, DELETE\nRequest & response objects\nUrl & Query parameters"}
+        {
+          "What is express\nAPI methods - GET, POST, PUT, DELETE\nRequest & response objects\nUrl & Query parameters"
+        }
       </span>
     ),
     preread: "https://expressjs.com/",
-    activity: "Nodejs hall booking api task https://docs.google.com/documnt/d/1rPQ2LbHtMZajA_GIZfR-Ko2MFueoT82AmfHTK9V-hM/edit",
+    activity:
+      "Nodejs hall booking api task https://docs.google.com/documnt/d/1rPQ2LbHtMZajA_GIZfR-Ko2MFueoT82AmfHTK9V-hM/edit",
     tags: ["nodejs", "backend"],
     task: "be",
     link: "https://meet.google.com/cvn-fzsd-toe",
@@ -755,11 +779,14 @@ export const roadMapData = [
       <span
         style={{ whiteSpace: "pre-line", color: "#7a7a7a", textIndent: "20px" }}
       >
-        {"Connection to MongoDB (local & atlas)\nsimultaneously frontend + backend connectivity"}
+        {
+          "Connection to MongoDB (local & atlas)\nsimultaneously frontend + backend connectivity"
+        }
       </span>
     ),
     preread: "No preread available",
-    activity: "https://docs.google.com/document/d/1sxHk2QDyK_vjlbwWPklyTXDHHOENKqj-IHS2yNSaHQ/edit?authuser=1",
+    activity:
+      "https://docs.google.com/document/d/1sxHk2QDyK_vjlbwWPklyTXDHHOENKqj-IHS2yNSaHQ/edit?authuser=1",
     tags: ["nodejs", "backend"],
     task: "be",
     link: "https://meet.google.com/cvn-fzsd-toe",
@@ -789,7 +816,9 @@ export const roadMapData = [
       <span
         style={{ whiteSpace: "pre-line", color: "#7a7a7a", textIndent: "20px" }}
       >
-        {"intro to mongodb\nwhy mongodb?\nwhat is document?\nwhat is collection?\nMongodb vs MySQL\ninstallation of mongodb\ncreation of database\ncollections\ndocuments\nfind - query & projection"}
+        {
+          "intro to mongodb\nwhy mongodb?\nwhat is document?\nwhat is collection?\nMongodb vs MySQL\ninstallation of mongodb\ncreation of database\ncollections\ndocuments\nfind - query & projection"
+        }
       </span>
     ),
     preread: "https://docs.mongodb.com/manual/",
@@ -806,15 +835,18 @@ export const roadMapData = [
       <span
         style={{ whiteSpace: "pre-line", color: "#7a7a7a", textIndent: "20px" }}
       >
-        {"JWT\ncustom middleware\nauthorization\nsimultaneously frontend + backend connectivity"}
+        {
+          "JWT\ncustom middleware\nauthorization\nsimultaneously frontend + backend connectivity"
+        }
       </span>
     ),
     preread: "https://www.npmjs.com/package/jsonwebtoken",
-    activity: "https://docs.google.com/document/d/1nD7fzgzw5UmFSpnHK2FVadnp4y7EaND26_AqkZzSTw/edit?authuser=1",
+    activity:
+      "https://docs.google.com/document/d/1nD7fzgzw5UmFSpnHK2FVadnp4y7EaND26_AqkZzSTw/edit?authuser=1",
     tags: ["nodejs", "backend"],
     task: "fb",
     link: "https://meet.google.com/cvn-fzsd-toe",
-  }
+  },
 ];
 
 export const leaderBoardData = [

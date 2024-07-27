@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp, FaGooglePlay } from "react-icons/fa";
 import "./SessionRoadmap.css";
-import { roadMapData} from "../../data";
+import { roadMapData } from "../../data";
 import DataContext from "../../student-dashboard-context/StudentDashboardContext";
 
 const SessionRoadmap = () => {
@@ -19,7 +19,18 @@ const SessionRoadmap = () => {
     handleTaskSubmission,
   } = useContext(DataContext);
 
-  const [selectedSession, setSelectedSession] = useState(null);
+  const defaultSessionDetails = {
+    title: "No session title available",
+    time: "Class schedule is not updated",
+    content: "No content available",
+    preread: "No preread available",
+    activity: "",
+    tags: "",
+    task: "",
+    link: "",
+  };
+  
+  const [selectedSession, setSelectedSession] = useState(defaultSessionDetails);
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {
