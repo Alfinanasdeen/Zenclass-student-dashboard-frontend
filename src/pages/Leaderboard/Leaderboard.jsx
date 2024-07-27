@@ -17,7 +17,7 @@ const Leaderboard = () => {
             <tr className="p-2 text-center text-md-start">
               <th>Rank</th>
               <th>Name</th>
-              <th>Batch</th>
+              <th className="px-3">Batch</th>
               <th>Learning</th>
             </tr>
           </thead>
@@ -32,7 +32,7 @@ const Leaderboard = () => {
                 <td className="px-3">{rank}</td>
                 <td>{name}</td>
                 <td>{batch}</td>
-                <td>{learning}</td>
+                <td className="px-3">{learning}</td>
               </tr>
             ))}
           </tbody>

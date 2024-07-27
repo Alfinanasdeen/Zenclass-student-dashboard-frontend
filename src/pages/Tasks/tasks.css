@@ -1,13 +1,14 @@
 .task__submission {
   min-height: calc(100vh - 120px);
   padding: 10px;
+  margin-left: 75px;
 }
 
 .top_sapce {
   height: 96px;
   background-color: rgb(237, 230, 248);
   border-radius: 16px;
-  margin: 8px 0px 20px 75px;
+  margin-bottom: 20px;
   display: flex;
   -webkit-box-pack: justify;
   justify-content: space-between;

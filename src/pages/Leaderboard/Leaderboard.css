@@ -11,7 +11,7 @@
   position: absolute;
   width: 623px;
   height: 32px;
-  left: 40px;
+  left: 130px;
   top: 40px;
   font-family: "DM Sans";
   font-weight: 500;
@@ -35,13 +35,14 @@ img.leader__icon {
 }
 
 .leader__leaderboard__table table {
+  margin-left: 150px;
   display: flex;
   flex-direction: column;
 }
 
 .leader__leaderboard__table table tr {
   display: grid;
-  grid-template-columns: 0.5fr 1fr 0.5fr 0.5fr;
+  grid-template-columns: 0.5fr 0.65fr 0.5fr 0.5fr;
   transition: 0.3s;
 }
 

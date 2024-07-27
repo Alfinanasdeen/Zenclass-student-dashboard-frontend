@@ -1,15 +1,12 @@
 import { useContext } from "react";
 import "./navbar.css";
 import Logo from "../../assets/ZenLogo.png";
-import { navBarLink } from "../../data"; // AssumingnavBarLink is an array of objects with properties: id, name, link, icon
+import { navBarLink } from "../../data"; 
 import { NavLink } from "react-router-dom";
-import StudentDashboardContext from "../../student-dashboard-context/StudentDashboardContext"; // Update import
+import StudentDashboardContext from "../../student-dashboard-context/StudentDashboardContext"; 
 
 const Navbar = () => {
-  const { handlePageTitleChange, toggle, setToggle } = useContext(
-    StudentDashboardContext
-  ); // Update useContext hook
-
+  const { handlePageTitleChange, toggle } = useContext(StudentDashboardContext); 
   return (
     <nav className={`navbar__side ${toggle ? "active" : ""}`}>
       <div className="nav__header d-flex align-items-center gap-2">
@@ -31,14 +28,6 @@ const Navbar = () => {
             </NavLink>
           </li>
         ))}
-      </div>
-      <div
-        className={`nav__toggle d-flex align-items-center justify-content-center ${
-          toggle ? "active" : ""
-        }`}
-        onClick={() => setToggle(!toggle)}
-      >
-        <div className={`toggle__menu ${toggle ? "active" : ""}`}></div>
       </div>
     </nav>
   );

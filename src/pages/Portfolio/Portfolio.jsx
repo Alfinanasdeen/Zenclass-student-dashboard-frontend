@@ -22,6 +22,7 @@ const Portfolio = () => {
 
   return (
     <section className="portfolio">
+      <div className="top_sapce"></div>
       <div className="row mx-0">
         <div className="col-12 col-md-6 portfolio__area">
           <Formik
@@ -58,8 +59,8 @@ const Portfolio = () => {
                     type="url"
                   />
                 </div>
-                <div className="d-flex justify-content-center align-items-center">
-                  <button className="btn button" type="submit">
+                <div className="d-flex align-items-center">
+                  <button className="btn_button" type="submit">
                     {isLoading ? (
                       <span className="spinner-border spinner-border-sm text-warning"></span>
                     ) : (
