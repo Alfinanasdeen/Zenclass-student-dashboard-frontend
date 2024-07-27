@@ -1,48 +1,65 @@
-/* General styles */
+.leaderboard {
+  margin-left: 75px;
+}
 .leader__leaderboard {
-    background: var(--gray);
-    border-radius: 16px;
-    color: var(--theme);
-    width: 95%;
-    margin: 20px auto;
-  }
-  
-  .leader__leaderboard__table {
-    width: 95%;
-    margin: 0 auto;
-  }
-  
-  .topper {
-    background-color: var(--theme);
-  }
-  
-  .leader__leaderboard__table table {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .leader__leaderboard__table table tr {
-    display: grid;
-    grid-template-columns: 0.5fr 1fr 0.5fr 0.5fr;
-    transition: 0.3s;
-  }
-  
-  .leader__leaderboard__table table thead tr {
-    background-color: var(--gray);
-    border-radius: 5px 5px 0 0;
-    color: var(--theme);
-  }
-  
-  .leader__leaderboard__table table tbody tr:hover {
-    scale: 1.02;
-    box-shadow: 0 0 3px gray;
-  }
-  
-  .leader__leaderboard__table table tbody tr:nth-child(even) {
-    background-color: var(--gray);
-  }
-  
-  .leader__leaderboard__table table tbody tr:last-child {
-    border-radius: 0 0 5px 5px;
-  }
-  
+  position: sticky;
+  left: 92px;
+  background: #f4f4f4;
+  border-radius: 16px;
+}
+.leader__leaderboard__title {
+  position: absolute;
+  width: 623px;
+  height: 32px;
+  left: 40px;
+  top: 40px;
+  font-family: "DM Sans";
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  color: #262631;
+  margin: 0;
+}
+img.leader__icon {
+  margin-left: 1200px;
+  width: auto;
+}
+.leader__leaderboard__table {
+  position: relative;
+  width: 99%;
+  height: 32px;
+}
+
+.topper {
+  background-color: var(--theme);
+}
+
+.leader__leaderboard__table table {
+  display: flex;
+  flex-direction: column;
+}
+
+.leader__leaderboard__table table tr {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.5fr 0.5fr;
+  transition: 0.3s;
+}
+
+.leader__leaderboard__table table thead tr {
+  background-color: var(--gray);
+  border-radius: 5px 5px 0 0;
+  color: var(--theme);
+}
+
+.leader__leaderboard__table table tbody tr:hover {
+  scale: 1.02;
+  box-shadow: 0 0 3px gray;
+}
+
+.leader__leaderboard__table table tbody tr:nth-child(even) {
+  background-color: var(--gray);
+}
+
+.leader__leaderboard__table table tbody tr:last-child {
+  border-radius: 0 0 5px 5px;
+}

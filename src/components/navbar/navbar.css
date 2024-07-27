@@ -12,7 +12,7 @@
   overflow: hidden;
 }
 .navbar__side .img {
-  padding-left: 9px;
+  padding-left: 5px;
   width: 60px;
 }
 .nav__header {
@@ -30,9 +30,9 @@
   transition: 0.3s;
 }
 .nav__link {
+  padding: 1.25rem;
   list-style: none;
   width: 70px;
-  padding: 1.25rem;
   padding-top: 0;
   height: auto;
 }

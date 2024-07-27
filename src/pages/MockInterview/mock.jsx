@@ -1,18 +1,32 @@
 import { useEffect, useContext } from "react";
+import api from "../../api/api";
 import PropTypes from "prop-types";
 import DataContext from "../../student-dashboard-context/StudentDashboardContext";
-import "./mock.css"; // Import CSS for styling
+import "./mock.css";
 
 const Mock = () => {
-  const { mock = [], loggedUser, fetchMockData } = useContext(DataContext); // Default mock to an empty array
+  const { mock = [], user, setMockData, authToken } = useContext(DataContext);
 
   useEffect(() => {
+    const fetchMockData = async () => {
+      try {
+        if (!authToken) return;
+        const response = await api.get("/student/mock", {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+        setMockData(response.data);
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+      }
+    };
     fetchMockData();
-  }, [fetchMockData]); // Include fetchMockData in the dependency array
+  }, [authToken, setMockData]);
 
   return (
     <section className="mock mt-5">
-      {mock.length ? ( // Check if mock array has any elements
+      {mock.length ? (
         mock.map((data) => (
           <div
             className="task__container"
@@ -24,7 +38,7 @@ const Mock = () => {
               <div className="text-center text-md-start">
                 <div className="title weight-500">{data.interviewRound}</div>
                 <div className="secondaryGreyTextColor">
-                  {loggedUser.name} {loggedUser.lName}
+                  {user.name} {user.lName}
                 </div>
               </div>
               <div>
@@ -47,7 +61,7 @@ const Mock = () => {
                   <div className="modal-body">
                     <MockDetails
                       title="Name"
-                      details={`${loggedUser.name} ${loggedUser.lName}`}
+                      details={`${user.name} ${user.lName}`}
                     />
                     <MockDetails
                       title="Interview Date"
@@ -91,12 +105,16 @@ const Mock = () => {
           </div>
         ))
       ) : (
-        <h3 className="text-center mt-3">Mock interview not assigned</h3>
+        <section>
+          <div className="top_sapce"></div>
+          <div className="p-4 secondaryTheme" style={{ textAlign: "center" }}>
+            Mock interview not assigned
+          </div>
+        </section>
       )}
     </section>
   );
 };
-
 const MockDetails = ({ title, details }) => (
   <div className="mock__Data mb-1">
     <div className="mock__title">

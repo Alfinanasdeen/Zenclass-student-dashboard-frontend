@@ -1,11 +1,15 @@
 import "./Leaderboard.css";
 import { leaderBoardData } from "../../data";
+import LeaderIcon from "../../assets/leaderIcon.svg";
 
 const Leaderboard = () => {
   return (
     <section className="leaderboard">
       <div className="leader__leaderboard p-3 text-center">
-        <h2>Competition is a good thing; it forces us to do our best.</h2>
+        <div className="leader__leaderboard__title">
+          <h2>Competition is a good thing; it forces us to do our best.</h2>
+        </div>
+        <img src={LeaderIcon} alt="leader-icon" className="leader__icon" />
       </div>
       <div className="leader__leaderboard__table">
         <table>

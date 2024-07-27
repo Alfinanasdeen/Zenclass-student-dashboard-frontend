@@ -1,26 +1,14 @@
-import './Certificate.css';
+import "./Certificate.css";
 
 const Certificate = () => {
-    const loggedUser = { name: "Alfina", lName: "M" }; // Mock logged user
-
-    return (
-        <div className="app">
-            <header className="top__header d-flex align-items-center justify-content-between">
-                <h1 className="heading">Certificates</h1>
-                <div className="user__profile d-flex gap-3">
-                    <h5 className="mt-3 mr-3 user__name">{loggedUser.name}.{loggedUser.lName}</h5>
-                    <div className="user__avatar">
-                        <img src="path-to-avatar" alt="User Avatar" />
-                    </div>
-                </div>
-            </header>
-            <main className="main-content">
-                <div className="certificates">
-                    <p>Your Certificate is not yet Generated.</p>
-                </div>
-            </main>
-        </div>
-    );
-}
+  return (
+    <section>
+      <div className="top_sapce"></div>
+      <div className="p-4 secondaryTheme" style={{ textAlign: "center" }}>
+        Your Certificate is not yet Generated.
+      </div>
+    </section>
+  );
+};
 
 export default Certificate;

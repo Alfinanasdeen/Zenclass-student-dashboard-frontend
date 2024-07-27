@@ -339,7 +339,7 @@ export const StudentDataProvider = ({ children }) => {
 
     setIsLoading(true);
     const token = localStorage.getItem("token");
-    console.log("Retrieved token from local storage:", token); // Debugging line
+    console.log("Retrieved token from local storage:", token);
 
     if (!token) {
       console.error("Token is missing from local storage.");
@@ -657,7 +657,7 @@ export const StudentDataProvider = ({ children }) => {
       const response = await api.post("/student/leave", formData, apiConfig);
       toast.success(response.data.message);
       setIsLoading(false);
-      //setLeaveRequests((prevRequests) => [...prevRequests, response.data.leaveRequest]); 
+      //setLeaveRequests((prevRequests) => [...prevRequests, response.data.leaveRequest]);
       setDataUpdateTrigger((prev) => prev + 1); // Increment to update leave requests section
     } catch (error) {
       if (error.response.data.message) {
@@ -745,7 +745,7 @@ export const StudentDataProvider = ({ children }) => {
         setLeaveRequests,
         handleLogin,
         resetToken,
-        setResetToken,     
+        setResetToken,
         handleSignIn,
         handleLogout,
         handleSignUp,
@@ -799,6 +799,7 @@ export const StudentDataProvider = ({ children }) => {
         handleCancelLeaveRequest,
         mockData,
         fetchMockData,
+        setMockData,
       }}
     >
       {children}

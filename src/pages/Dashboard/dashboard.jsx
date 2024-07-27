@@ -120,7 +120,11 @@ const Dashboard = () => {
           <div className="activity-card">
             <div className="activity-title">Webcode-1 Score</div>
             <div className="activity-score text-center">
-              {webCodeData ? webCodeData.score : "Not Submitted"}
+              {webCodeData
+                ? webCodeData.score !== null && webCodeData.score !== undefined
+                  ? webCodeData.score
+                  : "Yet to be graded"
+                : "Not Submitted"}
             </div>
             <div className="text-center mb-2">
               <Link to="/webcode" className="view-button">
@@ -131,7 +135,12 @@ const Dashboard = () => {
           <div className="activity-card">
             <div className="activity-title">Capstone-1 Score</div>
             <div className="activity-score text-center">
-              {capstoneProject ? capstoneProject.score : "Not Submitted"}
+              {capstoneProject
+                ? capstoneProject.score !== null &&
+                  capstoneProject.score !== undefined
+                  ? capstoneProject.score
+                  : "Yet to be graded"
+                : "Not Submitted"}
             </div>
             <div className="text-center mb-2">
               <Link to="/capstone" className="view-button">

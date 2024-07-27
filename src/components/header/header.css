@@ -32,8 +32,7 @@
 .user__logo {
   cursor: pointer !important;
 }
-img,
-svg {
+img {
   vertical-align: middle;
   width: 50px;
 }
