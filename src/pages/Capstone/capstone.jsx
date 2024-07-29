@@ -2,6 +2,7 @@ import { useEffect, useContext } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { ToastContainer, Zoom } from "react-toastify";
 import { Formik, Form } from "formik";
+import PropTypes from "prop-types";
 import * as Yup from "yup";
 
 import StudentDashboardContext from "../../student-dashboard-context/StudentDashboardContext";
@@ -169,6 +170,12 @@ const Capstone = () => {
       )}
     </Formik>
   );
+  console.log("capstoneProject1:", capstoneProject);
+  // Convert score to number
+  const capstoneData = {
+    ...capstoneProject,
+    score: capstoneProject?.score ? Number(capstoneProject.score) : undefined,
+  };
 
   return (
     <section className="task__submission">
@@ -182,7 +189,7 @@ const Capstone = () => {
             name={`${user.name || user.student.name} `}
             batch={user.batch || user.student.batch}
           />
-          <CapstoneInfo capStone={capstoneProject} />
+          <CapstoneInfo capStone={capstoneData} />
         </div>
       </div>
       <div className="modal" id="myModal">
@@ -214,6 +221,7 @@ const Capstone = () => {
                       : "Pending"}
                   </div>
                 </div>
+
                 <div className="secondaryGreyTextColor">
                   {capstoneProject
                     ? `submitted on ${
@@ -324,22 +332,40 @@ const UserInfo = ({ name, batch }) => (
     </div>
   </div>
 );
+UserInfo.propTypes = {
+  name: PropTypes.string.isRequired,
+  batch: PropTypes.string.isRequired,
+};
 
-const CapstoneInfo = ({ capstoneProject }) => (
-  <div>
-    <div className="mx-1 secondaryGreyTextColor text-center pb-2">
-      {capstoneProject
-        ? `submitted on ${capstoneProject.submittedOn.slice(0, 10)}`
-        : "Not Submitted"}
-    </div>
-    <div className="ml-3 mr-1">
-      <div className="marktag tasktag mx-1 px-3 rounded">
-        {capstoneProject
-          ? `Capstone score : - ${capstoneProject.score}`
-          : "Pending"}
+const CapstoneInfo = ({ capStone }) => {
+  console.log("capstoneProject2:", capStone);
+
+  return (
+    <div>
+      <div className="mx-1 secondaryGreyTextColor text-center pb-2">
+        {capStone && capStone.submittedOn
+          ? `submitted on ${capStone.submittedOn.slice(0, 10)}`
+          : "Not Submitted"}
+      </div>
+      <div className="ml-3 mr-1">
+        <div className="marktag tasktag mx-1 px-3 rounded">
+          {capStone && capStone.score !== undefined
+            ? `Capstone score: - ${capStone.score}`
+            : "Pending"}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
+CapstoneInfo.propTypes = {
+  capStone: PropTypes.shape({
+    score: PropTypes.number,
+    submittedOn: PropTypes.string,
+    feCode: PropTypes.string,
+    feUrl: PropTypes.string,
+    beCode: PropTypes.string,
+    beUrl: PropTypes.string,
+  }),
+};
 
 export default Capstone;
