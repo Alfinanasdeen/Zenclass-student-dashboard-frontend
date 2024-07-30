@@ -16,7 +16,7 @@ const Tasks = () => {
             Authorization: `Bearer ${authToken}`,
           },
         });
-        // Convert `score` to a number if it's a string
+        // Convert `score` to a number
         const tasks = response.data.map((task) => ({
           ...task,
           score: Number(task.score),
@@ -29,12 +29,12 @@ const Tasks = () => {
 
     fetchTasks();
   }, [authToken, setDbTasks]);
-  
+
   return (
     <section className="task__submission">
       <div className="top_sapce"></div>
       {Array.isArray(dbTasks) && dbTasks.length > 0 ? (
-        dbTasks.map((item) => (        
+        dbTasks.map((item) => (
           <div
             className="task__container"
             key={item._id}

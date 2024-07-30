@@ -93,11 +93,11 @@
 }
 @media (max-width: 576px) {
   .query-container {
-    flex-direction: column; /* Stack items vertically on small screens */
-    align-items: flex-start; /* Align items to the start */
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .position-right {
-    align-items: flex-start; /* Align items to the start on small screens */
+    align-items: flex-start;
   }
 }

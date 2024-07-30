@@ -25,7 +25,6 @@ const Header = () => {
     return "Loading...";
   };
 
-
   return (
     <header className="top__header d-flex align-items-center justify-content-between">
       <h1 className="heading">{pageTitle}</h1>

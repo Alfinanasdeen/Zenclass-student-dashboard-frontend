@@ -1,30 +1,30 @@
 .task-url {
-    text-decoration: none;
-    color: black;
-    transition: color 0.3s, letter-spacing 0.3s;
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s, letter-spacing 0.3s;
 }
 
 .task-url:hover {
-    color: var(--theme); /* Update with your desired theme color */
-    letter-spacing: 1px;
+  color: var(--theme);
+  letter-spacing: 1px;
 }
 
 .task-score {
-    margin-top: 15px;
-    border: 1px solid var(--secondary); /* Update with your desired secondary color */
-    padding: 5px;
-    text-align: center;
-    border-radius: 5px;
-    background-color: var(--theme); /* Update with your desired theme color */
-    transition: background-color 0.3s, color 0.3s, letter-spacing 0.3s;
-    color: white;
-    font-size: 14px; /* Adjust font size as needed */
+  margin-top: 15px;
+  border: 1px solid var(--secondary);
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: var(--theme);
+  transition: background-color 0.3s, color 0.3s, letter-spacing 0.3s;
+  color: white;
+  font-size: 14px;
 }
 
 .task-score:hover {
-    letter-spacing: 1px;
+  letter-spacing: 1px;
 }
 
 .task-url-container {
-    margin-bottom: 20px; /* Adjust margin as needed */
+  margin-bottom: 20px;
 }

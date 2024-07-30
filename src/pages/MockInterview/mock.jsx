@@ -26,7 +26,7 @@ const Mock = () => {
 
   return (
     <section className="mock">
-       <div className="top_sapce"></div>
+      <div className="top_sapce"></div>
       {mock.length ? (
         mock.map((data) => (
           <div

@@ -28,10 +28,6 @@ const Signup = () => {
       .max(15, "Must be less than 15 Characters")
       .min(10, "Must be at least 10 Characters")
       .required("Required"),
-    // experience: Yup.string()
-    //   .max(10, "Must be less than 10 Characters")
-    //   .min(1, "Must be at least 1 Characters")
-    //   .required("Required"),
     qualification: Yup.string()
       .max(35, "Must be less than 35 Characters")
       .min(2, "Must be at least 2 Characters")
@@ -60,7 +56,6 @@ const Signup = () => {
                   name: "",
                   lName: "",
                   contactNo: "",
-                  //experience: "",
                   qualification: "",
                   password: "",
                   cPassword: "",
@@ -101,13 +96,6 @@ const Signup = () => {
                       type="text"
                       placeholder="Enter Your Contact"
                     />
-                    {/* <TextField
-                      label="Experience"
-                      name="experience"
-                      id="experience"
-                      type="text"
-                      placeholder="Enter Your Experience in Years"
-                    /> */}
                     <TextField
                       label="Qualification"
                       name="qualification"

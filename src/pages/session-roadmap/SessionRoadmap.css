@@ -233,7 +233,7 @@ h6 {
   transform: rotate(180deg);
 }
 .task__toggle.text-white {
-  --bs-text-opacity: none !important; /* Use !important if necessary */
+  --bs-text-opacity: none !important;
 }
 .tagsList {
   display: flex;

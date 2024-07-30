@@ -4,7 +4,6 @@ import api from "../api/api";
 import { toast } from "react-toastify";
 import useWindowSize from "../customHooks/useViewportSize";
 import { roadMapData } from "../data";
-//import axios from "axios";
 import PropTypes from "prop-types";
 
 // Create a context for data management
@@ -35,8 +34,8 @@ export const StudentDataProvider = ({ children }) => {
   // State variables and hooks
   const { width } = useWindowSize();
   const [pageTitle, setPageTitle] = useState("");
-  const [user, setuser] = useState(getUserFromLocalStorage()); // Initialize with null
-  const [authToken, setAuthToken] = useState(getTokenFromLocalStorage()); // Initialize with stored token
+  const [user, setuser] = useState(getUserFromLocalStorage());
+  const [authToken, setAuthToken] = useState(getTokenFromLocalStorage());
   const [resetToken, setResetToken] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [loadingData, setLoadingData] = useState(true);
@@ -44,7 +43,7 @@ export const StudentDataProvider = ({ children }) => {
 
   // State variables for student progress and tasks
   const [currentDay, setCurrentDay] = useState(0);
-  const [roadMap, setRoadMap] = useState({}); // Initialize with an empty object
+  const [roadMap, setRoadMap] = useState({});
 
   useEffect(() => {
     console.log("roadMapData before set:", roadMapData);
@@ -136,6 +135,7 @@ export const StudentDataProvider = ({ children }) => {
     setAuthToken(null);
     navigate("/");
   };
+
   // Function to handle login and store token (if needed separately)
   const handleLogin = async (credentials) => {
     try {
@@ -153,7 +153,7 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
-  // Frontend handleSignUp function example
+  // Frontend handleSignUp function
   const handleSignUp = async (formData) => {
     setIsLoading(true);
     try {
@@ -227,7 +227,7 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
-  // Function to handle forgot password
+  // Function to handle Forgot password
   const handleForgotPassword = async (formData) => {
     console.log("Form Data:", formData);
     setIsLoading(true);
@@ -250,7 +250,7 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
-  // Function to handle password reset
+  // Function to handle Password reset
   const handlePasswordReset = async (resetData) => {
     setIsLoading(true);
 
@@ -276,61 +276,12 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
-  // Function to handle task submission
-  // const handleTaskSubmission = async (formData) => {
-  //   setIsLoading(true);
-  //   console.log("RoadMap Data:", roadMap);
-
-  //   const taskCheck = user.email ? user.email : user.student.email;
-  //   const newTask = {
-  //     day: currentDay,
-  //     frontEndCode,
-  //     frontEndURL,
-  //     backEndCode,
-  //     backEndURL,
-  //     task: roadMap.task,
-
-  //     title: roadMap.title,
-  //     check: taskCheck + currentDay,
-  //     ...formData,
-  //   };
-
-  //   try {
-  //     const response = await api.post("/student/task", newTask, apiConfig);
-  //     toast.success(response.data.message);
-  //     setBackEndCode("");
-  //     setBackEndURL("");
-  //     setFrontEndCode("");
-  //     setFrontEndURL("");
-  //     setIsLoading(false);
-  //     setDataUpdateTrigger((prev) => prev + 1); // Increment to update task list
-  //   } catch (error) {
-  //     // Handle errors during task submission
-  //     if (error.response.data.message) {
-  //       toast.error(error.response.data.message);
-  //     } else {
-  //       console.log(error);
-  //     }
-  //     setIsLoading(false);
-  //   }
-  // };
-  //   console.log("roadMapData:", roadMapData);
-  //console.log("roadMapData:", roadMap.task);
-
-  //   useEffect(() => {
-  //     console.log("Initial RoadMap Data:", roadMap);
-  //   }, []);
-
-  // useEffect(() => {
-  //   console.log("RoadMap updated:", roadMap);
-  // }, [roadMap]);
-
+  // Function to handle Task submission
   const handleTaskSubmission = async (e) => {
     e.preventDefault();
 
     console.log("Handling task submission with roadMap:", roadMap.task);
 
-    // Ensure roadMap and roadMap.task are defined
     if (!roadMap || !roadMap.task) {
       console.error("RoadMap is undefined or does not have a task property.");
       toast.error("RoadMap data is missing.");
@@ -354,7 +305,6 @@ export const StudentDataProvider = ({ children }) => {
       },
     };
 
-    // Ensure user data is available
     let check = user?.email ? user.email : user?.student?.email;
     if (!check) {
       console.error("User email is missing.");
@@ -404,7 +354,7 @@ export const StudentDataProvider = ({ children }) => {
     return <p>Loading...</p>;
   }
 
-  // Example usage in fetchTask function
+  //Function to handle Fetching tasks
   const fetchTask = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -441,12 +391,11 @@ export const StudentDataProvider = ({ children }) => {
         ...apiConfig,
         headers: { Authorization: `Bearer ${token}` },
       });
-      setWebCodeData(response.data[0]); // Assuming only one webcode is fetched
+      setWebCodeData(response.data[0]);
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching web code:", error);
       setIsLoading(false);
-      // Handle error (e.g., redirect to login page)
     }
   };
 
@@ -465,12 +414,10 @@ export const StudentDataProvider = ({ children }) => {
       });
       toast.success(response.data.message);
       setIsLoading(false);
-      // Trigger data update
-      fetchWebCode(); // Assuming you want to fetch updated data after submission
+      fetchWebCode();
     } catch (error) {
       console.error("Error submitting web code:", error);
       setIsLoading(false);
-      // Handle error (e.g., show error toast)
       if (error.response && error.response.data.message) {
         toast.error(error.response.data.message);
       } else {
@@ -517,7 +464,7 @@ export const StudentDataProvider = ({ children }) => {
       const response = await api.post("/student/capstone", formData, apiConfig);
       toast.success(response.data.message);
       setIsLoading(false);
-      setDataUpdateTrigger((prev) => prev + 1); // Increment to update capstone section
+      setDataUpdateTrigger((prev) => prev + 1);
     } catch (error) {
       // Handle errors during capstone submission
       if (error.response.data.message) {
@@ -534,7 +481,7 @@ export const StudentDataProvider = ({ children }) => {
     setIsLoading(true);
 
     try {
-      const token = localStorage.getItem("token"); // Assuming this function gets the token from local storage
+      const token = localStorage.getItem("token");
       if (!token) {
         throw new Error("No token found");
       }
@@ -559,6 +506,7 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
+  //function to handle Query
   const handleQuerySubmission = async (formData) => {
     setIsLoading(true);
 
@@ -576,6 +524,7 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
+  //function to handle cancel query
   const handleCancelQuery = async (queryId) => {
     setIsLoading(true);
 
@@ -593,6 +542,7 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
+  //Function to Fetch Query
   const fetchQueries = async () => {
     setIsLoading(true);
 
@@ -657,8 +607,7 @@ export const StudentDataProvider = ({ children }) => {
       const response = await api.post("/student/leave", formData, apiConfig);
       toast.success(response.data.message);
       setIsLoading(false);
-      //setLeaveRequests((prevRequests) => [...prevRequests, response.data.leaveRequest]);
-      setDataUpdateTrigger((prev) => prev + 1); // Increment to update leave requests section
+      setDataUpdateTrigger((prev) => prev + 1);
     } catch (error) {
       if (error.response.data.message) {
         toast.error(error.response.data.message);
@@ -677,10 +626,7 @@ export const StudentDataProvider = ({ children }) => {
       const response = await api.delete(`/student/leave/${leaveId}`, apiConfig);
       toast.success(response.data.message);
       setIsLoading(false);
-      // setLeaveRequests((prevRequests) =>
-      //   prevRequests.filter((request) => request._id !== leaveId)
-      // );
-      setDataUpdateTrigger((prev) => prev + 1); // Increment to update leave requests section
+      setDataUpdateTrigger((prev) => prev + 1);
     } catch (error) {
       if (error.response.data.message) {
         toast.error(error.response.data.message);
@@ -700,7 +646,6 @@ export const StudentDataProvider = ({ children }) => {
       setLeaveRequests(response.data);
       setIsLoading(false);
     } catch (error) {
-      // Handle errors during fetching leave requests
       console.log(error);
       setIsLoading(false);
     }
@@ -715,7 +660,6 @@ export const StudentDataProvider = ({ children }) => {
       setMockData(response.data);
       setIsLoading(false);
     } catch (error) {
-      // Handle errors during fetching mock data
       console.log(error);
       setIsLoading(false);
     }
@@ -724,11 +668,10 @@ export const StudentDataProvider = ({ children }) => {
   // Function to handle page title change
   const handlePageTitleChange = (newTitle) => {
     setPageTitle(newTitle);
-    setFlagState(false); // Example state change
-    localStorage.setItem("pageTitle", newTitle); // Store in local storage
+    setFlagState(false);
+    localStorage.setItem("pageTitle", newTitle);
   };
 
-  // Return provider with context value provided to children
   return (
     <StudentDataContext.Provider
       value={{
@@ -806,7 +749,7 @@ export const StudentDataProvider = ({ children }) => {
     </StudentDataContext.Provider>
   );
 };
-// Add prop types validation for the children prop
+
 StudentDataProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

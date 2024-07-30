@@ -36,7 +36,7 @@
 .banner {
   width: 100%;
   height: 100%;
-  max-width: 100%; /* Ensures the banner doesn't exceed its container's width */
+  max-width: 100%;
   object-fit: cover;
 }
 
@@ -121,11 +121,10 @@
   color: #fff;
 }
 
-/* CSS adjustments */
 @media (max-width: 768px) {
   .banner {
     position: relative;
-    margin-top: 0; /* Adjust as needed */
+    margin-top: 0;
     height: auto;
   }
   .loginPage .img__container {
@@ -133,13 +132,13 @@
     margin-bottom: 25px;
   }
   .loginPage .logo {
-    width: 100px; /* Adjusted size for smaller screens */
+    width: 100px;
   }
   .top-area {
-    padding-top: 500px; /* Reduced padding for smaller screens */
+    padding-top: 500px;
   }
   .loginPage .login__btn {
-    font-size: 0.9rem; /* Smaller font size for buttons */
+    font-size: 0.9rem;
   }
   .loginPage .row.d-flex.justify-content-center.align-items-center {
     padding-top: 140px;

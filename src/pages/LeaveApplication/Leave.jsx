@@ -11,19 +11,12 @@ import * as Yup from "yup";
 const Leave = () => {
   const {
     leaveRequests = [],
-    //trigger,
-    //setTrigger,
-    //fetchLeaveRequests,
     handleLeaveRequestSubmission,
     handleCancelLeaveRequest,
     setLeaveRequests,
     isLoading,
     authToken,
   } = useContext(DataContext);
-
-  // useEffect(() => {
-  //   fetchLeaveRequests();
-  // }, [trigger, setTrigger, fetchLeaveRequests]);
 
   useEffect(() => {
     const fetchLeaveRequests = async () => {
@@ -150,13 +143,16 @@ const Leave = () => {
           </div>
         </div>
       </div>
-      {leaveRequests.length > 0 && 
+      {leaveRequests.length > 0 &&
         leaveRequests.map((data) => (
           <div className="modal" id={`leaveModal${data._id}`} key={data._id}>
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h4 className="modal-title">Are you sure you want to cancel the leave request? This action cannot be undone.</h4>
+                  <h4 className="modal-title">
+                    Are you sure you want to cancel the leave request? This
+                    action cannot be undone.
+                  </h4>
                   <button
                     type="button"
                     className="btn-close"
