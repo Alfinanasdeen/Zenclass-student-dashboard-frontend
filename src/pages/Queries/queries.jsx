@@ -56,12 +56,12 @@ const Queries = () => {
     resetForm();
   };
 
-  console.log("Rendering queries component"); // Log to check rendering
-  console.log("queries state:", queries); // Log queries state before rendering
+  console.log("Rendering queries component");
+  console.log("queries state:", queries);
   console.log(
     "queries length:",
     queries ? queries.length : "queries is undefined or null"
-  ); // Check length
+  );
 
   return (
     <section className="leave">
@@ -73,7 +73,7 @@ const Queries = () => {
           data-bs-target="#myModal"
         >
           <BiPlus />
-          Add queries
+          Create Qurey
         </button>
       </div>
       <br />
@@ -85,22 +85,20 @@ const Queries = () => {
             data-bs-toggle="modal"
             data-bs-target={`#${data._id}`}
           >
-            <div className="d-flex flex-column gap-2 align-items-center">
-              <QueriesDetail label="queries Title" value={data.queryTitle} />
-              <QueriesDetail
-                label="queries Description"
-                value={data.queryDesc}
-              />
-              <div className="d-flex flex-column align-items-center">
-                <div className="secondaryGreyTextColor">
-                  Applied on {data.appliedOn.slice(0, 10)}
-                </div>
-                <div className="ml-3 mr-1">
-                  <div className="marktag mx-1 px-3 rounded">
-                    Status: {data.status}
-                  </div>
-                </div>
+            <div className="query-container">
+              <div className="query-detail">
+                <QueriesDetail label="queries Title" value={data.queryTitle} />
+                <QueriesDetail
+                  label="queries Description"
+                  value={data.queryDesc}
+                />
               </div>
+            </div>
+            <div className="position-right">
+              <div className="secondaryGreyTextColor mx-4">
+                Applied on {data.appliedOn.slice(0, 10)}
+              </div>
+              <div className="marktag">Status: {data.status}</div>
             </div>
           </div>
         ))
@@ -118,7 +116,7 @@ const Queries = () => {
                 data-bs-dismiss="modal"
               ></button>
             </div>
-            <div className="modal-body d-flex flex-column gap-1">
+            <div className="modal-body">
               <Formik
                 initialValues={{ queryTitle: "", queryDesc: "" }}
                 validationSchema={validationSchema}
@@ -140,7 +138,7 @@ const Queries = () => {
                     type="textarea"
                   />
                   <div className="modal-footer text-center">
-                    <button type="submit" className="btn btn-danger w-25">
+                    <button type="submit" className="btn submit__btn">
                       {isLoading ? (
                         <span className="spinner-border spinner-border-sm text-warning"></span>
                       ) : (
@@ -150,7 +148,7 @@ const Queries = () => {
                   </div>
                 </Form>
               </Formik>
-              <button className="btn btn-danger w-25" data-bs-dismiss="modal">
+              <button className="marktag_close" data-bs-dismiss="modal">
                 Close
               </button>
             </div>
@@ -165,7 +163,8 @@ const Queries = () => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h4 className="modal-title">
-                    Delete queries - {data.queryTitle}
+                    Are you sure you want to delete this query? This action
+                    cannot be undone.
                   </h4>
                   <button
                     type="button"
@@ -173,28 +172,17 @@ const Queries = () => {
                     data-bs-dismiss="modal"
                   ></button>
                 </div>
-                <div className="text-center">
-                  <div className="title weight-500">Reason</div>
-                  <div className="row d-flex align-items-center justify-content-evenly secondaryGreyTextColor">
-                    <div className="mx-1">{data.reason}</div>
-                  </div>
-                </div>
-                <div className="modal-body d-flex flex-column gap-1">
-                  <div className="d-flex gap-3">
-                    <button
-                      className="btn btn-danger w-25"
-                      onClick={() => handleCancelQuery(data._id)}
-                      data-bs-dismiss="modal"
-                    >
-                      Confirm Delete
-                    </button>
-                    <button
-                      className="btn btn-danger w-25"
-                      data-bs-dismiss="modal"
-                    >
-                      Cancel
-                    </button>
-                  </div>
+                <div className="modal-body">
+                  <button
+                    className="marktag"
+                    onClick={() => handleCancelQuery(data._id)}
+                    data-bs-dismiss="modal"
+                  >
+                    Delete Query
+                  </button>
+                  <button className="btn submit__btn" data-bs-dismiss="modal">
+                    Keep Query
+                  </button>
                 </div>
               </div>
             </div>

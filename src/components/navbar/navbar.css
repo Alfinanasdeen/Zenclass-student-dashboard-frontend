@@ -56,7 +56,9 @@
   filter: drop-shadow(0 0 5px var(--theme));
 }
 .nav__item:hover {
-  color: var(--green) !important;
+  color: #4b0dba !important;
+  fill: #4b0dba ;
+  width: 90%;
 }
 .nav__title {
   font-size: 14px;
@@ -82,47 +84,4 @@
   top: 12px;
   border: 0.5px solid var(--theme);
   border-radius: 5px;
-}
-.toggle__menu {
-  background-color: var(--theme);
-  width: 75%;
-  border-radius: 6px;
-  height: 3px;
-  position: relative;
-  transition: 0.3s;
-}
-.toggle__menu::before {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 6px;
-  content: "";
-  top: 8px;
-  left: 0;
-  background-color: var(--theme);
-  transition: 0.3s;
-}
-.toggle__menu::after {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 6px;
-  content: "";
-  top: -8px;
-  left: 0;
-  background-color: var(--theme);
-  transition: 0.3s;
-}
-
-.toggle__menu.active {
-  background-color: transparent;
-}
-
-.toggle__menu.active::after {
-  top: 0;
-  transform: rotate(45deg);
-}
-.toggle__menu.active::before {
-  top: 0;
-  transform: rotate(-45deg);
 }

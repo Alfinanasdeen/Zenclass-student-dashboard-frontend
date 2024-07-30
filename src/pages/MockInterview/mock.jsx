@@ -25,7 +25,8 @@ const Mock = () => {
   }, [authToken, setMockData]);
 
   return (
-    <section className="mock mt-5">
+    <section className="mock">
+       <div className="top_sapce"></div>
       {mock.length ? (
         mock.map((data) => (
           <div
@@ -106,7 +107,6 @@ const Mock = () => {
         ))
       ) : (
         <section>
-          <div className="top_sapce"></div>
           <div className="p-4 secondaryTheme" style={{ textAlign: "center" }}>
             Mock interview not assigned
           </div>

@@ -25,12 +25,6 @@ const Header = () => {
     return "Loading...";
   };
 
-  // const renderUserLogo = () => {
-  //   if (user.name && user.lName) {
-  //     return <>{user.lName.toUpperCase()[0]}</>;
-  //   }
-  //   return null;
-  // };
 
   return (
     <header className="top__header d-flex align-items-center justify-content-between">
@@ -41,7 +35,6 @@ const Header = () => {
           <div className="d-flex align-items-center justify-content-center dropdown">
             <span className="dropdown" type="button" data-bs-toggle="dropdown">
               <div className="user__logo d-flex align-items-center justify-content-center">
-                {/* {renderUserLogo()} */}
                 <img src={PROFILE} alt="User Avatar" />
               </div>
             </span>

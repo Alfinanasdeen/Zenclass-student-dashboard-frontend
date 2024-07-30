@@ -1,104 +1,87 @@
 .leave {
-    padding: 15px 15px 15px 85px;
-  }
-  
-  .leave .btn__container {
-    display: flex;
-    align-items: center;
-    background-color: #f0efff;
-    height: 64px;
-    padding-left: 16px;
-    border-radius: 5px;
-  }
-  
-  .leave .addBtn {
-    border: 1px solid var(--theme);
-    transition: 0.3s;
-  }
-  
-  .leave .addBtn:hover {
-    background-color: var(--theme);
-    color: #fff;
-    letter-spacing: 2px;
-  }
-  
-  .leave .submit__btn {
-    background-color: var(--theme);
-  }
-  
-  .leave .submit__btn:hover {
-    opacity: 0.9;
-    color: #fff;
-    background-color: var(--theme);
-  }
-  
-  .leave .modal-body {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-  }
-  
-  .leave .marktag {
-    width: auto;
-  }
-  .leave .flexCont {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .leave .row {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    word-wrap: break-word; /* Ensures long words break and wrap within the container */
-  }
-  .leave .task__container .mx-1 {
-    flex: 1; /* Allows the reason text to take up available space */
-    word-wrap: break-word; /* Ensures long words break and wrap within the container */
-  }
-  .leave .modal-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-  .leave .d-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-  .leave .secondaryGreyTextColor {
-    color: #666;
-    margin-top: 10px;
-  }
-  .leave .title {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  .leave .flexCont .text-center {
-    width: 100%;
-  }
-  .leave .task__container {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .leave .modal-body {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-  }
-  
-  .leave .marktag {
-    width: auto;
-  }  
+  padding: 15px 15px 15px 85px;
+}
+
+.leave .btn__container {
+  display: flex;
+  align-items: center;
+  background-color: #f0efff;
+  height: 64px;
+  padding-left: 16px;
+  border-radius: 5px;
+}
+
+.leave .addBtn {
+  border: 1px solid #4b0dba;
+  background-color: #fff;
+  transition: 0.3s;
+}
+
+.leave .submit__btn {
+  background-color: #f0efff;
+}
+
+.leave .modal-body {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.leave .row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+}
+.leave .task__container .mx-1 {
+  flex: 1;
+  word-wrap: break-word;
+}
+.leave .modal-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.leave .d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.leave .secondaryGreyTextColor {
+  color: #666;
+  margin-top: 10px;
+}
+.leave .title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.leave .flexCont .text-center {
+  width: 100%;
+}
+.leave .task__container {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.leave-container {
+  border: 2px solid #f0efff;
+  padding: 16px;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.leave-detail {
+  display: flex;
+  flex-direction: column;
+}

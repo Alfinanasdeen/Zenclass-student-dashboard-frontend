@@ -29,7 +29,7 @@ const SessionRoadmap = () => {
     task: "",
     link: "",
   };
-  
+
   const [selectedSession, setSelectedSession] = useState(defaultSessionDetails);
   const [flag, setFlag] = useState(false);
 
@@ -373,13 +373,11 @@ const SessionRoadmap = () => {
                 data-bs-dismiss="modal"
               ></button>
             </div>
-            <div className="modal-body">
-              <p>Modal body..</p>
-            </div>
+            <div className="modal-body">{selectedSession.link}</div>
             <div className="modal-footer">
               <button
                 type="button"
-                className="btn btn-danger"
+                className="marktags_close"
                 data-bs-dismiss="modal"
               >
                 Close

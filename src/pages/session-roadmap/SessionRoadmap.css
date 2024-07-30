@@ -348,3 +348,11 @@ h6 {
   height: 2px;
   width: 32px;
 }
+.marktags_close {
+  background-color: #f0efff;
+  border: 1px solid #f0efff;
+  color: rgb(122, 122, 122);
+  border-radius: 5px;
+  padding: 10px 15px;
+  width: 25% !important;
+}
