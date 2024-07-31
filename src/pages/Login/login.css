@@ -1,146 +1,34 @@
-.loginPage {
-  flex-direction: row;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-  background-color: #f0f2f5;
-  margin-right: 0;
-}
-
-.TextField {
-  height: 5px;
-}
-
-.loginPage .row.d-flex.justify-content-center.align-items-center {
-  padding-top: 140px;
-}
-
-.top-area {
-  padding-top: 30px;
-}
-
-.loginPage .logo {
-  width: 120px;
+* {
+  margin: 0;
   padding: 0;
-  margin: 20px;
-  transition: 0.3s;
 }
 
-.banner__right {
-  position: relative;
-  float: right;
-  height: 100%;
+.loginPage {
+}
+
+.login-container {
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  margin: 15px;
+  width: 100px;
+}
+.login-btn {
+  margin-bottom: 10px;
+  background-color: #4b0dba;
+  color: white !important;
+  border-radius: 8px;
+}
+.link {
+  text-decoration: none;
+  color: #495057;
+}
+.loginPage .banner-container .banner {
   width: 100%;
+  height: 958px;
 }
-
-.banner {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  object-fit: cover;
-}
-
-.banner__right .banner {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  object-fit: cover;
-}
-
-.loginPage .login__btn {
-  color: #fff !important;
-  background-color: #007bff;
-  border: 1px solid #ced4da;
-  display: block;
-  width: 100%;
-  padding: 0.75rem 1.25rem;
-  font-size: 1rem;
-  font-weight: 500;
-  text-align: center;
-  transition: all 0.3s;
-  margin-top: 1rem;
-}
-.email__btn {
-  border: 1px solid #ced4da;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-}
-
-.modal .modal-content {
-  border-radius: 10px;
-  padding: 20px;
-}
-
-.modal .modal-header,
-.modal .modal-footer {
-  border: none;
-}
-
-.btn.custom-btn {
-  display: block;
-  width: 100%;
-  padding: 0.75rem 1.25rem;
-  font-size: 1rem;
-  font-weight: 500;
-  text-align: center;
-  border-radius: 0.75rem;
-  transition: all 0.3s;
-  margin-top: 1rem;
-}
-
-.btn.custom-btn-outline {
-  background-color: transparent;
-  color: #007bff;
-  border: 1px solid #007bff;
-}
-
-.btn.custom-btn-outline:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.btn.custom-btn-outline-danger {
-  background-color: transparent;
-  color: #dc3545;
-  border: 1px solid #dc3545;
-}
-
-.btn.custom-btn-outline-danger:hover {
-  background-color: #dc3545;
-  color: #fff;
-}
-
-.btn.custom-btn-outline-success {
-  background-color: transparent;
-  color: #28a745;
-  border: 1px solid #28a745;
-}
-
-.btn.custom-btn-outline-success:hover {
-  background-color: #28a745;
-  color: #fff;
-}
-
-@media (max-width: 768px) {
-  .banner {
-    position: relative;
-    margin-top: 0;
-    height: auto;
-  }
-  .loginPage .img__container {
-    text-align: center;
-    margin-bottom: 25px;
-  }
-  .loginPage .logo {
-    width: 100px;
-  }
-  .top-area {
-    padding-top: 500px;
-  }
-  .loginPage .login__btn {
-    font-size: 0.9rem;
-  }
-  .loginPage .row.d-flex.justify-content-center.align-items-center {
-    padding-top: 140px;
-  }
+Form {
+  margin-top: 130px;
+  width: 30%;
 }
