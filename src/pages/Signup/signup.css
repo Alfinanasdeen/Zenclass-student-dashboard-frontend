@@ -1,128 +1,34 @@
-.SignupPage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: #f8f9fa;
-}
-.banner__right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 !important;
-  margin: 0 !important;
-  overflow: hidden;
-}
-.signupPage .row.d-flex.justify-content-center.align-items-center {
-  padding-top: 140px;
-}
-.banner {
-  width: 100%;
-  height: auto;
-  padding: 0;
+* {
   margin: 0;
-}
-
-.signupPage .d-flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.signupPage .Register__btn {
-  color: #fff !important;
-  background-color: #007bff;
-  border: 1px solid #ced4da;
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-align: center;
-  transition: all 0.3s;
-  margin-top: 1rem;
-}
-.signupPage .login-btn {
-  padding: 0.15rem;
-  font-size: 1rem;
-  max-width: 800px;
-  text-align: center;
-}
-.signupPage .logo {
-  width: 120px;
   padding: 0;
-  margin: 20px;
-  transition: 0.3s;
 }
 
-.SignupPage .login__btn {
-  background-color: var(--theme);
-  color: #fff;
-  transition: 0.3s;
+.signupPage-container {
+  display: flex;
+  justify-content: space-between;
 }
-
-.SignupPage .login__btn:hover {
-  background-color: var(--theme);
-  color: #fff;
-  letter-spacing: 2px;
+.logo {
+  margin: 15px;
+  width: 100px;
 }
-
-/* Form container styling */
-.SignupPage .col-md-12 {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.SignupPage .form-control {
-  border-radius: 0;
-  border: 1px solid #ced4da;
-}
-
-.SignupPage .form-control:focus {
-  box-shadow: none;
-  border-color: var(--theme);
-}
-
-.SignupPage .forgot {
+.submit-button {
+  margin-bottom: 10px;
   margin-top: 10px;
-  text-decoration: underline;
+  background-color: #4b0dba;
+  color: white !important;
+  border-radius: 8px;
+  min-height: calc(1.5em + 0.75rem + calc(1px * 2));
+  width: 100%;
 }
-
-.SignupPage .forgot.btn-outline-success {
-  border: 1px solid var(--theme);
+.link {
+  text-decoration: none;
+  color: #495057;
 }
-
-.SignupPage .forgot.btn-outline-success:hover {
-  background-color: var(--theme);
-  color: #fff;
+.signupPage .banner-container .banner {
+  width: 100%;
+  height: 958px;
 }
-
-.SignupPage .toast-container {
-  margin-top: 20px;
-}
-
-@media (max-width: 768px) {
-  .banner {
-    display: none;
-  }
-  .signupPage .img__container {
-    text-align: center;
-    margin-bottom: 25px;
-  }
-  .signupPage .logo {
-    width: 100px;
-  }
-  .top-area {
-    padding-top: 15px;
-  }
-  .signupPage .login__btn {
-    font-size: 0.9rem;
-  }
+Form {
+  margin-top: 130px;
+  width: 30%;
 }

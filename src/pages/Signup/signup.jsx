@@ -43,103 +43,91 @@ const Signup = () => {
 
   return (
     <div className="signupPage">
-      <div className="row m-0">
-        <div className="col-md-8">
-          <div className="row img__container">
-            <img src={LOGO} alt="Logo" className="logo" />
-          </div>
-          <div className="row d-flex justify-content-center align-items-center">
-            <div className="col-10 col-md-8 col-lg-6">
-              <Formik
-                initialValues={{
-                  email: "",
-                  name: "",
-                  lName: "",
-                  contactNo: "",
-                  qualification: "",
-                  password: "",
-                  cPassword: "",
-                }}
-                validationSchema={validationSchema}
-                onSubmit={(values, { resetForm }) => {
-                  handleSignUp(values);
-                  resetForm();
-                }}
-              >
-                {() => (
-                  <Form>
-                    <TextField
-                      label="First Name"
-                      name="name"
-                      id="name"
-                      type="text"
-                      placeholder="Enter Your First Name"
-                    />
-                    <TextField
-                      label="Last Name"
-                      name="lName"
-                      id="lName"
-                      type="text"
-                      placeholder="Enter Your Last Name"
-                    />
-                    <TextField
-                      label="Email"
-                      name="email"
-                      id="email"
-                      type="email"
-                      placeholder="Enter Your Email"
-                    />
-                    <TextField
-                      label="Contact No"
-                      name="contactNo"
-                      id="contactNo"
-                      type="text"
-                      placeholder="Enter Your Contact"
-                    />
-                    <TextField
-                      label="Qualification"
-                      name="qualification"
-                      id="qualification"
-                      type="text"
-                      placeholder="Enter Your Qualification"
-                    />
-                    <TextField
-                      label="Password"
-                      name="password"
-                      id="password"
-                      type="password"
-                      placeholder="Enter Password"
-                    />
-                    <TextField
-                      label="Confirm Password"
-                      name="cPassword"
-                      id="cPassword"
-                      type="password"
-                      placeholder="Confirm Password"
-                    />
-                    <button
-                      type="submit"
-                      className="col-md-12 col-sm-4 col-4 Register__btn btn-lg btn-block mt-2 mb-2"
-                    >
-                      {isLoading ? (
-                        <span className="spinner-border text-warning"></span>
-                      ) : (
-                        "Register"
-                      )}
-                    </button>
-                  </Form>
-                )}
-              </Formik>
-            </div>
-            <Link
-              to="/"
-              className="col-md-4 col-sm-4 col-4 btn btn-outline-success login-btn"
-            >
-              Go to Login
-            </Link>
-          </div>
+      <div className="signupPage-container">
+        <div className="logo__container">
+          <img src={LOGO} alt="Logo" className="logo" />
         </div>
-        <div className="col-md-4 text-right banner__right pr-0">
+        <Formik
+          initialValues={{
+            email: "",
+            name: "",
+            lName: "",
+            contactNo: "",
+            qualification: "",
+            password: "",
+            cPassword: "",
+          }}
+          validationSchema={validationSchema}
+          onSubmit={(values, { resetForm }) => {
+            handleSignUp(values);
+            resetForm();
+          }}
+        >
+          {() => (
+            <Form>
+              <TextField
+                label="First Name"
+                name="name"
+                id="name"
+                type="text"
+                placeholder="Enter Your First Name"
+              />
+              <TextField
+                label="Last Name"
+                name="lName"
+                id="lName"
+                type="text"
+                placeholder="Enter Your Last Name"
+              />
+              <TextField
+                label="Email"
+                name="email"
+                id="email"
+                type="email"
+                placeholder="Enter Your Email"
+              />
+              <TextField
+                label="Contact No"
+                name="contactNo"
+                id="contactNo"
+                type="text"
+                placeholder="Enter Your Contact"
+              />
+              <TextField
+                label="Qualification"
+                name="qualification"
+                id="qualification"
+                type="text"
+                placeholder="Enter Your Qualification"
+              />
+              <TextField
+                label="Password"
+                name="password"
+                id="password"
+                type="password"
+                placeholder="Enter Password"
+              />
+              <TextField
+                label="Confirm Password"
+                name="cPassword"
+                id="cPassword"
+                type="password"
+                placeholder="Confirm Password"
+              />
+              <button type="submit" className="submit-button">
+                {isLoading ? (
+                  <span className="spinner-border text-warning"></span>
+                ) : (
+                  "Register"
+                )}
+              </button>
+              <Link to="/" className="link">
+                Go to Login
+              </Link>
+            </Form>
+          )}
+        </Formik>
+        <div className="banner-container">
           <img src={BANNER} className="banner" alt="Banner" />
         </div>
       </div>

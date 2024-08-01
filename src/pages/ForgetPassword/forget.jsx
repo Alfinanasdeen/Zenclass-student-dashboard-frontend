@@ -20,55 +20,44 @@ const Forgot = () => {
 
   return (
     <div className="forgotPage">
-      <div className="row m-0">
-        <div className="col-md-8">
-          <div className="row img__container">
-            <img src={LOGO} alt="Logo" className="logo" />
-          </div>
-          <div className="row d-flex justify-content-center align-items-center">
-            <div className="col-10 col-md-8 col-lg-6 top-area">
-              <Formik
-                initialValues={{ email: "" }}
-                validationSchema={validationSchema}
-                onSubmit={(values, { resetForm }) => {
-                  handleForgotPassword(values);
-                  resetForm();
-                }}
-              >
-                {() => (
-                  <Form>
-                    <TextField
-                      label="Registered Email"
-                      name="email"
-                      type="email"
-                      placeholder="Enter Registered Email"
-                    />
-                    <button
-                      type="submit"
-                      className="col-md-12 Reset__btn mt-4 mb-4"
-                    >
-                      {isLoading ? (
-                        <span className="spinner-border text-warning"></span>
-                      ) : (
-                        "Request Reset Link"
-                      )}
-                    </button>
-                  </Form>
-                )}
-              </Formik>
-            </div>
-            <Link
-              to="/"
-              className="col-md-4 col-sm-6 col-6 btn login-btn btn-outline-success"
-            >
-              Go to Login
-            </Link>
-          </div>
+      <div className="forgotPage-container">
+        <div className="logo__container">
+          <img src={LOGO} alt="Logo" className="logo" />
         </div>
-        <div className="col-md-4 text-right banner__right pr-0">
+        <Formik
+          initialValues={{ email: "" }}
+          validationSchema={validationSchema}
+          onSubmit={(values, { resetForm }) => {
+            handleForgotPassword(values);
+            resetForm();
+          }}
+        >
+          {() => (
+            <Form>
+              <TextField
+                label="Enter Registered Emaill"
+                name="email"
+                type="email"
+                placeholder="john@abc.com"
+              />
+              <button type="submit" className="submit-button">
+                {isLoading ? (
+                  <span className="spinner-border text-warning"></span>
+                ) : (
+                  "Submit"
+                )}
+              </button>
+              <Link to="/" className="link">
+                Go to Login
+              </Link>
+            </Form>
+          )}
+        </Formik>
+        <div className="banner-container">
           <img src={BANNER} className="banner" alt="Banner" />
         </div>
       </div>
+
       <ToastContainer
         position="top-right"
         autoClose={1000}

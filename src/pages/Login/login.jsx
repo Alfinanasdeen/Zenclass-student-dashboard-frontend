@@ -19,94 +19,47 @@ const Login = () => {
 
   return (
     <div className="loginPage">
-      <div className="">
-        <div className="">
-          <div className="login-container">
-            <div className="logo__container">
-              <img src={LOGO} alt="Logo" className="logo" />
-            </div>
-            <Formik
-              initialValues={{ email: "", password: "" }}
-              validationSchema={validationSchema}
-              onSubmit={(values) => handleSignIn(values)}
-            >
-              {() => (
-                <Form>
-                  <TextField
-                    label="Email"
-                    name="email"
-                    type="email"
-                    placeholder="Example: johndoe@mail.com"
-                  />
-                  <TextField
-                    label="Password"
-                    name="password"
-                    type="password"
-                    placeholder="Your Password"
-                  />
-                  <Link to="/forgot" className="link">
-                    Forgot Password?
-                  </Link>
-                  <button type="submit" className="login-btn">
-                    {isLoading ? (
-                      <span className="spinner-border text-warning"></span>
-                    ) : (
-                      "Login"
-                    )}
-                  </button>
-                  <Link to="/signup" className="link">
-                    Not Registered? Sign up
-                  </Link>
-                </Form>
-              )}
-            </Formik>
-
-            {/* <button
-              className=""
-              data-bs-toggle="modal"
-              data-bs-target="#demoModal"
-            >
-              Demo Login
-            </button> */}
-            <div className="banner-container">
-              <img src={BANNER} className="banner" alt="Banner" />
-            </div>
-          </div>
+      <div className="login-container">
+        <div className="logo__container">
+          <img src={LOGO} alt="Logo" className="logo" />
         </div>
-      </div>
-
-      <div className="modal" id="demoModal">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h4 className="modal-title">Welcome to Zen Student Dashboard</h4>
-              <button
-                type="button"
-                className=""
-                data-bs-dismiss="modal"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <div>
-                <strong>For Login:</strong>
-                <div>Email: student@gmail.com</div>
-                <div>Password: student@123</div>
-                <hr />
-                <p className="">
-                  Note: The Student Dashboard project is designed specifically
-                  for students, offering features like attending classes,
-                  submitting assignments, viewing the dashboard, submitting web
-                  code and capstone projects, raising queries, submitting
-                  portfolios, and requesting leave.
-                </p>
-              </div>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="" data-bs-dismiss="modal">
-                Close
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          validationSchema={validationSchema}
+          onSubmit={(values) => handleSignIn(values)}
+        >
+          {() => (
+            <Form>
+              <TextField
+                label="Email"
+                name="email"
+                type="email"
+                placeholder="Example: johndoe@mail.com"
+              />
+              <TextField
+                label="Password"
+                name="password"
+                type="password"
+                placeholder="Your Password"
+              />
+              <Link to="/forgot" className="link">
+                Forgot Password?
+              </Link>
+              <button type="submit" className="login-btn">
+                {isLoading ? (
+                  <span className="spinner-border text-warning"></span>
+                ) : (
+                  "Login"
+                )}
               </button>
-            </div>
-          </div>
+              <Link to="/signup" className="link">
+                Not Registered? Sign up
+              </Link>
+            </Form>
+          )}
+        </Formik>
+        <div className="banner-container">
+          <img src={BANNER} className="banner" alt="Banner" />
         </div>
       </div>
 
