@@ -5,6 +5,8 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   withCredentials: true,
 });
+
+// Log API base URL to console for debugging purposes
 console.log(`Using API base URL: ${import.meta.env.VITE_API_BASE_URL}`);
 
 api.interceptors.response.use(
