@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const baseURL = import.meta.env.VITE_API_BASE_URL;
+
 const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: baseURL,
   withCredentials: true,
 });
+console.log(`Using API base URL: ${baseURL}`);
 
 api.interceptors.response.use(
   (response) => response,

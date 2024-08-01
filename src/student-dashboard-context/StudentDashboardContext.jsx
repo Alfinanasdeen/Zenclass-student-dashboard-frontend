@@ -108,6 +108,9 @@ export const StudentDataProvider = ({ children }) => {
   const handleSignIn = async (formData) => {
     setIsLoading(true);
     try {
+      console.log(
+        `Fetching data from API: ${import.meta.env.VITE_API_BASE_URL}`
+      );
       const response = await api.post("/student/login", formData);
       const userData = response.data;
       if (userData.token) {
@@ -139,7 +142,11 @@ export const StudentDataProvider = ({ children }) => {
   // Function to handle login and store token (if needed separately)
   const handleLogin = async (credentials) => {
     try {
+      console.log(
+        `Fetching data from API: ${import.meta.env.VITE_API_BASE_URL}`
+      );
       const response = await api.post("/login", credentials);
+      console.log("api", api);
       const { token } = response.data;
       if (token) {
         localStorage.setItem("token", token);
@@ -157,6 +164,9 @@ export const StudentDataProvider = ({ children }) => {
   const handleSignUp = async (formData) => {
     setIsLoading(true);
     try {
+      console.log(
+        `Fetching data from API: ${import.meta.env.VITE_API_BASE_URL}`
+      );
       const response = await api.post("/student/signup", formData);
       toast.success(response.data.message);
       toast.success("Check your Mail & Activate");

@@ -35,16 +35,20 @@ const Login = () => {
                 name="email"
                 type="email"
                 placeholder="Example: johndoe@mail.com"
+                className="form-input"
               />
               <TextField
                 label="Password"
                 name="password"
                 type="password"
                 placeholder="Your Password"
+                className="form-input"
               />
-              <Link to="/forgot" className="link">
-                Forgot Password?
-              </Link>
+              <div>
+                <Link to="/forgot" className="link">
+                  Forgot Password?
+                </Link>
+              </div>
               <button type="submit" className="login-btn">
                 {isLoading ? (
                   <span className="spinner-border text-warning"></span>
@@ -52,9 +56,11 @@ const Login = () => {
                   "Login"
                 )}
               </button>
-              <Link to="/signup" className="link">
-                Not Registered? Sign up
-              </Link>
+              <div>
+                <Link to="/signup" className="link">
+                  Not Registered? Sign up
+                </Link>
+              </div>
             </Form>
           )}
         </Formik>
