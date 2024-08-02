@@ -71,6 +71,7 @@ const Signup = () => {
                 id="name"
                 type="text"
                 placeholder="Enter Your First Name"
+                className="form-input"
               />
               <TextField
                 label="Last Name"
@@ -78,6 +79,7 @@ const Signup = () => {
                 id="lName"
                 type="text"
                 placeholder="Enter Your Last Name"
+                className="form-input"
               />
               <TextField
                 label="Email"
@@ -85,6 +87,7 @@ const Signup = () => {
                 id="email"
                 type="email"
                 placeholder="Enter Your Email"
+                className="form-input"
               />
               <TextField
                 label="Contact No"
@@ -92,6 +95,7 @@ const Signup = () => {
                 id="contactNo"
                 type="text"
                 placeholder="Enter Your Contact"
+                className="form-input"
               />
               <TextField
                 label="Qualification"
@@ -99,6 +103,7 @@ const Signup = () => {
                 id="qualification"
                 type="text"
                 placeholder="Enter Your Qualification"
+                className="form-input"
               />
               <TextField
                 label="Password"
@@ -106,6 +111,7 @@ const Signup = () => {
                 id="password"
                 type="password"
                 placeholder="Enter Password"
+                className="form-input"
               />
               <TextField
                 label="Confirm Password"
@@ -113,6 +119,7 @@ const Signup = () => {
                 id="cPassword"
                 type="password"
                 placeholder="Confirm Password"
+                className="form-input"
               />
               <button type="submit" className="submit-button">
                 {isLoading ? (
@@ -121,9 +128,11 @@ const Signup = () => {
                   "Register"
                 )}
               </button>
-              <Link to="/" className="link">
-                Go to Login
-              </Link>
+              <div>
+                <Link to="/" className="link">
+                  Go to Login
+                </Link>
+              </div>
             </Form>
           )}
         </Formik>

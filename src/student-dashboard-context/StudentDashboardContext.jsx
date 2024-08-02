@@ -516,13 +516,24 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
-  //function to handle Query
+  // Function to handle Query submission
   const handleQuerySubmission = async (formData) => {
     setIsLoading(true);
+    console.log("Submitting query with data:", formData);
 
     try {
+      const apiConfig = {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          "Content-Type": "application/json",
+        },
+      };
+
       const response = await api.post("/student/query", formData, apiConfig);
+      console.log("Query submitted successfully:", response.data);
       toast.success(response.data.message);
+
+      // Trigger data update to re-fetch queries
       setDataUpdateTrigger((prev) => prev + 1);
     } catch (error) {
       console.error("Error submitting query:", error.response || error.message);
@@ -533,7 +544,7 @@ export const StudentDataProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
-
+  
   //function to handle cancel query
   const handleCancelQuery = async (queryId) => {
     setIsLoading(true);

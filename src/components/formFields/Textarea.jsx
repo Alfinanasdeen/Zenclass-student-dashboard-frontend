@@ -17,6 +17,7 @@ const Textarea = ({ label, ...props }) => {
           autoComplete="off"
           {...field}
           {...props}
+          value={field.value || ""}
         />
       </div>
       <ErrorMessage component="p" name={field.name} className="errorMessage" />

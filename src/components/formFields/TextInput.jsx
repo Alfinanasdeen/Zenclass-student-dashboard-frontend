@@ -18,6 +18,7 @@ const TextInput = ({ label, ...props }) => {
             autoComplete="off"
             {...field}
             {...props}
+            value={field.value || ""}
           />
         ) : (
           <textarea
@@ -27,6 +28,7 @@ const TextInput = ({ label, ...props }) => {
             autoComplete="off"
             {...field}
             {...props}
+            value={field.value || ""}
           />
         )}
       </div>

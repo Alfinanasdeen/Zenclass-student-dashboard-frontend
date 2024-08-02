@@ -33,6 +33,10 @@
   margin-top: 130px;
   width: 30%;
 } */
+Form .form-input {
+  padding: 5px 0px 0px 5px;
+  border: 1px solid #ced4da;
+}
 
 @media all and (max-width: 767px) {
   .login-container {
@@ -94,12 +98,12 @@
     margin-top: 130px;
   }
   Form .form-input {
-    font-size: 0.875rem;
-    width: 300px;
+    font-size: 1rem;
+    width: 600px;
     margin-right: 25px;
   }
   .login-btn {
-    font-size: 0.875rem;
-    width: 300px;
+    font-size: 1.2rem;
+    width: 600px;
   }
 }

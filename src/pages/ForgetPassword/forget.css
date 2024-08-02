@@ -32,3 +32,77 @@
   margin-top: 130px;
   width: 30%;
 } */
+Form .form-input {
+  padding: 5px 0px 0px 20px;
+  border: 1px solid #ced4da;
+}
+
+@media all and (max-width: 767px) {
+  .forgotPage-container {
+    flex-direction: column;
+  }
+  Form {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-left: 20px;
+  }
+  Form .form-input {
+    font-size: 0.875rem;
+    width: 260px;
+  }
+  .banner-container {
+    order: 1;
+  }
+  .banner {
+    height: auto;
+    margin-top: 20px;
+  }
+  .submit-button {
+    font-size: 0.875rem;
+    width: 260px;
+  }
+}
+@media (min-width: 1024px) {
+  Form {
+    margin-top: 130px;
+  }
+  Form .form-input {
+    font-size: 0.875rem;
+    width: 300px;
+    margin-right: 25px;
+  }
+  .submit-button {
+    font-size: 0.875rem;
+    width: 300px;
+  }
+}
+@media (min-width: 768px) {
+  Form {
+    margin-top: 130px;
+  }
+  Form .form-input {
+    font-size: 0.875rem;
+    width: 300px;
+    margin-right: 25px;
+  }
+  .submit-button {
+    font-size: 0.875rem;
+    width: 300px;
+  }
+}
+@media (min-width: 1440px) {
+  Form {
+    margin-top: 130px;
+  }
+  Form .form-input {
+    font-size: 1rem;
+    width: 600px;
+    margin-right: 25px;
+  }
+  .submit-button {
+    font-size: 1.2rem;
+    width: 600px;
+  }
+}

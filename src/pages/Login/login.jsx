@@ -13,8 +13,8 @@ const Login = () => {
   const { handleSignIn, isLoading } = useContext(DataContext);
 
   const validationSchema = Yup.object({
-    email: Yup.string().email("Email is Invalid").required("Required"),
-    password: Yup.string().required("Required"),
+    email: Yup.string().email("Email is Invalid").required("Email is Required"),
+    password: Yup.string().required("Password is Required"),
   });
 
   return (

@@ -52,6 +52,7 @@ const Queries = () => {
   });
 
   const handleSubmit = (values, { resetForm }) => {
+    console.log("Form values:", values);
     handleQuerySubmission(values);
     resetForm();
   };
@@ -126,15 +127,15 @@ const Queries = () => {
                   <RequestField
                     label="queries Title"
                     placeholder="Enter Title/Topic"
-                    name="queriesTitle"
-                    id="queriesTitle"
+                    name="queryTitle"
+                    id="queryTitle"
                     type="text"
                   />
                   <RequestField
                     label="queries Description"
                     placeholder="Enter Description"
-                    name="queriesDesc"
-                    id="queriesDesc"
+                    name="queryDesc"
+                    id="queryDesc"
                     type="textarea"
                   />
                   <div className="modal-footer text-center">

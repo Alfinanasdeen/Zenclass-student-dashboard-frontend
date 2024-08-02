@@ -39,6 +39,7 @@ const Forgot = () => {
                 name="email"
                 type="email"
                 placeholder="john@abc.com"
+                className="form-input"
               />
               <button type="submit" className="submit-button">
                 {isLoading ? (
@@ -47,9 +48,11 @@ const Forgot = () => {
                   "Submit"
                 )}
               </button>
-              <Link to="/" className="link">
-                Go to Login
-              </Link>
+              <div>
+                <Link to="/" className="link">
+                  Go to Login
+                </Link>
+              </div>
             </Form>
           )}
         </Formik>
