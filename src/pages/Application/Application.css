@@ -1,8 +1,34 @@
+/* Application.css */
+
 .secondaryTheme {
-  width: 768px;
+  display: flex;
+  justify-content: center;
+  max-width: 768px; /* Maximum width the container can grow to */
+  width: 100%; /* Full width of the parent container */
   border: 2px solid #efefef;
   border-radius: 16px;
   padding: 16px 24px;
-  margin: 0 auto 8px !important;
+
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 1024px) {
+  .secondaryTheme {
+    width: 700px !important; /* Adjust padding for smaller screens */
+  }
+}
+@media (max-width: 900px) {
+  .secondaryTheme {
+    width: 500px !important; /* Adjust padding for smaller screens */
+  }
+}
+@media (max-width: 600px) {
+  .secondaryTheme {
+    width: 300px !important; /* Adjust padding for smaller screens */
+  }
+}
+@media (max-width: 425px) {
+  .secondaryTheme {
+    width: 250px !important; /* Adjust padding for smaller screens */
+  }
 }

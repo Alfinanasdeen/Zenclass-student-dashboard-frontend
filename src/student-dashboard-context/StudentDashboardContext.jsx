@@ -516,52 +516,52 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
-  // Function to handle Query submission
-  const handleQuerySubmission = async (formData) => {
-    setIsLoading(true);
-    console.log("Submitting query with data:", formData);
+  // // Function to handle Query submission
+  // const handleQuerySubmission = async (formData) => {
+  //   setIsLoading(true);
+  //   console.log("Submitting query with data:", formData);
 
-    try {
-      const apiConfig = {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-          "Content-Type": "application/json",
-        },
-      };
+  //   try {
+  //     const apiConfig = {
+  //       headers: {
+  //         Authorization: `Bearer ${authToken}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //     };
 
-      const response = await api.post("/student/query", formData, apiConfig);
-      console.log("Query submitted successfully:", response.data);
-      toast.success(response.data.message);
+  //     const response = await api.post("/student/query", formData, apiConfig);
+  //     console.log("Query submitted successfully:", response.data);
+  //     toast.success(response.data.message);
 
-      // Trigger data update to re-fetch queries
-      setDataUpdateTrigger((prev) => prev + 1);
-    } catch (error) {
-      console.error("Error submitting query:", error.response || error.message);
-      toast.error(
-        error.response?.data?.message || "Network error or request failed."
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  
-  //function to handle cancel query
-  const handleCancelQuery = async (queryId) => {
-    setIsLoading(true);
+  //     // Trigger data update to re-fetch queries
+  //     setDataUpdateTrigger((prev) => prev + 1);
+  //   } catch (error) {
+  //     console.error("Error submitting query:", error.response || error.message);
+  //     toast.error(
+  //       error.response?.data?.message || "Network error or request failed."
+  //     );
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
-    try {
-      const response = await api.delete(`/student/query/${queryId}`, apiConfig);
-      toast.success(response.data.message);
-      setDataUpdateTrigger((prev) => prev + 1);
-    } catch (error) {
-      console.error("Error cancelling query:", error.response || error.message);
-      toast.error(
-        error.response?.data?.message || "Network error or request failed."
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  // //function to handle cancel query
+  // const handleCancelQuery = async (queryId) => {
+  //   setIsLoading(true);
+
+  //   try {
+  //     const response = await api.delete(`/student/query/${queryId}`, apiConfig);
+  //     toast.success(response.data.message);
+  //     setDataUpdateTrigger((prev) => prev + 1);
+  //   } catch (error) {
+  //     console.error("Error cancelling query:", error.response || error.message);
+  //     toast.error(
+  //       error.response?.data?.message || "Network error or request failed."
+  //     );
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
   //Function to Fetch Query
   const fetchQueries = async () => {
@@ -584,6 +584,61 @@ export const StudentDataProvider = ({ children }) => {
     } catch (error) {
       console.error("Error fetching queries:", error.response || error.message);
       toast.error(error.message || "Error fetching queries");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Function to handle Query submission
+  const handleQuerySubmission = async (formData) => {
+    setIsLoading(true);
+    console.log("Submitting query with data:", formData);
+
+    try {
+      const apiConfig = {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          "Content-Type": "application/json",
+        },
+      };
+
+      const response = await api.post("/student/query", formData, apiConfig);
+      console.log("Query submitted successfully:", response.data);
+      toast.success(response.data.message);
+
+      // Fetch updated queries
+      fetchQueries();
+    } catch (error) {
+      console.error("Error submitting query:", error.response || error.message);
+      toast.error(
+        error.response?.data?.message || "Network error or request failed."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Function to handle cancel query
+  const handleCancelQuery = async (queryId) => {
+    setIsLoading(true);
+
+    try {
+      const apiConfig = {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      };
+
+      const response = await api.delete(`/student/query/${queryId}`, apiConfig);
+      toast.success(response.data.message);
+
+      // Fetch updated queries
+      fetchQueries();
+    } catch (error) {
+      console.error("Error cancelling query:", error.response || error.message);
+      toast.error(
+        error.response?.data?.message || "Network error or request failed."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -620,6 +675,19 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
+  // Function to fetch leave requests
+  const fetchLeaveRequests = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await api.get("/student/leave", apiConfig);
+      setLeaveRequests(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
   // Function to handle leave request submission
   const handleLeaveRequestSubmission = async (formData) => {
     setIsLoading(true);
@@ -628,7 +696,7 @@ export const StudentDataProvider = ({ children }) => {
       const response = await api.post("/student/leave", formData, apiConfig);
       toast.success(response.data.message);
       setIsLoading(false);
-      setDataUpdateTrigger((prev) => prev + 1);
+      fetchLeaveRequests();
     } catch (error) {
       if (error.response.data.message) {
         toast.error(error.response.data.message);
@@ -647,7 +715,7 @@ export const StudentDataProvider = ({ children }) => {
       const response = await api.delete(`/student/leave/${leaveId}`, apiConfig);
       toast.success(response.data.message);
       setIsLoading(false);
-      setDataUpdateTrigger((prev) => prev + 1);
+      fetchLeaveRequests();
     } catch (error) {
       if (error.response.data.message) {
         toast.error(error.response.data.message);
@@ -657,21 +725,6 @@ export const StudentDataProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
-
-  // Function to fetch leave requests
-  const fetchLeaveRequests = async () => {
-    setIsLoading(true);
-
-    try {
-      const response = await api.get("/student/leave", apiConfig);
-      setLeaveRequests(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-      setIsLoading(false);
-    }
-  };
-
   // Function to fetch mock data
   const fetchMockData = async () => {
     setIsLoading(true);

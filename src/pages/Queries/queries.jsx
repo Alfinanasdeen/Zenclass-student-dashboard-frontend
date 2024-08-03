@@ -53,7 +53,7 @@ const Queries = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     console.log("Form values:", values);
-    handleQuerySubmission(values);
+    handleQuerySubmission(values); 
     resetForm();
   };
 

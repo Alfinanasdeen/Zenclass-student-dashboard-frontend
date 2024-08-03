@@ -16,16 +16,7 @@
   margin-left: 60px;
   font-size: 40px;
 }
-.user__profile {
-  align-items: start;
-  padding-bottom: 10px;
-}
-.user__name {
-  color: var(--secondary);
-}
-.dropdown-menu {
-  padding: 0 !important;
-}
+
 .dropdown-item:hover {
   background-color: #e9ecef !important;
 }
@@ -43,4 +34,19 @@ img {
 }
 .dropdown-menu {
   transition: 0.3s;
+  padding: 0 !important;
+}
+.user__profile {
+  align-items: start;
+  padding-bottom: 10px;
+}
+.user__name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 768px) {
+  .user__name {
+    display: block !important;
+  }
 }

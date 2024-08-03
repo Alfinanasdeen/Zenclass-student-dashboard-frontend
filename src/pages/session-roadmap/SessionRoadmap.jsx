@@ -141,7 +141,7 @@ const SessionRoadmap = () => {
                     </span>
                   </div>
                   <div className="session__content mt-3">Pre-read:</div>
-                  <div className="ml-3">
+                  <div className="ml-3 ">
                     <span className="session__content__details text-secondary">
                       {selectedSession.preread}
                     </span>
@@ -311,7 +311,7 @@ const SessionRoadmap = () => {
           )}
         </div>
         <div className="right">
-          <div className="roadmap__container justify-self-center">
+          <div className="roadmap__container">
             <div className="roadmap__area">
               <div className="progress__head">Sessions Roadmap</div>
               <div className="sessionsContainer">

@@ -49,6 +49,8 @@
 }
 
 .query-container {
+  display: flex;
+  flex-direction: column;
   border: 2px solid #f0efff;
   padding: 16px;
   border-radius: 8px;
@@ -57,12 +59,14 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  overflow: auto;
 }
 
 .query-detail {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  overflow-wrap: break-word;
 }
 
 .position-right {
@@ -76,6 +80,8 @@
 
 .secondaryGreyTextColor {
   color: var(--secondary);
+  word-break: break-word;
+  overflow: hidden;
 }
 
 .marktag {

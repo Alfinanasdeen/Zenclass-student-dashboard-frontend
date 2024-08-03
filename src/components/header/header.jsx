@@ -29,7 +29,7 @@ const Header = () => {
     <header className="top__header d-flex align-items-center justify-content-between">
       <h1 className="heading">{pageTitle}</h1>
       <div className="user__profile d-flex">
-        <h5 className="mt-3 mr-3 user__name">{renderUserName()}</h5>
+        <h5 className="mt-3 user__name">{renderUserName()}</h5>
         <div className="flex-icons">
           <div className="d-flex align-items-center justify-content-center dropdown">
             <span className="dropdown" type="button" data-bs-toggle="dropdown">

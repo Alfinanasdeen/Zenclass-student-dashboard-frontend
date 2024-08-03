@@ -63,3 +63,9 @@
 .padding__left {
   padding-left: 50px;
 }
+
+@media all and (max-width: 1000px) {
+  .task__container {
+    margin: 0px 20px 0px 80px !important;
+  }
+}
