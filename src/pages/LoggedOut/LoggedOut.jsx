@@ -14,7 +14,7 @@ const LoggedOut = () => {
       </div>
       <div className="body__container rounded">
         <h3 className="text-center mb-5">
-          User has been logged out. Please go to the Login page.
+        Your session has expired. Please navigate to the Login page to re-authenticate.
         </h3>
         <div className="text-center">
           <Link to="/" onClick={handleLogout} className="btn btn-success">

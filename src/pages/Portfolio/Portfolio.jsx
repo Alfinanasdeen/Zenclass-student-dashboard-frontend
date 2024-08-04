@@ -5,14 +5,35 @@ import { ToastContainer, Zoom } from "react-toastify";
 import { Formik, Form } from "formik";
 import TextInput from "../../components/formFields/TextInput";
 import * as Yup from "yup";
+import api from "../../api/api";
 
 const Portfolio = () => {
-  const { portfolio, fetchPortfolio, handlePortfolio, isLoading, trigger } =
+  const { portfolio, handlePortfolio, isLoading, authToken, setPortfolio } =
     useContext(DataContext);
 
   useEffect(() => {
-    fetchPortfolio();
-  }, [fetchPortfolio, trigger]);
+    const fetchPortfolios = async () => {
+      try {
+        if (!authToken) return;
+        const response = await api.get("/student/portfolio", {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+        setPortfolio(response.data);
+        console.log("Fetched portfolio:", response.data);
+        if (response.data.length > 0) {
+          setPortfolio(response.data[0]); // Access the first element
+        } else {
+          setPortfolio(null); // Handle the case where no data is found
+        }
+      } catch (error) {
+        console.error("Error fetching portfolio:", error);
+      }
+    };
+
+    fetchPortfolios();
+  }, [authToken, setPortfolio]);
 
   const validate = Yup.object({
     portfolioURL: Yup.string().url().required("Required"),
@@ -76,7 +97,10 @@ const Portfolio = () => {
             under <b>Review</b> or <b>Reviewed</b>.
           </p>
         </div>
-        <div className="col-12 col-md-6 review__area text-center">
+        <div
+          className="col-12 col-md-6 review__area text-center"
+          style={{ marginTop: "130px" }}
+        >
           <div className="border-bottom text-center">
             <h3 className="review__header">Portfolio Review</h3>
           </div>
@@ -84,18 +108,26 @@ const Portfolio = () => {
             <div className="col-12 col-sm-6">
               <div className="port_item my-4 d-flex flex-column">
                 <span className="port_grey">Status:</span>
-                <span>{portfolio ? portfolio.status : "Not Submitted"}</span>
+                <span>
+                  {portfolio && portfolio.status
+                    ? portfolio.status
+                    : "Not Submitted"}
+                </span>
               </div>
               <div className="port_item my-4 d-flex flex-column">
                 <span className="port_grey">Comment:</span>
-                <span>{portfolio ? portfolio.comment : "Not Submitted"}</span>
+                <span>
+                  {portfolio && portfolio.comment
+                    ? portfolio.comment
+                    : "Not Submitted"}
+                </span>
               </div>
             </div>
             <div className="col-12 col-sm-6">
               <div className="port_item my-4 d-flex flex-column">
                 <span className="port_grey">Date:</span>
                 <span>
-                  {portfolio
+                  {portfolio && portfolio.submittedOn
                     ? portfolio.submittedOn.slice(0, 10)
                     : "Not Submitted"}
                 </span>
@@ -103,7 +135,9 @@ const Portfolio = () => {
               <div className="port_item my-4 d-flex flex-column">
                 <span className="port_grey">Reviewed By:</span>
                 <span>
-                  {portfolio ? portfolio.reveiwedBy : "Not Submitted"}
+                  {portfolio && portfolio.reviewedBy
+                    ? portfolio.reviewedBy
+                    : "Not Submitted"}
                 </span>
               </div>
             </div>

@@ -200,7 +200,7 @@ const Capstone = () => {
               <h4 className="modal-title">Capstone- 1</h4>
               <button
                 type="button"
-                className="btn btn-danger"
+                className="btn btn-danger m-3"
                 data-bs-dismiss="modal"
               >
                 Close

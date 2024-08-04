@@ -1,6 +1,8 @@
 import "./Leaderboard.css";
 import { leaderBoardData } from "../../data";
 import LeaderIcon from "../../assets/leaderIcon.svg";
+import FIRST from "../../assets/rankone-guvi.svg";
+import SECOND from "../../assets/ranktwo-guvi.svg";
 
 const Leaderboard = () => {
   return (
@@ -29,7 +31,11 @@ const Leaderboard = () => {
                   rank === 1 ? "topper" : ""
                 }`}
               >
-                <td className="px-3">{rank}</td>
+                <td>
+                  {rank === 1 && <img src={FIRST} alt="Rank 1" />}
+                  {rank === 2 && <img src={SECOND} alt="Rank 2" />}
+                  {rank > 2 && rank}
+                </td>
                 <td>{name}</td>
                 <td>{batch}</td>
                 <td className="px-3">{learning}</td>

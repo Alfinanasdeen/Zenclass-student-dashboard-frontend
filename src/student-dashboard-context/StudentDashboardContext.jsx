@@ -74,6 +74,7 @@ export const StudentDataProvider = ({ children }) => {
   const [portfolio, setPortfolio] = useState(null);
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [mockData, setMockData] = useState([]);
+  const [isTaskSubmitted, setIsTaskSubmitted] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -136,8 +137,22 @@ export const StudentDataProvider = ({ children }) => {
     localStorage.removeItem("userData");
     setuser(null);
     setAuthToken(null);
-    navigate("/");
+    toast.info("You have been logged out.");
+    navigate("/login");
   };
+
+  // Set up an API interceptor for response error handling
+  api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      if (error.response && error.response.data.message === "TokenExpired") {
+        // Handle token expiration
+        handleLogout();
+        toast.error("Token Expired");
+      }
+      return Promise.reject(error);
+    }
+  );
 
   // Function to handle login and store token (if needed separately)
   const handleLogin = async (credentials) => {
@@ -347,6 +362,7 @@ export const StudentDataProvider = ({ children }) => {
       setFrontEndURL("");
 
       // Fetch tasks again after submission
+      setIsTaskSubmitted(true);
       fetchTask();
     } catch (error) {
       console.error("Submission Error:", error);
@@ -644,7 +660,7 @@ export const StudentDataProvider = ({ children }) => {
     }
   };
 
-  // handling portfolio submission
+  // Handling portfolio submission
   const handlePortfolio = async (data) => {
     setIsLoading(true);
 
@@ -652,13 +668,18 @@ export const StudentDataProvider = ({ children }) => {
       const response = await api.post("student/portfolio", data, apiConfig);
       toast.success(response.data.message);
       setDataUpdateTrigger((prev) => prev + 1);
-      setIsLoading(false);
     } catch (error) {
-      if (error.response.data.message) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
         toast.error(error.response.data.message);
       } else {
+        toast.error("An unexpected error occurred.");
         console.log(error);
       }
+    } finally {
       setIsLoading(false);
     }
   };
@@ -817,6 +838,9 @@ export const StudentDataProvider = ({ children }) => {
         mockData,
         fetchMockData,
         setMockData,
+        isTaskSubmitted,
+        setIsTaskSubmitted,
+        setPortfolio,
       }}
     >
       {children}

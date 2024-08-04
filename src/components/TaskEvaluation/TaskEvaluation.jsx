@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import "./TaskEvaluation.css"; // Assuming you will create a CSS file for this component
+import "./TaskEvaluation.css"; 
 
 const TaskEvaluationUrl = ({ item }) => {
   const renderUrlLink = (url, label) => {

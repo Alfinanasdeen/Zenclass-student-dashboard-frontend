@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp, FaGooglePlay } from "react-icons/fa";
 import "./SessionRoadmap.css";
 import { roadMapData } from "../../data";
+import api from "../../api/api";
 import DataContext from "../../student-dashboard-context/StudentDashboardContext";
 
 const SessionRoadmap = () => {
@@ -17,6 +18,9 @@ const SessionRoadmap = () => {
     setBackEndURL,
     setPageTitle,
     handleTaskSubmission,
+    authToken,
+    setDbTasks,
+    isTaskSubmitted,
   } = useContext(DataContext);
 
   const defaultSessionDetails = {
@@ -56,6 +60,30 @@ const SessionRoadmap = () => {
     setSelectedSession(session);
     setCurrentDay(session.day);
   };
+
+  // Function to fetch class data
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        if (!authToken) return;
+        const response = await api.get("/student/task", {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
+        // Convert `score` to a number
+        const tasks = response.data.map((task) => ({
+          ...task,
+          score: Number(task.score),
+        }));
+        setDbTasks(tasks);
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+      }
+    };
+
+    fetchTasks();
+  }, [authToken, setDbTasks]);
 
   const renderDirection = (day) => {
     // For days 10, 20, 30: both step__bottom and step__right lines
@@ -200,10 +228,19 @@ const SessionRoadmap = () => {
                                     className="formInputs"
                                     id="FrontEndSourceCode"
                                     name="FrontEndSourceCode"
-                                    placeholder="Enter Front-end Source code link"
+                                    placeholder={
+                                      isTaskSubmitted &&
+                                      selectedSession.frontEndCode
+                                        ? selectedSession.frontEndCode
+                                        : "Enter Front-end Source code link"
+                                    }
                                     type="url"
                                     required
-                                    value={selectedSession.frontEndCode}
+                                    value={
+                                      isTaskSubmitted
+                                        ? selectedSession.frontEndCode
+                                        : selectedSession.frontEndCode
+                                    }
                                     onChange={(e) =>
                                       setFrontEndCode(e.target.value)
                                     }
@@ -226,7 +263,11 @@ const SessionRoadmap = () => {
                                     className="formInputs"
                                     name="FrontEndDeployedURL"
                                     id="FrontEndDeployedURL"
-                                    placeholder="Enter Front-end Deployed URL"
+                                    placeholder={
+                                      isTaskSubmitted
+                                        ? "Placeholder text"
+                                        : "Enter Front-end Deployed URL"
+                                    }
                                     required
                                     value={selectedSession.frontEndURL}
                                     onChange={(e) =>
@@ -253,7 +294,11 @@ const SessionRoadmap = () => {
                                     className="formInputs"
                                     id="BackEndSourceCode"
                                     name="BackEndSourceCode"
-                                    placeholder="Enter Back-end Source code"
+                                    placeholder={
+                                      isTaskSubmitted
+                                        ? "Placeholder text"
+                                        : "Enter Back-end Source code"
+                                    }
                                     required
                                     value={selectedSession.backEndCode}
                                     onChange={(e) =>
@@ -279,7 +324,11 @@ const SessionRoadmap = () => {
                                     className="formInputs"
                                     name="BackEndDeployedURL"
                                     id="BackEndDeployedURL"
-                                    placeholder="Enter Back-end Deployed URL"
+                                    placeholder={
+                                      isTaskSubmitted
+                                        ? "Placeholder text"
+                                        : "Enter Back-end Deployed URL"
+                                    }
                                     required
                                     value={selectedSession.backEndURL}
                                     onChange={(e) =>
