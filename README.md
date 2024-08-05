@@ -38,20 +38,20 @@ The Zenclass Student Dashboard is designed to streamline student academic manage
    git clone https://github.com/Alfinanasdeen/Zenclass-student-dashboard-frontend.git
    cd Zenclass-student-dashboard-frontend
 
-- Install Dependencies
-npm install
+2. **Install Dependencies**
+     npm install
 
-- Set Up Environment Variables
-Create a .env file in the root directory and add your environment variables:
-REACT_APP_API_URL=<your_api_url>
+3. **Set Up Environment Variables**
+     REACT_APP_API_URL=<your_api_url>
 
-- Start the Development Server
+4. **Start the Development Server**
 npm run dev
 
 ## Production Deployment
-- Build the Application
-npm run build
 
--Serve the Build
-serve -s dist
+1. **Build the Application**
+   npm run build
+
+2. **Serve the Build**
+   serve -s dist
 
