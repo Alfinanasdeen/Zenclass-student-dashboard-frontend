@@ -42,18 +42,23 @@ export const StudentDataProvider = ({ children }) => {
   const navigate = useNavigate();
 
   // State variables for student progress and tasks
-  const [currentDay, setCurrentDay] = useState(0);
+  const [currentDay, setCurrentDay] = useState(1);
   const [roadMap, setRoadMap] = useState({});
 
   useEffect(() => {
     console.log("roadMapData before set:", roadMapData);
     if (roadMapData && Array.isArray(roadMapData) && roadMapData.length > 0) {
-      console.log("Setting roadMap with:", roadMapData[0]);
-      setRoadMap(roadMapData[0]);
+      const dayData = roadMapData.find((day) => day.day === currentDay);
+      if (dayData) {
+        console.log("Setting roadMap with:", dayData);
+        setRoadMap(dayData);
+      } else {
+        console.error("No data found for currentDay:", currentDay);
+      }
     } else {
       console.error("Invalid roadMapData:", roadMapData);
     }
-  }, []);
+  }, [currentDay]);
 
   useEffect(() => {
     console.log("RoadMap updated:", roadMap);
@@ -351,6 +356,7 @@ export const StudentDataProvider = ({ children }) => {
       check,
     };
 
+    console.log("title:", roadMap.title);
     console.log("New Task Data:", newTask);
 
     try {

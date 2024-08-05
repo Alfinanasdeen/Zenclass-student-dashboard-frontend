@@ -3,9 +3,10 @@ import "./tasks.css";
 import api from "../../api/api";
 import TaskUrl from "../../components/taskSubmission/taskSubmission";
 import DataContext from "../../student-dashboard-context/StudentDashboardContext";
+import PropTypes from "prop-types";
 
 const Tasks = () => {
-  const { dbTasks, setDbTasks, authToken } = useContext(DataContext);
+  const { dbTasks, setDbTasks, authToken, user } = useContext(DataContext);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -16,12 +17,8 @@ const Tasks = () => {
             Authorization: `Bearer ${authToken}`,
           },
         });
-        // Convert `score` to a number
-        const tasks = response.data.map((task) => ({
-          ...task,
-          score: Number(task.score),
-        }));
-        setDbTasks(tasks);
+
+        setDbTasks(response.data);
       } catch (error) {
         console.error("Error fetching tasks:", error);
       }
@@ -43,10 +40,12 @@ const Tasks = () => {
           >
             <div className="flexCont">
               <div className="flexCont__data">
-                <div className="title weight-500">{item.title}</div>
                 <div className="row d-flex align-items-center justify-content-evenly secondaryGreyTextColor">
-                  <div className="mx-1">({item.batch})</div>
-                  <div className="mx-1">{item.title}</div>
+                  <UserInfo
+                    name={`${user.name || user.student.name} `}
+                    batch={user.batch || user.student.batch}
+                  />
+                  <div className="mx-1 title weight-100">{item.title}</div>
                 </div>
               </div>
               <div className="d-flex flex-column align-items-center gap-3">
@@ -95,5 +94,16 @@ const Tasks = () => {
     </section>
   );
 };
-
+const UserInfo = ({ name, batch }) => (
+  <div className="flexCont__data">
+    <div className="title weight-500 pb-2">{name}</div>
+    <div className="row d-flex align-items-center justify-content-evenly secondaryGreyTextColor">
+      <div className="mx-1">{batch}</div>
+    </div>
+  </div>
+);
+UserInfo.propTypes = {
+  name: PropTypes.string.isRequired,
+  batch: PropTypes.string.isRequired,
+};
 export default Tasks;

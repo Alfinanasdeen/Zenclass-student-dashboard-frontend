@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import "./taskSubmission.css"; 
+import "./taskSubmission.css";
 
-const taskSubmission = ({ item }) => {
+const TaskSubmission = ({ item }) => {
   const { frontEndCode, frontEndURL, backEndCode, backEndURL, score } = item;
 
   const renderUrlLink = (url, label) => (
@@ -36,11 +36,11 @@ const itemPropTypes = PropTypes.shape({
   frontEndURL: PropTypes.string,
   backEndCode: PropTypes.string,
   backEndURL: PropTypes.string,
-  score: PropTypes.number,
+  score: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 }).isRequired;
 
-taskSubmission.propTypes = {
+TaskSubmission.propTypes = {
   item: itemPropTypes,
 };
 
-export default taskSubmission;
+export default TaskSubmission;

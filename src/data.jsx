@@ -370,7 +370,7 @@ export const roadMapData = [
     activity:
       "https://docs.google.com/document/d/1ZTcQzCx2-pSnfX9cw7ntvhfB0b1oRasljPq5Xgt97mE/edit",
     tags: "",
-    task: "",
+    task: "fs",
     link: "https://meet.google.com/cvn-fzsd-toe",
   },
   {
@@ -391,7 +391,7 @@ export const roadMapData = [
     activity:
       "https://docs.google.com/document/d/1ZnEpjP2H8-jo8pMQ6j6VtudJdABm4hPUrXEqa4JYGM/edit",
     tags: "",
-    task: "",
+    task: "fs",
     link: "https://meet.google.com/cvn-fzsd-toe",
   },
   {
@@ -410,7 +410,7 @@ export const roadMapData = [
     activity:
       "https://docs.google.com/document/d/1iDaJ-rnZX4fXlQZ46TbG-JTbGZ-Iv1PP7__URfiJME/edit",
     tags: "",
-    task: "",
+    task: "fs",
     link: "https://meet.google.com/cvn-fzsd-toe",
   },
   {
