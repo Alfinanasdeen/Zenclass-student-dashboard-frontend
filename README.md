@@ -6,7 +6,9 @@ Welcome to the Zenclass Student Dashboard frontend repository! This project prov
 
 - [Overview](#overview)
 - [Features](#features)
-- 
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Production Deployment](#production-deployment)
 
 ## Overview
 
@@ -20,16 +22,21 @@ The Zenclass Student Dashboard is designed to streamline student academic manage
 - **Leave Requests**: Request and manage leaves.
 - **Responsive Design**: Optimized for various devices.
 
-Technologies Used
-Frontend: React, CSS, Flexbox
-Backend: Node.js, Express, MongoDB (for backend service)
-Authentication: JSON Web Tokens (JWT)
-Form Handling: Formik
-Task Handling: axios for API calls
+## Technologies Used
+
+- **Frontend**: React, CSS, Flexbox
+- **Backend**: Node.js, Express, MongoDB (for backend service)
+- **Authentication**: JSON Web Tokens (JWT)
+- **Form Handling**: Formik
+- **Task Handling**: axios for API calls
 
 ## Installation
-- Clone the Repository
-git clone https://github.com/Alfinanasdeen/Zenclass-student-dashboard-frontend.git cd Zenclass-student-dashboard-frontend
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/Alfinanasdeen/Zenclass-student-dashboard-frontend.git
+   cd Zenclass-student-dashboard-frontend
 
 - Install Dependencies
 npm install
