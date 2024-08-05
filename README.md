@@ -39,19 +39,24 @@ The Zenclass Student Dashboard is designed to streamline student academic manage
    cd Zenclass-student-dashboard-frontend
 
 2. **Install Dependencies**
+   ```bash
      npm install
 
-3. **Set Up Environment Variables**
+4. **Set Up Environment Variables**
+   ```bash
      REACT_APP_API_URL=<your_api_url>
 
-4. **Start the Development Server**
-npm run dev
+6. **Start the Development Server**
+   ```bash
+      npm run dev
 
 ## Production Deployment
 
 1. **Build the Application**
+   ```bash
    npm run build
 
-2. **Serve the Build**
+3. **Serve the Build**
+   ```bash
    serve -s dist
 
